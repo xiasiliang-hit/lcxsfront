@@ -70,7 +70,6 @@ public class userController {
 	public void updateTuishouOwn(@RequestBody userBean user)
 	{
 		 userService.updateOwnByVid(user);
-
 	}
 
 	@RequestMapping("/queryOwninvitatime")

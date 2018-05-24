@@ -84,18 +84,22 @@
                                         if(data==null || data==""){
                                             alertBottom("密码错误！");
                                         }else{
-                                            /*
+
                                              localStorage.setItem('vid',data[0].vid);
                                              localStorage.setItem('nickname',data[0].realname);
-                                             localStorage.setItem('mobile',data[0].phone);*/
+                                             localStorage.setItem('mobile',data[0].phone);
+                                            var own = data[0].owninvitation;
+                                             //localStorage.setItem('owninvitation', data[0].owninvitation);
+
+                                            /*
                                             setCookie('vid',data[0].vid);
                                             setCookie('nickname',data[0].realname);
                                             setCookie('mobile',data[0].phone);
-
+*/
 
                                             alertBottom("登录成功，将为你跳转至个人中心~");
                                             setTimeout(function() {
-                                                window.location.href="share.html";
+                                                window.location.href="share.html" + "?address=" + own;
                                             },1000)
                                         }
                                     },

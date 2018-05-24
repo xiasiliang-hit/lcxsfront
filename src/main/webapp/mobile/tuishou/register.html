@@ -148,7 +148,7 @@
         var url = window.location.search;
         var address = url.substring(url.lastIndexOf('=')+1, url.length).toUpperCase();
 
-
+/*
         if(!(/^1(3|4|5|7|8|)\d{9}$/.test(mobile))){
             alertBottom('您的手机号码格式有误！')
             return false;
@@ -187,7 +187,7 @@
             }
 
         }
-
+*/
 
         var zhifubao=$("input[name='zhifubao']").val();
         var realname=$("input[name='real-name']").val();
@@ -201,25 +201,124 @@
             //invitation:inviteCode,
         }
 
+
         $.ajax({
             type: "Post",
             contentType: "application/json; charset=utf-8",
             url: "../../user/addUser",
             data:JSON.stringify(user),
             success: function(data){
-                alertBottom("注册成功...");
+                /*alertBottom("注册成功...");
                 setCookie("vid",data[0].vid);
                 setCookie("realname",data[0].realname);
                 setCookie("phone",data[0].phone);
+                */
+                localStorage.setItem('vid',data[0].vid);
+                localStorage.setItem('nickname',data[0].realname);
+                localStorage.setItem('mobile',data[0].phone);
+                //localStorage.setItem('owninvitation', data[0].owninvitation);
+
+                var own = data[0].owninvitation;
+                user2 = {vid : data[0].vid};
+                updateOwn(user2);
+
+                $.ajax({
+                    type: "Post",
+                    contentType: "application/json; charset=utf-8",
+                    url: "/user/queryUserByVid",
+                    data: JSON.stringify(user2),
+                    success: function (data) {
+                        //var invitecode = data[0].owninvitation;
+                        if (own.substring(0, 2) == 'T-') {
+                            window.location.href = "share.html" + "?address=" + own;
+                        }
+                        else {
+                            window.location.href = "share.html" + "?address=" + 'T-' + own;
+                        }
+
+                    }
+                });
+
+                /*
                 setTimeout(function() {
                     window.location.href="share.html";
-                },1000)
+                },1000);
+                */
             },
             error:function(e){
                 alert("错误！！");
             }
-        })
+        });
+
+
+/*
+        $.ajax({
+            type: "Post",
+            contentType: "application/json; charset=utf-8",
+            url: "/user/updateTuishouOwn",
+            data: JSON.stringify(user),
+            success: function (data) {
+                //var vid = data[0].vid;
+                alert("SUC");
+                //getprolsit(0); //数据初始化
+                //getNum();
+            }
+        });
+*/
+
+
+
+
     });
+
+    function updateOwn(user)
+    {
+        $.ajax({
+            type: "Post",
+            contentType: "application/json; charset=utf-8",
+            url: "/user/queryOwninvitatime",
+            data: JSON.stringify(user),
+            success: function(data){
+                var yqm = data[0].owninvitation;
+                var yqlj = data[0].ctime;
+                pos= yqlj.indexOf('=');
+                icode = yqm;
+
+                if (yqm.substring(0, 2) != "T-") {
+                    //$("#_share_link").text(yqlj.substring(0, pos + 1) + "T-" + yqm);
+                    //$("#hidelink").val(yqlj.substring(0, pos + 1) + "T-" + yqm);
+
+                    //insertParam("address", "T-" + yqm)
+                    //window.href.location=document.location.search;
+
+
+                    $.ajax({
+                        type: "Post",
+                        contentType: "application/json; charset=utf-8",
+                        url: "/user/updateTuishouOwn",
+                        data: JSON.stringify(user),
+                        success: function (data) {
+                            //var vid = data[0].vid;
+                            alert("tuishou update");
+                            //getprolsit(0); //数据初始化
+                            //getNum();
+                        }
+                    });
+
+                    //window.location.href="share.html" + "T-" + yqm;
+                }
+                else {
+                    //window.location.href="share.html" + yqm;
+                    $("#_share_link").text(yqlj);
+
+                    //insertParam("address", "T-" + yqm)
+                    //window.href.location=document.location.search;
+                }
+
+            }
+        });
+    }
+
     </script>
 </body>
 </html>

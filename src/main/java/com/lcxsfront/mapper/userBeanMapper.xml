@@ -343,7 +343,7 @@
   </update>
 
   <!-- add prefix "T-" -->
-  <update id="updateOwnByVid" parameterType="java.lang.Long">
+  <update id="updateOwnByVid" parameterType="java.lang.Long" >
     update c_user
     set owninvitation=concat('T-',  owninvitation)
     where vid = #{vid, jdbcType=BIGINT}

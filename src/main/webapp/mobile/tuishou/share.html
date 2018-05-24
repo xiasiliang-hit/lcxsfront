@@ -11,10 +11,11 @@
     <script src="../js/jquery-weui.js"></script>
     <script src="../js/public.js"></script>
     <script src="../js/vue.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </head>
-<body ontouchstart>
+<input ontouchstart>
 <div id="order_items">
-<div class="weui-tab" >
+<div class="weui-tab" id="tabs" >
       <div class="weui-navbar weui-bgf ">
         <a class="weui-navbar__item weui-navbar__item1 weui-bar__item--on" href="#tab1">
           <span>邀请投资</span>
@@ -110,19 +111,23 @@
     </div>
     </div>
 
+<input id="hidelink" value="#" type="hidden"></input>
 
 <script type="text/javascript">
 
-    var vid=getcookie().vid;
+    //var vid=getcookie().vid;
+    var vid = localStorage.getItem('vid');
+    var own = getParameterByName('address');
 
 
-$(document).ready(function(){
+    $(document).ready(function(){
     if(!vid){
-        window.location.href="../Login/login.html";
+
+        window.location.href='../Login/login.html?address=' + own;
     }
 
     var user={
-    vid:vid
+        vid:vid
     }
 
     /*
@@ -134,59 +139,44 @@ $(document).ready(function(){
 
     //! use pc end, not mobile, need change!
     var icode = "";
-    $.ajax({
-        type: "Post",
-        contentType: "application/json; charset=utf-8",
-        url: "/user/queryOwninvitatime",
-        data: JSON.stringify(user),
-        success: function(data){
-            var yqm = data[0].owninvitation;
-            var yqlj = data[0].ctime;
-            pos= yqlj.indexOf('=');
-            icode = yqm;
+        $.ajax({
+            type: "Post",
+            contentType: "application/json; charset=utf-8",
+            url: "/user/queryOwninvitatime",
+            data: JSON.stringify(user),
+            success: function(data){
+                var yqm = data[0].owninvitation;
+                var yqlj = data[0].ctime;
+                pos= yqlj.indexOf('=');
+                icode = yqm;
 
+                if (yqm.substring(0, 2) != "T-") {
+                    $("#_share_link").text(yqlj.substring(0, pos + 1) + "T-" + yqm);
+                    //$("#hidelink").val(yqlj.substring(0, pos + 1) + "T-" + yqm);
 
-            if (yqm.substring(0, 2) != "T-") {
-                $("#_share_link").text(yqlj.substring(0, pos + 1) + "T-" + yqm);
+                    //insertParam("address", "T-" + yqm)
+                    //window.href.location=document.location.search;
 
-                $.ajax({
-                    type: "Post",
-                    contentType: "application/json; charset=utf-8",
-                    url: "/user/updateTuishouOwn",
-                    data: JSON.stringify(user),
-                    success: function (data) {
-                        //var vid = data[0].vid;
-                        alert("SUC");
-                        //getprolsit(0); //数据初始化
-                        //getNum();
-                    }
-                });
+                    $.ajax({
+                        type: "Post",
+                        contentType: "application/json; charset=utf-8",
+                        url: "/user/updateTuishouOwn",
+                        data: JSON.stringify(user),
+                        success: function (data) {
+                            //var vid = data[0].vid;
+                            alert("SUC");
+                            //getprolsit(0); //数据初始化
+                            //getNum();
+                        }
+                    });
+
+                }
+                else {
+                    $("#_share_link").text(yqlj);
+                }
 
             }
-            else {
-                $("#_share_link").text(yqlj);
-            }
-
-
-            //getprolsit(0); //数据初始化
-            //getNum();
-        }
-    });
-
-    // if owninvitation has been added prefix "T-"
-    if (icode.substring(0, 2) != "T-") {
-
-        /*
-        var user2 = {
-            vid:vid,
-            owninvitation:icode
-        }
-        */
-
-
-    }
-
-
+        });
 
     //load friend receipt record
     ajaxGetData();
@@ -290,8 +280,20 @@ function getNum(){
     })
 }
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+
 function jumpto()
 {
+    /*
     if (!vid)
     {
         window.href.location="../Login/login.html";
@@ -300,6 +302,10 @@ function jumpto()
     {
         window.href.location="../prefecture/tz.html";
     }
+    */
+
+
+
 }
 
 
