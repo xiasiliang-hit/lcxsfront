@@ -1,0 +1,310 @@
+﻿
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>理财</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+     <link rel="stylesheet" href="../css/base_cwn.css">
+       <style>
+       .gc{
+           margin-bottom:15px;
+       }
+       .cs{
+    font-size: 10px;
+}
+    .gy{
+    font-size: 16px;
+}
+    </style>
+
+</head>
+<body ontouchstart>
+<div class="weui-search-bar" id="searchBar">
+      <form class="weui-search-bar__form" onsubmit="return searchpro()">
+        <div class="weui-search-bar__box">
+          <i class="weui-icon-search"></i>
+          <input type="search" class="weui-search-bar__input" id="keywords" placeholder="搜索" required>
+          <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+        </div>
+        <label class="weui-search-bar__label" id="searchText"  style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+          <i class="weui-icon-search"></i>
+          <span>输入要搜索的平台名称</span>
+        </label>
+      </form>
+      <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+    </div>
+<header class="header weui-t_c weui-f16 weui-p_r">
+<a href="./steady.html" class=" weui-white gy">稳健专区</a>
+<a href="./HighReturn.html" class=" jlcolor weui-ml30 gy">高返专区</a>
+</header>
+<div class="weui-main index_cont" >
+<div class="weui-flex weui-bgf weui-bb weui-pt10 weui-pb10 weui-t_c weui_sh">
+            <div class="weui-flex__item opt_a"><a onclick="rmsy();" class="on">收益优先 <i class="jt"></i></a></div>
+            <div class="weui-flex__item opt_a"><a onclick="sjsj();">上架时间<i class="jt"></i></a> </div>
+            <div class="weui-flex__item opt_a"><a onclick="aqyx();">评分优先<i class="jt"></i></a></div>
+            <div class="weui-flex__item opt_a"><a  onclick="ftyx()">复投优先 <i class="jt"></i></a></div>
+</div>
+
+<div class="main" id="contain">
+
+</div>
+</div>
+<div class="weui-tabbar">
+                <a href="../index.html" class="weui-tabbar__item">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="../images/h.png" alt="" class="weui-tabbar__icon">
+                    </span>
+                    <p class="weui-tabbar__label">首页</p>
+                </a>
+                <a href="./steady.html" class="weui-tabbar__item weui-bar__item_on">
+                    <img src="../images/lc_13.png" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">理财</p>
+                </a>
+                <a href="./msyq.html" class="weui-tabbar__item">
+                    <img src="../images/lc_24.png" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">活动</p>
+                </a>
+                <a href="javascript:;" class="weui-tabbar__item" id="ycj1">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="../images/lc_16.png" alt="" class="weui-tabbar__icon">
+                    </span>
+                    <p class="weui-tabbar__label">客服</p>
+                </a>
+                <a href="./record.html" class="weui-tabbar__item">
+                    <img src="../images/w.png" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">我的</p>
+                </a>
+            </div>
+            
+            
+  
+
+<script src="../js/jquery-2.1.4.js"></script>
+<script src="../js/zepto.js"></script>
+<script src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/vue.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/jquery-weui.js"></script>
+<script>
+    $("#ycj1").click(function(){
+        PP.show()
+    });
+
+    window.ppSettings = {
+        app_uuid: 'f7a4cad0-f5b1-11e7-b287-00163e00061e',
+        view: {
+            launcher_bottom_margin: '50px',
+            launcher_right_margin: '30px',
+            launcher_is_show: false,
+            launch_style: {
+                mode: 'custom',
+                position: 'right',
+                bottom: 50,
+
+
+            }
+        }
+    };
+
+    (function(){
+        var w=window,d=document;
+
+        function l() {
+            var a=d.createElement('script');
+            a.type='text/javascript';
+            a.async=!0;
+            a.charset='utf-8';
+            a.src='https://ppmessage.cn/ppcom/assets/pp-library.min.js';
+            var b=d.getElementsByTagName('script')[0];
+            b.parentNode.insertBefore(a,b)
+        }
+        l();
+    })();
+
+</script>
+<script>
+    var pageIndex=0,limit=10;
+    var shelfTime=1;
+    var zhsy="";
+    var type1="";
+    var shop="";
+    $(document).ready(function(){
+        ajaxGetData();
+        var range = 0;             //距下边界长度/单位px
+        var elemt = 0;           //插入元素高度/单位px
+        var maxnum = 2000;            //设置加载最多次数
+        var canRun=true;  
+        var totalheight = 0;
+        var main = $("#contain");                     //主体元素
+        $(window).scroll(function(){
+       		 if(!canRun){return;}  
+        	 canRun=false;  
+        	 setTimeout(function(){
+            var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+             // console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+             // console.log("页面的文档高度 ："+$(document).height());
+             // console.log('浏览器的高度：'+$(window).height());
+            totalheight = Math.ceil($(window).height()) + Math.ceil(srollPos);
+            if(($(document).height()-range) <= totalheight ) {
+                ajaxGetData();
+            }
+             canRun=true;
+             },600); 
+        });
+    });
+    function rmsy(){
+    	$('.main').html('');
+    	shelfTime+=1;
+    	pageIndex=0;
+    	zhsy="";
+    	type1="";
+    	shop="";
+        ajaxGetData();
+    }
+    $(".opt_a").click(function () {
+        $(".opt_a a").removeClass("on");
+        $(this).find("a").addClass("on");
+    })
+    
+    function sjsj(){
+    	if(zhsy==null || ""==zhsy){
+    		zhsy=1;
+    	}else{
+    		zhsy+=1;
+    	}
+    	$('.main').html('');
+    	pageIndex=0;
+    	shelfTime="";
+    	type1="";
+    	shop="";
+        ajaxGetData();
+    }
+    
+    function ftyx(){
+    	if(type1==null || ""==type1){
+    		type1=1;
+    	}else{
+    		type1+=1;
+    	}
+    	$('.main').html('');
+    	pageIndex=0;
+    	shelfTime="";
+    	zhsy="";
+    	shop="";
+        ajaxGetData();
+    }
+    
+    function aqyx(){
+    	if(shop==null || ""==shop){
+    		shop=1;
+    	}else{
+    		shop+=1;
+    	}
+    	$('.main').html('');
+    	pageIndex=0;
+    	shelfTime="";
+    	type1="";
+    	zhsy="";
+        ajaxGetData();
+    }
+    function ajaxGetData() {
+    var str="";
+            var front={
+                    page:pageIndex,
+                    limit:limit,
+                    minxnh:1,
+                    maxxnh:shelfTime,
+                    minzq:zhsy,
+                    maxzq:type1,
+                    risk:shop,
+                }
+               $.ajax({
+		          type: "Post",
+		          contentType: "application/json; charset=utf-8",
+		          url: "../../front/queryAll",
+		          data: JSON.stringify(front),
+		          success: function(data){
+						if( data[0].de!=2){
+                                pageIndex+=1;
+                                for(var i = 0; i < data.length; i++){
+                                    //"type": "1", // 1首投 标识
+                                    var type='';
+                                    var color = '';
+                                    if(data[i].typestz == 1){
+                                        type = '首投';
+                                    }else if(data[i].typestz == 2){
+                                        color = 'bq01';
+                                        type = '复投';
+                                    }
+                                    var cc=data[i].xnh.split('.');
+			            var tagg = new Array();
+				    tagg=cc;
+				    var dd=data[i].xnh;
+				    if(tagg.length==1){
+					var dd=data[i].xnh+".00";
+				    }else{
+					if(tagg[1].length==1){
+						var dd=data[i].xnh+"0";
+				    }
+				    }		
+                                    var tag = '';
+                                    var tagbox = data[i].tag.split(',');
+                                    for (var j = 0; j < tagbox.length; j++) {
+
+                                        tag=tag+' <span class="bg bg1 cs">'+tagbox[j]+'</span> ';
+                                    }
+                                    str=str+' <a href="./details.html?pro_id='+data[i].id+'" class="btn_cy">  <section class="weui-bgf weui-pt10 weui-pb10 weui-bb">\n' +
+                                        '    <p class="weui-pb10 weui-pl15">\n' +
+                                        '        <span class="bq '+color+'">'+type+'</span>\n' +
+                                        '        &nbsp;&nbsp;&nbsp;&nbsp;<img src="'+data[i].logo+'" width="70">\n' +
+                                        '<span class=" weui-fr weui-f12 weui-pt5">' + '风控评分：' +data[i].risk+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>\n' + 
+
+                                        '    </p>\n' +
+                                        '    <div class="weui-flex weui-t_c weui-f12">\n' +
+                                        '            <div class="weui-flex__item">\n' +
+                                        '                <p class="weui-f20 weui-orange"><b>'+dd+'%</b></p>\n' +
+                                        '                返利后年化收益\n' +
+                                        '            </div>\n' +
+                                        '            <div class="weui-flex__item">\n' +
+                                        '                <p class="weui-f20 weui-orange"><b>'+data[i].tincome+'</b></p>\n' +
+                                        '                投'+data[i].money+'获得（元）\n' +
+                                        '            </div>\n' +
+                                        '            <div class="weui-flex__item">\n' +
+                                        '                <p class="weui-f20 weui-orange"><b>'+data[i].qx+'</b></p>\n' +
+                                        '                最短投资期限（天）\n' +
+                                        '<p class="weui-c_9 weui-pt10 weui-f12">已参与<span class="weui-orange">'+data[i].people+'</span>人</p>\n' +
+                                        '            </div>\n' +
+                                        '        </div>\n' +
+                                        '       <div class="weui-pt10 weui-pl15">' +tag+ '</div> \n' +
+                                        '       <div class="weui-pt10 weui-pl15"></div> \n' +
+                                        '</section></a>';
+                                    var tag = '';
+
+                                }
+                                $('.main').append(str);
+                            }else {
+                            }
+                        }
+                        })
+                }
+                
+function searchpro(){
+        var searchkey = $("#keywords").val();
+        if(searchkey){
+            window.location.href="hot2.html?keywords="+searchkey;
+        }else{
+            alertBottom("搜索内容不得为空！");
+        }
+        return false;
+    }
+
+</script>
+       
+</body>
+
+</html>

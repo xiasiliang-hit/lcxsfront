@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>我的红包</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../css/jquery-weui.css">
+     <link rel="stylesheet" href="../css/base_cwn.css">
+    
+
+</head>
+<body ontouchstart>
+<header class="header weui-t_c weui-white weui-p_r">
+我的红包
+<a href="./record.html" class="weui-dnb return"><img src="../images/r_03.png" width="10"></a>
+</header>
+<div id="user_cont">
+<div class="weui-tab">
+      <div class="weui-navbar weui-bgf">
+        <a class="weui-navbar__item weui-bar__item--on" href="#tab1" onclick="y()">
+          <span>可使用红包</span>
+        </a>
+        <a class="weui-navbar__item" href="#tab1" onclick="e()">
+          <span>已使用红包</span>
+        </a>
+        <a class="weui-navbar__item" href="#tab1" onclick="j()">
+          <span>已过期红包</span>
+        </a>
+      </div>
+      <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active" >
+          <div class=" weui-p20"  v-for="orderItem in orderlist">
+               <div class="weui-flex hbbg" v-if="orderItem.type==0">
+                 <div class="weui-p20 hbbg_l weui-p_r" style="width:26%">
+                     <p>¥ <span class="weui-f36">{{orderItem.redmoney}}</span></p>
+                 </div>
+                 <div class="weui-flex__item hbbg_c weui-p_r">
+                     <div class="weui-p20">
+                     <p class="weui-f16">{{orderItem.redname}}</p>
+                     <p>{{orderItem.ctime}}</p>
+                     <p><span class="weui-f10">{{orderItem.context}}</span></p>
+                     </div>
+                 </div>
+              </div>
+              <div class="weui-flex hbbg1" v-else-if="orderItem.type==1">
+                 <div class="weui-p20 hbbg_l1 weui-p_r" style="width:26%">
+                     <p>¥ <span class="weui-f36">{{orderItem.redmoney}}</span></p>
+                 </div>
+                 <div class="weui-flex__item hbbg_c1 weui-p_r">
+                     <img src="../images/sy_03.png" class="gq_img">
+                     <div class="weui-p20">
+                     <p class="weui-f16">{{orderItem.redname}}</p>
+                     <p>{{orderItem.ctime}}</p>
+                     <p><span class="weui-f10">{{orderItem.context}}</span></p>
+                     </div>
+                 </div>
+              </div>
+
+				<div class="weui-flex hbbg1" v-else>
+                    <div class="weui-p20 hbbg_l1 weui-p_r" style="width:26%">
+                        <p>¥ <span class="weui-f36">{{orderItem.redmoney}}</span></p>
+                    </div>
+                    <div class="weui-flex__item hbbg_c1 weui-p_r">
+                        <img src="../images/g_03.png" class="gq_img">
+                        <div class="weui-p20">
+                            <p class="weui-f16">{{orderItem.redname}}</p>
+		                    <p>{{orderItem.ctime}}</p>
+		                    <p><span class="weui-f10">{{orderItem.context}}</span></p>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+</div>
+
+<script src="../js/jquery-2.1.4.js"></script>
+<script src="../js/jquery-weui.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/vue.js"></script>
+<script>
+    var vid = localStorage.getItem('vid');
+    var a=0;
+    var limit=4,pageIndex=0;
+    if(!vid){
+        window.location.href="../Login/login.html";
+    }
+    $(document).ready(function(){
+        ajaxGetData();
+        var range = 0;             //距下边界长度/单位px
+        var elemt = 0;           //插入元素高度/单位px
+        var maxnum = 2000;            //设置加载最多次数
+        var totalheight = 0;
+        var canRun=true;  
+        var main = $("#contain");                     //主体元素
+        $(window).scroll(function(){
+        	if(!canRun){return;}  
+        	 canRun=false;  
+        	 setTimeout(function(){
+            var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+            /* console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+             console.log("页面的文档高度 ："+$(document).height());
+             console.log('浏览器的高度：'+$(window).height());*/
+            totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+                if(($(document).height()-range) <= totalheight ) {
+                    ajaxGetData();
+                }
+                canRun=true;
+             	},600); 
+        });
+    });
+
+
+
+    var vm = new Vue({
+        el: "#user_cont",//读取数据的块
+        data: {
+            shoplist:[],
+            mobilefull:null,
+            dayMoney:null,
+            sumMoney:0,
+            hasdata:null,
+            waitingNum:null,
+            nickname:null,
+            ucode:null,
+            mobile:null,
+            count:0,
+            orderlist:[],//回单记录
+            reddata:{
+                title:null,
+                money:null,
+                content:null,
+                dtime:null,
+                type:null,
+                red_id:null
+            },},
+    });
+
+
+    function y(){
+        a=0;
+        pageIndex=0;
+        vm.orderlist=[];
+        ajaxGetData();
+    }
+    function e(){
+        a=1;
+        pageIndex=0;
+        vm.orderlist=[];
+        ajaxGetData();
+    }
+    function j() {
+        a=2;
+        pageIndex=0;
+        vm.orderlist=[];
+        ajaxGetData();
+    }
+    function ajaxGetData() {
+    	var front={
+	    	id:vid,
+            limit:limit,
+            page:pageIndex,
+            risk:a,
+	    }
+        $.ajax({
+          type: "Post",
+          contentType: "application/json; charset=utf-8",
+          url: "../../user/queryUserRedByVidForApp",
+          data: JSON.stringify(front),
+          success: function(data){
+          console.log(data);
+                    if( data[0].de!=2){
+                        pageIndex+=1;
+                        for(var i = 0; i < data.length; i++){
+                            vm.orderlist.push(data[i]);
+                        }
+                    }else {
+                    }
+          }
+        });
+    }
+
+
+
+
+</script>
+</body>
+
+</html>

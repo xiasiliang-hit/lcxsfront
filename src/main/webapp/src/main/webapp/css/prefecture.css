@@ -1,0 +1,299 @@
+.prefecture_main{
+    padding: 10px 0 70px 0;
+}
+/*.project_option_box{
+    height: 140px;
+    background: #ffffff;
+    padding: 25px 0 40px;
+}
+.span_black{
+    color: #111111;
+}*/
+.sort_div .span_red{
+    color: #f52c38;
+}
+/*!*选项1*!
+.project_option_item{
+     width: 1200px;
+     height: 35px;
+     line-height: 35px;
+     margin: 0 auto;
+ }
+.project_option_item li{
+    display: inline-block;
+}
+.project_option_item span{
+    margin-right: 50px;
+}
+.project_option_item input {
+    color: #8d95a1;
+    padding: 2px 15px;
+    border: none;
+    margin-right: 50px;
+    background: none;
+}
+.project_option_item .input_active{
+    background: #f52c38;
+    color: white;
+}
+!*选项2*!
+.project_option_item2{
+    width: 1200px;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 auto;
+}
+.project_option_item2 li{
+    display: inline-block;
+}
+.project_option_item2 span{
+    margin-right: 50px;
+}
+.project_option_item2 input {
+    color: #8d95a1;
+    padding: 2px 15px;
+    border: none;
+    margin-right: 50px;
+    background: none;
+}
+.project_option_item2 .input_active{
+    background: #f52c38;
+    color: white;
+}
+!*选项3*!
+.project_option_item3{
+    width: 1200px;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 auto;
+}
+.project_option_item3 li{
+    display: inline-block;
+}
+.project_option_item3 span{
+    margin-right: 50px;
+}
+.project_option_item3 input {
+    color: #8d95a1;
+    padding: 2px 15px;
+    border: none;
+    margin-right: 50px;
+    background: none;
+}
+.project_option_item3 .input_active{
+    background: #f52c38;
+    color: white;
+}*/
+/*新选项*/
+.selectTypeBg {
+    background: #fff;
+}
+.selectTypeBg .c1-block2 {
+    width: 1200px;
+}
+.c1-block2 {
+    width: 1200px;
+    margin: auto;
+    padding: 30px 0;
+    font-size: 14px;
+}
+.c1-menu2 {
+    height: 40px;
+    line-height: 40px;
+    /* padding: 20px 0; */
+}
+.c1-head-2 {
+    font-weight: 100;
+    display: inline-block;
+    margin: 0 50px 0 0;
+    color: #111111;
+}
+h4 {
+    display: block;
+    -webkit-margin-before: 1.33em;
+    -webkit-margin-after: 1.33em;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    font-weight: bold;
+}
+.right-select {
+    display: inline-block;
+}
+div {
+    display: block;
+}
+.select-label {
+    margin-right: 50px;
+}
+label {
+    cursor: default;
+}
+.select-label input {
+    display: none;
+}
+.select-label input:checked +span {
+    background-color: #f52c38;
+    color: #fff;
+}
+.select-label span {
+    color: #a5a5a5;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 10px;
+}
+/*排序*/
+.sort_div{
+    width: 1200px;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 auto;
+}
+.sort_div ul{
+    display: inline-block;
+}
+.sort_div li{
+    display: inline-block;
+}
+.sort_div span{
+    margin-right: 5px;
+}
+.sort_div div{
+    margin-right: 24px;
+}
+/*搜索*/
+.search_box{
+    width: 1200px;
+    margin: 40px auto 45px;
+}
+.search_box_input{
+    width: 275px;
+    height: 25px;
+    padding: 5px 0 5px 25px;
+    border: none;
+}
+.search_box_btn{
+    width: 75px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    margin:0 20px 0 10px;
+    background: #f52c38;
+    color: white;
+}
+.search_box a{
+    margin-right: 10px;
+}
+.search_box span{
+    margin-right: 10px;
+}
+/*列表*/
+.list_title{
+    width: 1140px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 40px;
+    margin: 0 auto 20px;
+}
+.list_title li{
+    display: inline-block;
+    margin-right: 60px;
+    color: white;
+}
+.list_title .li_red_color{
+    color: #ffffff;
+}
+.minute_list_box{
+    width: 1200px;
+    margin: 0 auto;
+}
+.minute_list_item{
+    position: relative;
+    display: inline-block;
+    margin: 0 10px 15px 8px;
+    width: 260px;
+    height: 300px;
+    border: solid 1px #e5e5e5;
+    background: #ffffff;
+    padding: 10px 10px;
+    text-align: center;
+}
+.minute_list_item_title{
+    width: 260px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.brand_div{
+    height: 32px;
+    line-height: 32px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.brand_div img{
+    position: absolute;
+    top: 0;
+    left: 60px;
+}
+.brand_div span{
+    padding: 0 5px;/*
+    background: #cccccc;*/
+    margin-left: 74px;
+    color: white;
+    border-radius: 10px;
+}
+.tag_div{
+    width: 240px;
+    line-height: 25px;
+    margin: 0 auto 10px;
+}
+.tag_div span{
+    padding: 0 10px;
+    background: #f2f2f2;
+    color: #88909b;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+.brand_details{
+    margin: 0 auto 10px;
+}
+.brand_details span{
+    display: block;
+}
+.brand_details_left{
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+    height: 40px;
+}
+.brand_details_border{
+    display: inline-block;
+    height: 25px;
+    margin: 7.5px 0;
+    border-left: solid 1px #e5e5e5;
+}
+.brand_details_right{
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    height: 40px;
+}
+.dashed_border{
+    margin: 20px 0 15px;
+    border-bottom: dashed 1px #e5e5e5;
+}
+.brand_btn{
+    width: 80px;
+    height: 25px;
+    line-height: 25px;
+    color: white;
+    margin: 0 auto;
+    background: url("../img/pic_prefecture_btn.png")no-repeat center;
+}
+.brand_btn2{
+    width: 80px;
+    height: 25px;
+    line-height: 25px;
+    color: white;
+    margin: 0 auto;
+    background: url("../img/pic_Unprefecture_btn.png")no-repeat center;
+}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>我的</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+     <link rel="stylesheet" href="../css/base_cwn.css">
+    
+
+</head>
+<body ontouchstart>
+<section class="centerbg"></section>
+<div id="user_cont">
+<div class="weui-p20" style="margin-top:-15vw;">
+    <div class="weui-bgf weui-box_s">
+         <div class="weui-cell">
+                <div class="weui-cell__hd"><img src="../images/img_03.png" alt="" style="width:12vw;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>{{mobilefull}}</p>
+                    <p>我的邀请码：{{ucode}}</p>
+                </div>
+                <!--<div class="weui-cell__ft"><a href="#" class="zskf_a">专属客服 ></a></div>-->
+            </div>
+         <p class="weui-t_c weui-f36 weui-orange">{{sumMoney}}</p>
+         <p class="weui-c_9 weui-t_c weui-pb20">累计收益（元）</p>
+    </div>
+</div>
+<div class="weui-main">
+
+
+<div class="weui-cells">
+            <a class="weui-cell weui-cell_access" href="./tzjl.html">
+                <div class="weui-cell__bd">
+                    <p>投资记录</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+            </a>
+            <a class="weui-cell weui-cell_access" href="./tz.html">
+                <div class="weui-cell__bd">
+                    <p>邀请记录</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+            </a>
+            <a class="weui-cell weui-cell_access" href="./kyredbao.html">
+                <div class="weui-cell__bd">
+                    <p>我的红包</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+            </a>
+            <a class="weui-cell weui-cell_access" href="../user/set.html">
+                <div class="weui-cell__bd">
+                    <p>我的账号</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+            </a>
+            <!--<a class="weui-cell weui-cell_access" href="javascript:;">-->
+                <!--<div class="weui-cell__bd">-->
+                    <!--<p>我的消息</p>-->
+                <!--</div>-->
+                <!--<div class="weui-cell__ft">-->
+                <!--</div>-->
+            <!--</a>-->
+            <a class="weui-cell weui-cell_access" href="../Login/agreement.html">
+                <div class="weui-cell__bd">
+                    <p>用户协议</p>
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+            </a>
+            <a class="weui-cell" href="javascript:;">
+                <div class="weui-cell__bd">
+                    <p>版本号</p>
+                </div>
+                <div class="weui-cell__ft">v1.1.0
+                </div>
+            </a>
+</div>
+<div class="weui-p20">
+<a href="javascript:;" class="weui-btn weui-btn_warn exit">安全退出</a>
+</div>
+
+<div class="weui-mask weui-d_n">
+     <div class="weui-dialog">
+                <div class="weui-dialog__hd weui-pb20"><strong class="weui-dialog__title">确认退出</strong></div>
+                <div class="weui-dialog__ft">
+                    <a href="javascript:;"  class="weui-dialog__btn weui-orange">取消</a>
+                    <a href="javascript:;"  onclick="q()" class="weui-dialog__btn weui-orange">确定</a>
+                </div>
+            </div>
+</div>
+
+</div>
+
+</div>
+<div class="weui-tabbar">
+    <a href="../index.html" class="weui-tabbar__item">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="../images/h.png" alt="" class="weui-tabbar__icon">
+                    </span>
+        <p class="weui-tabbar__label">首页</p>
+    </a>
+    <a href="./steady.html" class="weui-tabbar__item ">
+        <img src="../images/lc.png" alt="" class="weui-tabbar__icon">
+        <p class="weui-tabbar__label">理财</p>
+    </a>
+    <a href="./msyq.html" class="weui-tabbar__item">
+        <img src="../images/lc_24.png" alt="" class="weui-tabbar__icon">
+        <p class="weui-tabbar__label">活动</p>
+    </a>
+    <a href="javascript:;" class="weui-tabbar__item" id="ycj1">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="../images/lc_16.png" alt="" class="weui-tabbar__icon">
+                    </span>
+        <p class="weui-tabbar__label">客服</p>
+    </a>
+    <a href="./record.html" class="weui-tabbar__item weui-bar__item_on">
+        <img src="../images/m_03.png" alt="" class="weui-tabbar__icon">
+        <p class="weui-tabbar__label">我的</p>
+    </a>
+</div>
+            
+            
+  
+
+<script src="../js/jquery-2.1.4.js"></script>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/vue.js"></script>
+<script>
+    var vid = localStorage.getItem('vid');
+    if(!vid){
+        window.location.href="../Login/login.html";
+    }
+    var vm = new Vue({
+        el: "#user_cont",//读取数据的块
+        data: {
+            shoplist:[],
+            mobilefull:null,
+            dayMoney:null,
+            sumMoney:0,
+            hasdata:null,
+            waitingNum:null,
+            nickname:null,
+            ucode:null,
+            mobile:null,
+            count:null,
+            orderlist:[],//回单记录
+            reddata:{
+                title:null,
+                money:null,
+                content:null,
+                dtime:null,
+                type:null,
+                red_id:null
+            },
+        },
+    });
+    $(function(){
+        var user={
+                 vid:vid,
+                }
+               $.ajax({
+		          type: "Post",
+		          contentType: "application/json; charset=utf-8",
+		          url: "../../user/queryMessageByVidForApp",
+		          data: JSON.stringify(user),
+		          success: function(data){
+                        vm.sumMoney = data[0].sumMoney;
+                        vm.ucode = data[0].ucode;
+                        vm.mobile = data[0].mobile;
+                        var str = data[0].mobile;
+                        vm.mobilefull = str.substr(0,3)+"****"+str.substr(str.length-4);
+                    }
+                }
+        );
+    })
+
+</script>
+
+
+<script>
+    $("#ycj1").click(function(){
+        PP.show()
+    });
+
+    window.ppSettings = {
+        app_uuid: 'f7a4cad0-f5b1-11e7-b287-00163e00061e',
+        view: {
+            launcher_bottom_margin: '50px',
+            launcher_right_margin: '30px',
+            launcher_is_show: false,
+            launch_style: {
+                mode: 'custom',
+                position: 'right',
+                bottom: 50,
+
+
+            }
+        }
+    };
+
+    (function(){
+        var w=window,d=document;
+
+        function l() {
+            var a=d.createElement('script');
+            a.type='text/javascript';
+            a.async=!0;
+            a.charset='utf-8';
+            a.src='https://ppmessage.cn/ppcom/assets/pp-library.min.js';
+            var b=d.getElementsByTagName('script')[0];
+            b.parentNode.insertBefore(a,b)
+        }
+        l();
+    })();
+$('.exit').click(function(e) {
+    $('.weui-mask').show();
+});
+$('.weui-dialog__btn').click(function(e) {
+    $('.weui-mask').hide();
+});
+    
+function q() {
+        localStorage.clear();
+        window.location.href="../Login/login.html";
+    }
+
+</script>
+</body>
+
+</html>

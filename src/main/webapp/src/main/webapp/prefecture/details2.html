@@ -1,0 +1,997 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>产品详情页</title>
+<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="../css/base_cwn3.css" rel="stylesheet" />
+<link rel="stylesheet" href="../css/details.css">
+    <link href="../css/public.css" rel="stylesheet" />
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/gVerify.js"></script>
+    <script src="../laydate/laydate.js"></script>
+    <style>
+		.codepicClass
+        {  
+             background:lightblue;  
+             font-family:Arial;  
+             font-style:italic;  
+             color:Red;  
+             border:0;  
+             padding:2px 3px;  
+             letter-spacing:3px;  
+             font-weight:bolder;  
+             float:right;
+        }  
+        .select-label input {
+            display: none;
+
+        }
+        .select-label{
+            color: #999;
+            margin-left: 26px;
+            font-size: 14px;
+        }
+        .select-label input:checked +span {
+            background: #5597e1;
+            color: #fff;
+            width: 58px;
+            height: 50px;
+
+        }
+
+        .products {
+            height: 90px;
+            overflow: hidden;
+        }
+        .p-box {
+            position: relative;
+        }
+        .p-box .select-label img {
+            float: right;
+            height: 20px;
+        }
+        .products .product-box {
+            margin-left: 125px;
+            margin-top: -30px;
+        }
+        .products .right-select {
+            width: 130px;
+            height: 20px;
+            line-height: 20px;
+            overflow: hidden;
+            margin-right: 2px;
+            text-align: center;
+        }
+        .products .right-select .select-label {
+            margin-right: 0;
+        }
+        .text-center {
+            text-align: center;
+            position: absolute;
+            top: 0;
+            right: -60px;
+        }
+        .red-btn {
+            background-color: #f7f7f7;
+            color: #8d8d8d;
+            padding: 3px 5px;
+            border: 1px solid #e5e4e2;;
+            border-radius: 3px;
+        }
+        .character_fz5 {
+            font-size: 20px;
+        }
+        .gg{
+            /*width:60px;*/
+            /*height:60px;*/
+            /*background: url("images/home_49.png")no-repeat center;*/
+            position:relative;
+            /*<!--<img src="images/home_49.png" class="weui-pt25 weui-pb10" >-->*/
+
+            background: url("../images/home_49.png")no-repeat center;
+            /*margin: 0px 0px 5px 0px;*/
+        }
+
+        .gg img{display: none}
+        .gg:hover img{
+            position:absolute;
+            left:30%;
+            top:0;
+            margin-left:-130px;
+            padding-top:0px;
+            z-index: 99999;
+            display:block;
+
+        }
+        .cs{
+            /*width:60px;*/
+            /*height:60px;*/
+            /*background: url("images/q.png")no-repeat center;*/
+            padding-top:10px;
+            position:relative;
+
+        }
+        .css{
+            display:none;
+
+        }
+        .cs:hover .css{
+            width: 110px;
+            height:235px;
+            background:#F4F1E8;
+            position:absolute;
+            left:30%;
+            top:-120px;
+            margin-left:-135px;
+            padding-top:0px;
+            display:block;
+        }
+    </style>
+</head>
+
+<body class="f14">
+
+<div clas="top01 weui-bgcolor weui-pt5 weui-pb5">
+    <div class="container weui-f12 weui-c_9">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="../images/home_03.png"> <span class="weui-v_m">上班时间：周一到周五 9:00~20:30 法定节假日 9:00~18:00</span>
+                <!--<span class="weui-pl30">关注微博： <img src="images/home_06.png"></span>-->
+            </div>
+            <div class="col-md-6 weui-t_r">
+
+                <a  id="loginbox" href="../login/login.html" class="weui-pl10 weui-pr10 weui-blue">注册/登录</a>
+                <!--<a href="#" class="weui-pl10 weui-pr10 weui-c_9"><img src="images/home_09.png"> <span class="weui-v_m">APP移动客户端</span></a>-->
+                <a href="..//about/about_company_profile2.html" class="weui-pl10 weui-pr10 weui-c_9">关于我们</a>
+                <a href="../about/about_company_profile2.html#tab=3" class="weui-pl10 weui-pr10 weui-c_9">帮助中心</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header">
+    <div class="container">
+        <div class=" moblie_p weui-p_r">
+            <nav class="navbar navbar-default navbar-default1" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class=" weui-fl logo weui-pt20"><a href="#"><img src="../images/logo2.png"/></a></div>
+                <div class=" weui-fr languige weui-pt25 weui-c_p">
+                    <a href="../user/user_pandect.html"><img src="../images/home_17.png" class="weui-v_m"> 我的账户</a>
+                </div>
+                <div class="collapse navbar-collapse  weui-fr" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav nav01 weui-f16">
+                        <li ><a href="../index.html">首页</a></li>
+                        <li class="menu-a1-wj"><a href="./first_tou3.html?s_type=1">稳健专区</a></li>
+                        <li class="menu-a1-gf"><a href="./first_tou3.html?s_type=2">高返专区</a></li>
+                        <li><a href="../guide/guide2.html">新手指引</a></li>
+                        <li><a href="../about/about_company_profile2.html">关于我们 </a></li>
+                    </ul>
+
+                </div>
+
+            </nav>
+        </div>
+
+    </div>
+</div>
+
+<div id="bag">
+
+
+
+<div class="banner2">
+     <div class="container">
+          <div class="weui-bgf weui-box_s weui-bod_r item_top">
+          <div class="col-md-12">
+    <div class="project_box_right_one float_right">
+        <span v-cloak>已有{{num}}人参与</span>
+        <span style="margin-left: 10px">风险小组评分：<span class="black_color"  v-cloak>{{ risk }}</span>
+          <span class="green_color"style="margin-left: 10px" v-cloak>
+              <template v-if="risk <= 15">风险极高</template>
+              <template v-else-if="risk <= 30">风险偏高</template>
+              <template v-else-if="risk <= 60">风险一般</template>
+              <template v-else-if="risk <= 80">风险偏低</template>
+              <template v-else>风险极低</template>
+          </span></span>
+        <span class="showMoreQA">
+           <div class="showMoreQA_cont">风控评分等级：0~15分（风险极高）， 16~30分（风险偏高）， 31~60 分（风险一般），61~80分（风险偏低）， 81~100分 （风险极低）<i class="icon_triangleD"></i></div>
+           <img src="../img/icon_help.png" height="16" width="16" style="margin-left: 10px"/>
+      </span>
+    </div>
+
+</div>
+               <div class="row weui-pt30 weui-pb30">
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 weui-t_c weui-pt30">
+                          <h3><img :src="logo">
+                              <span  class="weui-dnb weui-bod_r weui-f12 stspan weui-white  "  v-cloak  v-if="type=='首投'">{{type}}</span>
+                              <span class="weui-dnb weui-bod_r weui-f12 stspan1 weui-white on " v-cloak  v-else >{{type}}</span>
+                              <!--<span class="weui-dnb weui-bod_r weui-f12 stspan weui-white on">首投</span>-->
+                          </h3>
+                          <div class="weui-dnb weui-pt20">
+                          <p class="weui-c_9 weui-t_l">平台名称：{{productname}}</p>
+                          <p class="weui-c_9 weui-t_l">平台网址：{{homeurl}}</p>
+                          </div>
+                          <div class="weui-pt30">
+                              <span  class=" weui-dnb weui-bod_r weui-pl5 weui-pr5 weui-bod weui-c_9" v-for="tagItem in tag" v-cloak>{{tagItem}}</span>
+                             <!--<span class=" weui-dnb weui-bod_r weui-pl5 weui-pr5 weui-bod weui-c_9">银行背景</span>-->
+                             <!--<span class=" weui-dnb weui-bod_r weui-pl5 weui-pr5 weui-bod or_btn weui-ml15">银行背景</span>-->
+                             <!--<span class=" weui-dnb weui-bod_r weui-pl5 weui-pr5 weui-bod bl_btn weui-ml15">银行背景</span>-->
+                          </div>
+                    </div>
+                    <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8 weui-b_l">
+                        <div class="weui-pl20">
+                             <div class="weui-pr30 weui-c_9">
+                             <div class="row">
+                                  <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 weui-b_r">
+                                      <div>投{{money}}获得 </div>
+                                      <p class="weui-orange weui-f36">{{example}}</p>
+                                  </div>
+                                  <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 weui-b_r">
+                                      <div>相当于年化收益(%)  </div>
+                                      <p class="weui-orange weui-f36">{{income}}%</p>
+                                  </div>
+                                  <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                                      <div>平台正常利息水平</div>
+                                      <p class="weui-orange weui-f36">{{level}} </p>
+                                  </div>
+                             </div>
+                             </div>
+                             <div class="weui-pt30 weui-pb30">
+                             <a href="#" class=" btn btn-or2" data-toggle="modal" data-target="#myModal">填写回单</a>
+                             <span   class="weui-pt30 weui-pb30" > <a href="javascript:void(0);" class='btn btn-or weui-ml30' onclick="ShowDiv('MyDiv','fade')">理财先生直达链接</a></span>
+
+                             
+                          
+                             </div>
+                             
+                             <div class="weui-f12" style="font-size: 14px">
+                             平台优势介绍：
+                             <p class=" weui-c_9 weui-pt5">{{recommend}}</p>
+                            </div>
+                        </div>
+                        <p class=" weui-t_r weui-orange weui-f12 weui-pt20" style="font-size: 14px">风险提示：评分及企业信息仅供参考，请独立评判产品风险，谨慎投资</p>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+     <!--弹框-->
+        <div>
+        
+        <div id="fade" class="black_overlay" onclick="CloseDiv('MyDiv','fade')"></div>
+        <div id="MyDiv" class="white_content">
+            <img class="mydiv_close" src="../img/icon_revise_cancel.png" onclick="CloseDiv('MyDiv','fade')" />
+            <div class="main_bounced_div1 gourlBox">
+                <img :src="logo" height="40" width="98"/>
+            </div>
+            <div class="main_bounced_div2">
+                <span>
+                    <img class="main_table_img" src="../img/icon_alert.png" height="17" width="17"/><span class="black_color">温馨提示：</span>
+                    <a class="cont_color">跳转至平台方的注册页面，请务必确保是<a class="num_color">在跳转的页面上进行注册，</a></a><br>
+                    <a class="cont_color">否则是不会产生返利的哦！</a>
+                </span>
+            </div>
+            <div v-cloak class="box_flex3 main_bounced_div3" v-html="'<a href=\''+ jkflurl +'\' class=\'button_color1 main_bounced_div4\' target=\'_blank\'>继续前往</a>'">
+            </div>
+        </div>
+        </div>
+
+<div class=" container weui-pb30 weui-lh30">
+
+<div class="weui-bgf weui-p20 weui-mt30 weui-p_r itembg">
+     <div class="row weui-t_c">
+         <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 weui-pt30 weui-pb30">
+             <div class="weui-b_r">
+              <img src="../images/pro_03.png">
+              <h3 class="weui-f16 weui-f_b">公司资料</h3>
+               <ul class="weui-t_l">
+                  <li>{{shopname}}</li>
+                  <li>上线时间：{{uptime}}</li>
+                  <li>注册资本：{{regcap}}万</li>
+                  <li>所在地区：{{area}}</li>
+               </ul>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 weui-pt30 weui-pb30">
+              <div class="weui-b_r weui-pl20 weui-pr20">
+              <img src="../images/pro_05.png">
+              <h3 class="weui-f16 weui-f_b">运营信息</h3>
+              <div class="row weui-t_l" >
+                   <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6" >
+                        <ul v-for="(con, index) in context1" id="ulll">
+                            <div v-html="con"></div>
+                        </ul>
+                   </div>
+                   <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <ul v-for="(cn, index) in context">
+                            <div v-html="cn"></div>
+                        </ul>
+                   </div>
+              </div>
+              </div>
+         </div>
+         <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 weui-pt30 weui-pb30">
+             <div class="">
+              <img src="../images/pro_07.png">
+              <h3 class="weui-f16 weui-f_b">公司背景</h3>
+               <ul class="weui-t_l weui-dnb">
+                  <li>平台背景：{{background}} </li>
+                  <li>融资背景：{{financing}}</li>
+               </ul>
+            </div>
+         </div>
+     </div>
+     <table class="table weui-bb">
+          <tr>
+              <th>投资标的</th>
+              <th>期限</th>
+              <th>投资项目</th>
+              <th>投资金额</th>
+              <th>超级返利</th>
+              <th>利息</th>
+              <th>红包</th>
+              <th>其他</th>
+              <th>总收益</th>
+              <th>原年化</th>
+              <th>综合年化</th>
+              <th>返利周期</th>
+              <th>全网最高</th>
+          </tr>
+          <tr class="weui-c_6"  v-for="(caseItem, index) in caseList">
+              <td>{{caseItem.casename}}</td>
+              <td>{{caseItem.qx}}天</td>
+              <td>{{caseItem.project}}</td>
+              <td>{{caseItem.money}}</td>
+              <td class="weui-orange">{{caseItem.interest}}</td>
+              <td>{{caseItem.rebate}}</td>
+              <td>{{caseItem.red}}</td>
+              <td>{{caseItem.other}}</td>
+              <td>{{caseItem.tincome}}</td>
+              <td>{{caseItem.ybh}}% </td>
+              <td class="weui-orange">{{caseItem.zincome}}%</td>
+                  <td class="tr_position" v-cloak>{{caseItem.ftime}}个工作日内
+            <!--<div class="showMoreQA_cont4">返利金额会在这个时间内发放至您的银行卡账户-->
+                <!--<i class="icon_triangleD"></i></div>-->
+            <!--<i class=" weui-c_9 glyphicon glyphicon-question-sign"></i>-->
+            <span class="showMoreQA">
+              <div class="showMoreQA_cont">返利金额会在这个时间内发放至您的支付宝账户
+                  <i class="icon_triangleD"></i>
+              </div>
+              <span class="showMoreQA4 " v-on:mouseenter="displayMoreQA3($event)" v-on:mouseleave="hideMoreQA3($event)">
+                  <div class="showMoreQA_cont4">返利金额会在这个时间内发放至您的银行卡账户
+                  <i class="icon_triangleD"></i></div>
+				<img class="tr_td_position" style="margin-left: 5px" src="../img/icon_help.png" height="16" width="16"/>
+              </span>
+          </span>
+        </td>
+              <td><i class="glyphicon glyphicon-ok-circle weui-blue weui-f20"></i></td>
+          </tr>
+
+     </table>
+     
+     <!--<h3 class="weui-f_b">投资流程：</h3>-->
+     <!--<ul>-->
+         <!--&lt;!&ndash;<li>1.客户通过“超级理财直达链接”，跳转至陆金所注册页面。</li>&ndash;&gt;-->
+         <!--&lt;!&ndash;<li>2.客户在陆金所注册后，拨打陆金所客服热线4008666618询问新注册手机号码对应的推荐者手机号码(推荐号码173****9515)，确认推荐者号码正确后，再进行实名认证，充值投资。</li>&ndash;&gt;-->
+         <!--&lt;!&ndash;<li>3.客户投资完成后，返回本页面，填写在本页面底部的回单信息。</li>&ndash;&gt;-->
+         <!--&lt;!&ndash;<li>4.超级理财收到回单后与平台对账，确认客户数据无误后，将返利发放给客户。</li>&ndash;&gt;-->
+         <!--<li id="tb"></li>-->
+     <!--</ul>-->
+     <div class="weui-bgcolor weui-pt10 weui-pb10 weui-pl20 weui-mt10">
+         <ul class=" weui-red">
+             <!-- <li class="weui-f_b">注意事项：</li> -->
+             <!--<li>  1.陆金所当天投资完成必须当天交单；</li>-->
+             <!--<li>  2.本活动不参与超级理财红包奖励；</li>-->
+             <!--<li>  3.陆金所大额月标，请联系超级理财客服安排，不通过此链接注册。</li>-->
+             <li  id="tb"></li>
+         </ul>
+     </div>
+     <ul class=" weui-mt10">
+         <li>【温馨提示1】一定要通过理财先生直达链接注册，不能刷新页面、否则无返；</li>
+         <li>【温馨提示2】点击“直达链接”之前，务必关闭“百度搜索”、“360搜索”、“搜狗”等其他可能引起掉单的页面；</li>
+         <li>【温馨提示3】投资过程中遇到任何疑问，请咨询专属客服为您解决；</li>
+         <li>【温馨提示4】举例方案仅供参考，红包、加息券等优惠以官方平台为准。</li>
+     </ul>
+</div>
+<div class="weui-bgf weui-p20 weui-box_s weui-mt20">
+    <p class=" weui-pt10 weui-pb10 weui-pl20 weui-f16">免责声明</p>
+    <div class="weui-pt10">理财先生仅为信息平台，本身不吸纳用户资金。活动平台不保证100%安全，如出现意外情况（包括但不局限于平台提现困难/逾期/倒闭等导致无法拿回本金、利息的情况）<br>除理财先生在特殊活动上有注明的保障规则，否则理财先生不承担任何责任。</div>
+</div>
+
+</div>
+
+
+
+   
+   <div class="footer">
+    <div class="container weui-pt15 weui-pb15 weui-lh30">
+        <div class="row weui-pb20">
+            <div class="col-md-3 col-sm-3 col-lg-3">
+            <!--     <h3 class="weui-f18">全国统一客服热线</h3>
+                <p class="weui-f32">400-060-8807</p> -->
+                <p>周一到周五 9:00~20:30<br>法定节假日 9:00~18:00</p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-lg-2">
+                <h3 class="weui-f18 weui-white">关于我们<em class="line"></em></h3>
+                <div class="weui-pt10">
+                    <a href="../about/about_company_profile2.html" class="weui-dnb weui-mr20">公司介绍</a>
+                    <a href="../about/about_company_profile2.html#tab=2" class="weui-dnb weui-mr20">新闻公告</a>
+                    <!--<a href="#" class="weui-dnb weui-mr20">理财攻略</a>-->
+                    <!--<a href="#" class="weui-dnb weui-mr20">专家顾问</a>-->
+                    <!--<a href="#" class="weui-dnb weui-mr20">媒体报道</a>-->
+                    <!--<a href="#" class="weui-dnb weui-mr20">团队介绍</a>-->
+                    <!--<a href="#" class="weui-dnb weui-mr20">联系我们</a>-->
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-lg-2">
+                <h3 class="weui-f18 weui-white">站内导航<em class="line"></em></h3>
+                <div class="weui-pt10">
+                    <a href="../guide/guide2.html" class="weui-dnb weui-mr20">新手指引</a>
+                    <!--<a href="#" class="weui-dnb weui-mr20">投资攻略</a>-->
+                    <a href="../about/about_company_profile2.html#tab=3" class="weui-dnb weui-mr20">帮助中心</a>
+                    <a href="../about/about_company_profile2.html#tab=4" class="weui-dnb weui-mr20">招贤纳士</a>
+                    <!--<a href="#" class="weui-dnb weui-mr20">最新动态</a>-->
+                    <!--<a href="#" class="weui-dnb weui-mr20">月度报告</a>-->
+                </div>
+            </div>
+            <!--<div class="col-md-2 col-sm-2 col-lg-2">-->
+                <!--<h3 class="weui-f18 weui-white">我们的优势<em class="line"></em></h3>-->
+                <!--<div class="weui-pt10">-->
+                    <!--<a href="#" class="weui-dnb weui-mr20">专业风控</a>-->
+                    <!--<a href="#" class="weui-dnb weui-mr20">公司荣誉</a>-->
+                    <!--<a href="#" class="weui-dnb weui-mr20">亿级融资</a>-->
+                    <!--<a href="#" class="weui-dnb weui-mr20">媒体采访</a>-->
+                    <!--<a href="#" class="weui-dnb weui-mr20">专家顾问</a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="col-md-3 col-sm-3 col-lg-3">
+                <h3 class="weui-f18 weui-white">移动端理财 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;安卓app下载</h3>
+                <div class="weui-pt10">
+                     <img src="../img/pic_WeChatQR.jpg" width="120px" height="120px" class="ewm">
+                    <img src="../img/pic_appQR.jpg" width="120px" height="120px" class="ewm weui-ml10"> 
+                </div>
+            </div>
+        </div>
+        <div class="clearfix weui-pt10 weui-b_t">
+            <span class="weui-fl"> 版权所有：安徽蜀玉金融外包服务有限公司 | 皖ICP备18004423号-1 </span>
+            <!--<span class="weui-fr">    <span class="weui-pl30">  超级理财投资交流群：2947473316</span></span>-->
+            <!--客服邮箱：server@163.com-->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header weui-bgcolor">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">填写回单说明</h4>
+            </div>
+            <div class="modal-body">
+                 <p class="weui-c_9">每次投资完，我们根据您填写的回单给您结算返利，回单必填信息： 注册手机号码，所选择方案，投资日期，验证码</p>
+                 <table class="table table1 table-bordered">
+                      <tr>
+                          <td>实际投资金额</td>
+                          <td><input type="text" class="form-control" placeholder="请准确填写金额" id="shopMoney" name="shopMoney"></td>
+                          <td>注册手机号码（活动平台的注册手机号）</td>
+                          <td><input type="text" class="form-control" placeholder="请仔细核对您的号码" name="pmobile"  id="pmobile"></td>
+                      </tr>
+                      <tr>
+                          <td>注册平台用户名（活动平台用户名）</td>
+                          <td><input id="pname" type="text" class="form-control" placeholder="如没有请忽略" ></td>
+                          <td>投资天数</td>
+                          <td>
+                              <select class="form-control" id="caseid" name="caseid">
+                                  <option v-cloak v-for="(caseNo, index) in caseList" :value ="caseNo.id"  v-cloak>{{caseNo.dtime}}</option>
+                              </select>
+
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>投资日期</td>
+                          <td>
+                              <!--<div class="weui-p_r"><input type="text" class="form-control" onClick="WdatePicker()" placeholder="请选择日期"><i class="glyphicon glyphicon-calendar weui-c_9" style="position:absolute; top:10px; right:10px;"></i></div>-->
+                              <input type="text" class="demo-input" placeholder="请选择日期" id="regtime" name="regtime">
+                          </td>
+                          <td>验证码</td>
+                          <td>
+                          <div class="input-group">
+                             <!--<input type="text" class="form-control" placeholder="">-->
+                             <!--<span class="input-group-btn"><img src="images/y_03.png"></span>-->
+
+                              <input type="text" placeholder="" name="code" id="code" style="border: solid 1px #c5c5c5;width: 90px">
+                              <div class="codepicClass" id="codepic"  onclick="getcodePic()" ></div>
+                            </div>
+                          </td>
+                      </tr>
+                 </table>
+            </div>
+            <div class=" weui-pb30 weui-t_c">
+                <a href="../login/login.html" class=" btn btn-or2" id="ljzc">立即注册</a>
+                <!--<a href="#" class=" btn btn-or2 btn-or3 weui-ml20">登陆</a>-->
+                <a href="javascript:;" class=" btn btn-or2 btn-or3 weui-ml20" onclick="codeok()">登陆</a>
+                <!--<a href="javascript:;" class="button_color1_1 main_four_div10" onclick="codeok()">登陆后提交</a>-->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+</div>
+
+<div class="m-confirm">
+    <div class="online"  id="ycj">
+        <img src="../images/r_31.png" class="weui-pt25 weui-pb10">
+        <p>在线咨询</p>
+    </div>
+    <div class="try cs" id="try" tabindex = "1">
+        <img src="../images/home_34.png" class="weui-pt25 weui-pb10">
+        <p>QQ咨询</p>
+        <div class="css">
+            <div style="margin: auto;width: 100px;height: 40px"><img src="../images/lxk.png" alt=""></div>
+            <div  style="margin: auto;width: 100px;height: 88px"><img src="../images/lxk2.png" alt=""></div>
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2492145413&site=qq&menu=yes"><div class="kf1" style="color: block"><img src="../images/qq.png" alt="" style="margin-top: 5px"> &nbsp;客服001</div> </a>
+            <br>
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1817954943&site=qq&menu=yes"><div class="kf1"><img src="../images/qq.png" alt=""> &nbsp; 客服002</div> </a>
+           <!--  <br>
+             <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=102669995&site=qq&menu=yes"><div class="kf1"><img src="images/qq.png" alt=""> &nbsp; 客服003</div> </a> -->
+            <br>
+
+
+        </div>
+
+        <div class="content">
+        </div>
+    </div>
+    <div class="demo gg">
+       <img src="../images/home_49.png" class="weui-pt25 weui-pb10" >
+        <img src="../images/image.png" class="weui-pt25 weui-pb10" >
+
+        <p class="gh" style="font-size: 7px">一号客服</p>
+        <div class="content"></div>
+    </div>
+      <div class="demo gg">
+       <img src="../images/home_49.png" class="weui-pt25 weui-pb10" >
+        <img src="../images/image2.png" class="weui-pt25 weui-pb10" >
+
+        <p class="gh">二号客服</p>
+        <div class="content"></div>
+    </div>
+    <!--<div class="tel">-->
+        <!--<img src="images/home_52.png" class="weui-pt25 weui-pb10">-->
+        <!--<p>电话咨询</p>-->
+        <!--<div class="content"></div>-->
+    <!--</div>-->
+    <div class="top weui-d_n" id="totop">
+        <img src="../images/home_55.png" class="weui-pt5 weui-pb5">
+        <p>TOP</p>
+    </div>
+</div>
+
+
+
+
+<script> 
+
+$('.m-confirm .tel').hover(function(e) {
+    $(this).find('.content').toggleClass('on');
+});
+
+
+$(function () {              
+            //绑定滚动条事件  
+              //绑定滚动条事件  
+            $(window).bind("scroll", function () {  
+                var sTop = $(window).scrollTop();  
+                var sTop = parseInt(sTop);  
+                if (sTop >= 10) {  
+                    $('.top').show();
+                }  
+                else {  
+                    $('.top').hide();
+                }   
+            });  
+        })  
+
+$("#totop").click(function(){
+                $('body,html').animate({scrollTop:0},500);
+                return false;
+            });
+
+
+ </script>
+
+<script>
+	
+    /*回单锚点*/
+    $(function(){
+        $('#receipt_a').click(function () {
+            $('html, body').animate({
+                scrollTop: $($.attr(this, 'href')).offset().top
+            }, 1000);
+            return false;
+        });
+    })
+
+
+    function caseno(i) {
+        var data=vm.caseListItemList;
+        for (var j=0;j<data.length;j++){
+            if(j==i) {
+                $(".main_three_div6").html(htmlDecode(data[j].explain));
+            }
+        }
+    }
+    var vid = getcookie().vid;
+    var phone=getcookie().phone;
+
+    if(vid){
+        $(".weui-ml20").text('提交');
+        $("#ljzc").css("display","none");
+    }
+    var pro_id=getUrlParam("pro_id");
+    var vm=new Vue({
+        el:"#bag",//读取数据的块
+        data:{
+            shopid: null,//产品ID
+            level: null,//平均收益水平
+            example: null, // 举例收益
+            income: null, //年收益率
+            proexplain: null, // 特别说明
+            schedule: null, // 期数
+            type: null,// 1首投 2复投
+            s_type: null, //1稳健 2高返
+            productname: null, // 产品名称
+            shopname: null, // 商户名称
+            uptime: null,// 上线时间
+            regcap: null,// 注册资本(万元)
+            area: null,//所在地区
+            background: null,//平台背景
+            financing: null,//融资背景
+            risk: null, // 评分
+            recommend: null, // 推荐理由
+            logo: null, // logo
+            homeurl: null,//企业域名
+            jkflurl:null,
+            tag: [],// 标签
+            risk_tag: null, // 排名
+            moreurl:null,
+            num:0,
+            money:0,
+            etime:'暂无',
+            caseList:[], //方案列表
+            caseListItemList:[],
+            caseNolist:[],
+            status:null,//状态
+            caseExplain:null,
+            context:[],//运营信息
+            context1:[],
+        }
+    })
+    function escape2Html(str) {
+        var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
+        var str=str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
+        var reTag = /<(?:.|\s)*?>/g;
+        return str.replace(reTag,"");
+    }
+    $(document).ready(function(){ 
+   		var shop={
+	    	shopid:pro_id
+	    }
+        $.ajax({
+          type: "Post",
+          contentType: "application/json; charset=utf-8",
+          url: "../receipt/queryProductByPid",
+          data: JSON.stringify(shop),
+          success: function(data){
+                        vm.level = data[0].level;
+                        vm.example = data[0].example;
+                        vm.income = data[0].xnh;
+                        console.log(data[0].contend);
+                        $("#tb").append(data[0].contend);
+                        vm.schedule= htmlDecode(data[0].schedule);
+                        if(data[0].typestz == 2){
+                            vm.type = '复投';
+                        }else{
+                            vm.type = '首投';
+                        }
+                        vm.num=data[0].people;
+                        vm.risk=data[0].risk
+                        vm.productname = data[0].pname;
+                        $('#title').html(data[0].pname+' - 理财先生（互金精选导购平台）官网');
+                        vm.shopname = data[0].shopname;
+                        vm.uptime = data[0].ctime;
+                        vm.regcap = data[0].regcap;
+                        vm.area = data[0].area;
+                        vm.background = data[0].background;
+                        vm.financing = data[0].financing;
+                        vm.risk = data[0].risk;
+                        vm.recommend =escape2Html(data[0].recommend) ;
+                        vm.logo = data[0].logo;
+                        vm.homeurl = data[0].shopurl;
+                        vm.jkflurl = data[0].pcurl;
+                        if (!/^(https?\:)?\/\//.test(vm.jkflurl)) {
+                            vm.jkflurl = '//' + vm.jkflurl
+                        }
+                        vm.moreurl = data[0].more;
+                        vm.money = data[0].minmoney;
+                        vm.status = data[0].status;
+                        if(vm.status != 1){
+                            $(".main_four_div1").remove();
+                            $(".main_one_box11").attr("disabled","disabled");
+                            $(".main_one_box11").css("background-color","#999");
+                            alertBottom(data[0].pname+"暂时下架，跳转回首页......");
+                            setTimeout(function() {
+                                window.location.href="../index.html";
+                            },1500);
+                        }
+                        var tagbox = data[0].tag.split(',');
+                        for (var j = 0; j < tagbox.length; j++) {
+                            vm.tag.push(tagbox[j]);
+                        }
+                        var string=data[0].context;
+                        var str="<br />";
+                        var strb = string.split(str);//拿到羿前面的值
+						for(var i=0;i<strb.length;i++){
+							if((i+1)>(strb.length/2)){
+								vm.context.push( strb[i]);
+							}else{
+								vm.context1.push(strb[i]);
+							}
+						}
+                        $(".main_table").css("display","block");
+                        getcaselist();//加载对应的方案列表
+                        getcodePic();//加载验证码
+                }
+            }
+        );
+    })
+
+    function nofind(){
+        var img=event.srcElement;
+        img.src="image/nopic.gif";
+        img.onerror = null; //控制不要一直跳动
+    }
+ 
+    //加载case
+    function getcaselist(){
+    	vm.caseList=[];
+        var shop={
+	    	shopid:pro_id
+	    }
+        $.ajax({
+          type: "Post",
+          contentType: "application/json; charset=utf-8",
+          url: "../receipt/queryCaseByPid",
+          data: JSON.stringify(shop),
+          success: function(data){
+                    for(var i =0 ; i < data.length; i++){
+                        vm.caseList.push(data[i]);
+                    }
+                }
+            }
+        )
+    }
+     var verifyCode = new GVerify("codepic");
+    //加载验证码
+    function getcodePic(){
+    	 document.getElementById("codepic").value="";
+   		 verifyCode.refresh();
+    }  
+    //判断验证码是否正确
+    function codeok(){
+    	var inputCode = document.getElementById("code").value.toUpperCase();//取得输入的验证码并转化为大写        
+    	 if(inputCode.length <= 0) { //若输入的验证码长度为0  
+    	 	alertBottom("验证码不得为空！");
+    	 }    
+    	 else if(verifyCode.validate(inputCode)) { //若输入的验证码与产生的验证码不一致时  
+	        alertBottom('验证码不正确，请重新输入！'); //则弹出验证码输入错误  
+	        getcodePic();//刷新验证码  
+	        document.getElementById("code").value = "";//清空文本框  
+	    }
+	    else{
+            submitform();
+        }        
+    }
+    //回单
+    function submitform(){
+        var shopMoney=$("#shopMoney").val();
+        var pmobile = $("#pmobile").val();
+        var pname = $("#pname").val();
+        var regtime = $("#regtime").val();
+        if(regtime == null || regtime == ''){
+            alertBottom("有未选择的投资日期");
+            return false;
+        }
+        var date = new Date();
+        var h = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        var pad = function(n) {
+            var arr = ('' + n).split('');
+            return arr[1] ? n : '0' + n;
+        };
+        regtime += ' ' + pad(h) + ':' + pad(m) + ':' + pad(s);
+        var caseitem = $("#caseid").val();
+        if(shopMoney == null || shopMoney == ''){
+            alertBottom("实际投资金额不能为空");
+            return false;
+        }
+        if(!(/^1(3|4|5|7|8|9)\d{9}$/.test(pmobile))){
+            alertBottom("有不正确的手机号码格式");
+            return false;
+        }
+       
+        if(vid){
+	           var receipt={
+	               rid:vid,
+	               productid:pro_id,
+	               phone:pmobile,
+	               realname:pname,
+	               caseid:caseitem,
+	               ttime:regtime,
+	               tmoney:shopMoney,
+	               shopname:vm.shopname,
+	               productname:vm.productname,
+	           }
+	         $.ajax({
+	          type: "Post",
+	          contentType: "application/json; charset=utf-8",
+	          url: "../receipt/addReceipt",
+	          data: JSON.stringify(receipt),
+	          success: function(data){
+	                    var dataObj=eval("("+data+")");
+	    		  		if(dataObj.code==1){
+	                        alertBottom("添加成功！将为你跳转至个人中心~");
+	                        setTimeout(function() {
+	                            window.location.href="../user/user_pandect.html";
+	                        },1000);
+	                    }else{
+	                        alertBottom('请先绑定支付宝信息！');
+	                    }
+	          }
+	        })
+        }else{
+            alertBottom("请先登录！将为你跳转至登录页~");
+            setTimeout(function() {
+                window.location.href="../login/login.html";
+            },1000)
+        }
+    }
+
+    //遮盖层的操作处理
+    //        //弹出隐藏层
+    function ShowDiv(show_div,bg_div){
+        document.getElementById(show_div).style.display='block';
+        document.getElementById(bg_div).style.display='block' ;
+        var bgdiv = document.getElementById(bg_div);
+        bgdiv.style.width = document.body.scrollWidth;
+        // bgdiv.style.height = $(document).height();
+        //  $("#"+bg_div).height($(document).height());
+    };
+    //关闭弹出层
+    function CloseDiv(show_div,bg_div){
+        document.getElementById(show_div).style.display='none';
+        document.getElementById(bg_div).style.display='none';
+    };
+
+
+</script>
+<script>
+    //遮盖层的操作处理
+    //        //弹出隐藏层
+    function ShowDiv(show_div,bg_div){
+        document.getElementById(show_div).style.display='block';
+        document.getElementById(bg_div).style.display='block' ;
+        var bgdiv = document.getElementById(bg_div);
+        bgdiv.style.width = document.body.scrollWidth;
+    }
+    //关闭弹出层
+    function CloseDiv(show_div,bg_div){
+        document.getElementById(show_div).style.display='none';
+        document.getElementById(bg_div).style.display='none';
+    }
+
+    /*显示隐藏二维码*/
+    $(function (){
+        $(".phone").hover(function (){
+            $(".phone_BQ_box").show();
+        },function (){
+            $(".phone_BQ_box").hide();
+        });
+    });
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#regtime' //指定元素
+    });
+
+    $(".main_table").on("mouseover",".showbtn", function(){
+        $(this).prev(".showMoreQA_cont").css("display","block")
+    })
+    $(".main_table").on("mouseout",".showbtn", function(){
+        $(this).prev(".showMoreQA_cont").css("display","none")
+    })
+    $(".showMoreQA").mouseover(function(){
+        $(this).find(".showMoreQA_cont").css("display","block")
+    })
+    $(".showMoreQA").mouseout(function(){
+        $(this).find(".showMoreQA_cont").css("display","none")
+    })
+    function displayMoreQA3(it) {
+        console.log("test");
+        console.log(it);
+        $(it.target).find(".showMoreQA_cont4").css("display","block");
+    }
+    function hideMoreQA3(it) {
+        $(it.target).find(".showMoreQA_cont4").css("display","none")
+    }
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0e746622a7e1cbaab57f7be6ca55e7d4";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<script>
+
+
+
+    $("#ycj").click(function(){
+        PP.show()
+    });
+
+    window.ppSettings = {
+        app_uuid: 'f7a4cad0-f5b1-11e7-b287-00163e00061e',
+        view: {
+            launcher_bottom_margin: '50px',
+            launcher_right_margin: '30px',
+            launcher_is_show: false,
+            launch_style: {
+                mode: 'custom',
+                position: 'right',
+                bottom: 50,
+
+
+            }
+        }
+    };
+    (function(){
+        var w=window,d=document;
+
+        function l() {
+            var a=d.createElement('script');
+            a.type='text/javascript';
+            a.async=!0;
+            a.charset='utf-8';
+            a.src='https://ppmessage.cn/ppcom/assets/pp-library.min.js';
+            var b=d.getElementsByTagName('script')[0];
+            b.parentNode.insertBefore(a,b)
+        }
+        l();
+    })();
+</script>
+</body>
+</html>
+

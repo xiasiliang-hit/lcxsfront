@@ -1,0 +1,1044 @@
+.cs{
+        width:8rem;
+        height:3rem;
+
+}
+body {
+    margin: 0
+}
+.jz{
+    text-align: center;
+}
+.zd{
+    width: 4rem;
+    height:1rem;
+    text-align: center;
+    font-size:0.5px;
+    float:left;
+}
+.zd1{
+    width: 4rem;
+    height:1rem;
+    text-align: center;
+    float:left;
+
+}
+.sou{
+    margin: 0px 0px 0px 0px;
+    font-size: 100%;
+    font-family: sans-serif;
+    line-height: 1.15;
+    resize: none;
+    width: 7.3rem;
+    height:0.1rem;
+    border:1px;
+    border-radius:10px;
+    text-align: center;
+
+}
+.sous{
+    width: 75px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    margin: 0px 20px 0 10px;
+    background: #f52c38;
+    color: white;
+}
+.qq{
+    width: 8rem;
+    height: 6rem;
+    background: white ;
+    margin: 20px 0px 0px 0px;
+    float: left;
+}
+.tt{
+    width: 10px;
+    height: 10px;
+    background: red;
+    margin: 0px 0px 0px 5px;
+}
+.QQ_box {
+    display: inline-block;
+    width: 92px;
+    height: 24px;
+    background: url(../img/pic_QQ.png)no-repeat center;
+    position: absolute;
+    top: 40px;
+}
+
+.zj{
+    background: white;
+    width: 100%;
+}
+
+.plan1 {
+    padding:0.3rem 0.4rem;
+    background: white;
+    margin-bottom: 0.1rem;
+}
+.flex_column1 {
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
+}
+
+.record_title1 {
+    border-bottom: solid 1px #F4F4F4;
+    padding: 0.3rem 0;
+
+}
+
+/*奖励规则*/
+
+.jlgz{
+    width: 100%;
+    height: 100%;
+    /*background: white;*/
+
+}
+.jhead{
+    /*width: 100%;*/
+    height: 2rem;
+    /*border:1px solid red;*/
+    width: 100%;
+    /*height: 1.5rem;*/
+    border-bottom:1px solid #E6E6E6;
+    float: left;
+    margin-top: 10px;
+
+}
+.jwz{
+
+    width: 70%;
+    height: 1%;
+  margin: auto;
+    float: left;
+    text-align: center;
+
+}
+.jwz1{
+    width: 15%;
+    height: 1%;
+    float: left;
+}
+.jwz1 a{
+    text-decoration : none;
+    color: red;
+    margin-left: 10px;
+
+}
+.jimg{
+    width: 100%;
+    height: 10%;
+    float: left;
+
+}
+.jg{
+    width: 80%;
+    height: 50%;
+}
+
+.jzjs{
+    width: 100%;
+    /*height:20%;*/
+    height: auto;
+    margin-top: 2rem;
+    float: left;
+}
+.jzjw{
+    width: 100%;
+    height: auto;
+    background: white;
+    margin-top: 10px;
+   float: left;
+    background: red;
+
+}
+.jzjws{
+    width: 97%;
+    height: 2rem;
+    background: white;
+    /*margin: auto;*/
+    line-height:2rem;
+    border-left:4px solid #FF5D00;
+    float: left;
+    margin-left: 24px;
+
+
+}
+.jzjww{
+    margin-left: 10px;
+    width: 90%;
+    height: 2rem;
+    font-size:15px;
+    float: left;
+}
+.jzjss{
+    width: 100%;
+    height:auto;
+    /*background:red;*/
+    float: left;
+    margin-top: 10px;
+}
+/*奖励规则*/
+
+/*红包*/
+.hbs{
+    width: 100%;
+    height: 2rem;
+    /*background: red;*/
+    border-bottom:1px solid #E8E8E8;
+    font-weight:bold;
+
+}
+
+.hbsa{
+    width: 20%;
+    height: 10%;
+    background: white;
+    float: left;
+    line-height: 2rem;
+    text-align: center;
+
+}
+.hbsb{
+    width: 60%;
+    height: 10%;
+    background: white;
+    float: left;
+    line-height: 2rem;
+    text-align: center;
+}
+.hbsc{
+    width: 20%;
+    height: 10%;
+    background: white;
+    float: left;
+    line-height: 2rem;
+    text-align: center;
+}
+.hbo{
+    width: 100%;
+    height: 3rem;
+    margin-top: 1rem;
+}
+.hbow{
+    width: 30%;
+    height: 2rem;
+    background: white;
+    float: left;
+    line-height: 2rem;
+    text-align: center;
+}
+.hbow1{
+    width: 40%;
+    height: 2rem;
+    background: white;
+    float: left;
+    line-height: 2rem;
+    text-align: center;
+    border-bottom:1px solid #53DEFD;
+    color: #53DEFD;
+}
+.hbow2{
+    width: 30%;
+    height: 2rem;
+    background: white;
+    float: left;
+    line-height: 2rem;
+    text-align: center;
+}
+.hbzt{
+    width: 100%;
+    height: 100%;
+    float: left;
+    margin-top:2rem ;
+}
+.hbimg{
+    /*background: url(../img/other/pic_receipt_banner.jpg)no-repeat center;*/
+    width: 100%;
+    height: 10%;
+    text-align:center;
+}
+.hbimgs{
+
+    width: 26%;
+    height: 10%;
+}
+
+.hbowa{
+    width: 30%;
+    height: 2rem;
+    background: white;
+    float: left;
+    line-height: 2rem;
+    text-align: center;
+    border-bottom:1px solid #53DEFD;
+    color: #53DEFD;
+}
+.hbowb{
+    width: 40%;
+    height: 2rem;
+    background: white;
+    float: left;
+    line-height: 2rem;
+    text-align: center;
+
+}
+.tzz{
+    width: 100%;
+    height: 2rem;
+    margin-top: 2rem;
+    float: left;
+}
+.tzzl{
+    width: 35%;
+    height: 1rem;
+    float: left;
+}
+.tzzz{
+    width: 30%;
+    height: 1rem;
+    float: left;
+    text-align: center;
+}
+.tzzr{
+    width: 35%;
+    height: 1rem;
+    float: left;
+}
+.tzzly{
+    width: 80%;
+    height: 0.2rem;
+    background: #7B7B7B;
+    float: right;
+    margin-right: 0.1rem;
+    margin-top: 0.6rem;
+}
+.tzzry{
+    width: 80%;
+    height: 0.2rem;
+    background: #7B7B7B;
+    float: left;
+    margin-left: 0.1rem;
+    margin-top: 0.6rem;
+}
+.tztz{
+    width: 100%;
+    height: 10%;
+    float: left;
+}
+.tztzl{
+    width: 50%;
+    height: 3rem;
+    float: left;
+    text-align: center;
+}
+.tztzr{
+    width: 50%;
+    height: 3rem;
+    float: right;
+    text-align: center;
+}
+.tzzx{
+        width: 100%;
+        height: 1rem;
+    float: left;
+    background: #F2F2F2;
+}
+.tzgg{width: 100%;height: 20%;float: left}
+.tzx{
+    width: 100%;height: 10%;float: left;text-align: center;
+}
+.tzxxl{
+    width: 30%;
+    height: 10%;
+    float: left;
+}
+.tzxxz{
+    width: 40%;
+    height: 2rem;
+    float: left;
+    border-bottom:2px solid #F00
+}
+.tzxxr{
+    width: 30%;
+    height: 10%;
+    float: left;
+}
+.mysqlh{
+    width: 100%;
+    height: 10%;
+    float: left;
+}
+.mysqlht{
+    width: 100%;
+    height: 3rem;
+    background: #F2F2F2;
+}
+.mysqlz{
+    margin-top: 1rem;
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    float: left;
+}
+.mywz{
+    width: 100%;
+    height: 10%;
+    font-size: 29px;
+    font-weight:bold;
+    float: left;
+}
+.mywz1{
+    width: 100%;
+    height: 10%;
+    font-size: 14px;
+    float: left;
+    margin-top: 1rem;
+}
+.mywz2{
+    width: 100%;
+    height: 10%;
+    font-size: 14px;
+    float: left;
+}
+.mytp{
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    float: left;
+    margin-top: 1rem;
+}
+.mytps{
+    width: 70%;
+    height: 20%;
+}
+.mysqz{
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    float: left;
+}
+.mysqq{
+    width: 100%;
+    height: 10%;
+    color: #FF6600;
+    margin-top: 1rem;
+}
+.mysqq a{
+    color: #FF6600;
+    text-decoration : none;
+}
+.myx{
+    width: 100%;
+    height: 16rem;
+    background: #F2F2F2;
+    float: left;
+    display:inline-block;
+
+}
+.mjk{
+    width: 100%;
+    height: 1rem;
+    float: left;
+    text-align: center;
+}
+.mjkt{
+    width: 50%;
+    height: 2rem;
+    background: #FF6600;
+    margin: 0px auto;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    line-height:2rem;
+    margin-top: 1rem;
+}
+.myxx{
+    width: 100%;
+    height: 1rem;
+    float:left;
+    text-align: center;
+}
+.myxxl{
+    width: 50%;
+    height: auto;
+    float: left;
+    margin-top: 4rem;
+}
+.myxxr{
+    width: 50%;
+    height: auto;
+    float: left;
+    margin-top: 4rem;
+}
+
+.hyzq{
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+.hyzqtp{
+
+    width: 100%;
+    height: auto;
+}
+.hyzqtt{
+    /*background: url(../imgs/hyzq.png)no-repeat center;*/
+    width: 100%;
+    height: 10%;
+    float: left;
+}
+
+.hyzq1{
+    width: 100%;
+    height: 50%;
+    float: left;
+}
+.hyzq2{
+    width: 50%;
+    height: 50%;
+
+    /*float: left;*/
+
+    margin-top: -4rem;
+}
+.hyzqtt1{
+    width: 100%;
+    height:50%;
+    text-align: center;
+}
+.hyzqt{
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-top: 1rem;
+}
+
+.hyzsj{
+    width: 100%;
+    height: 10%;
+    float: left;
+}
+
+.hybd{
+    width: 48%;
+    /*-webkit-border-radius: 6px;*/
+    height: 2rem;
+    /*border:1px solid #F00;*/
+    margin: auto;
+    margin-top: 1rem;
+}
+.hytt{
+    width: 100%;
+    -webkit-border-radius: 6px;
+    height: 2rem;
+    border:1px solid #00FEFF;
+    margin: auto;
+}
+.hyx{
+    width: 100%;
+    height: 5rem;
+    float: left;
+    text-align: center;
+}
+.hyzx{
+    width: 100%;
+    height: 10rem;
+    float: left;
+
+}
+.hyzxx{
+    width: 100%;
+    height: 1rem;
+    background: #F2F2F2;
+    float: left;
+}
+.hyy{
+    width: 100%;
+    height: 3rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.hyyt{
+    width: 85%;
+    height: 15rem;
+}
+.jwzr{
+    width: 15%;
+    height: 1%;
+    float: left;
+
+}
+.bds_msharecs{
+    width: 10px;
+    height: 20px;
+    background: red;
+}
+
+.QQ_boxxt {
+    display: inline-block;
+    width: 92px;
+    height: 24px;
+    background: url(../img/pic_QQ.png)no-repeat center;
+    position: absolute;
+        margin-right: 10px;
+    /*top: 203px;*/
+}
+
+.vv{
+    width: 10px;
+    height: 50px;
+
+
+}
+/*.field{*/
+    /*width: 1%;*/
+    /*height: auto;*/
+    /*margin-right: 147px;*/
+/*}*/
+.vv1{
+    width: 100px;
+    height: 50px;
+}
+.vv2{
+    width: 100px;
+    height: 50px;
+}
+
+.xzkf{
+    margin-right: auto;
+    width: 3rem;
+    height: 1rem;
+}
+
+
+.gh{
+    display: inline-block;
+    width: 92px;
+    height: 24px;
+    background: url(../img/pic_QQ.png)no-repeat center;
+    position: absolute;
+        /*float: left;*/
+    margin-left: -177px;
+    margin-top: -1px;
+
+}
+.gf{
+    width: 300px;
+    height: 200px;
+    /*background: red;*/
+
+}
+.re{
+    width: 100px;
+    height:24px;
+
+    margin-right: 30px;
+}
+.tzw{
+    text-align: center;
+}
+.record_title {
+    border-bottom: solid 1px #aaaaaa;
+    padding: 0.3rem 0;
+}
+
+.flex_row3 {
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    flex-direction: row;
+    justify-content: space-between;
+    -webkit-box-align: center;
+}
+.record_item {
+    border-bottom: solid 1px #aaaaaa;
+    padding: 1rem 0;
+    line-height: 0.5rem;
+}
+
+.flex_column {
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
+}
+
+.record_item {
+    border-bottom: solid 0px #aaaaaa;
+    padding: 1rem 0;
+    line-height: 0.5rem;
+}
+.kyhb{
+    padding: 0.3rem 0;
+    width: 80%;
+    height: 10rem;
+    margin: auto;
+    background: #ffffff;
+}
+
+.kyz{
+    margin-top: -0.6rem;
+}
+.cons{
+    background: #F2F2F2;
+    width: 100%;
+    height: auto;
+}
+.kyrr{
+    padding: 0.6rem 0rem;
+    width: 100%;
+    height: 31%;
+    float: left;
+    /*background:red;*/
+}
+.kyrr1{
+    padding: 1rem 0;
+    width: 100%;
+    height: 44%;
+    /*background:red;*/
+    /*background: url("../imgs/sx.png")no-repeat;*/
+}
+.kyrel{
+    width: 50%;
+    height: 3rem;
+    float: left;
+    margin-top: 1rem;
+    line-height: 1rem;
+
+}
+.kyrer{
+    width: 50%;
+    height: 4rem;
+    float: right;
+}
+.tzse{
+    margin-top: 0.9rem;
+    width: 100px;
+    height: 50px;
+    font-size: 10px;
+    /*line-height: 3rem;*/
+    line-height: 0.5rem;
+    color: #aaaaaa;
+    text-align: right;
+    margin-left: 10px;
+    float: left;
+}
+.tzss{
+   color: red;width: 100%;height: 2rem;float: left;
+
+}
+.kyrer1{
+    width: 100%;
+    height: 1rem;
+    font-size: 16px;
+    font-weight:bold;
+    text-align: left;
+    line-height: 1rem;
+}
+.kyrer2{
+    width: 100%;
+    height: 1rem;
+    margin-top: 1rem;
+    font-size: 10px;
+    color: #aaaaaa;
+    text-align: left;
+}
+.kyrer3{
+    width: 100%;
+    height: 1.5rem;
+    font-size: 10px;
+    color: #aaaaaa;
+    text-align: left;
+    line-height: 2.3rem;
+}
+.kyzx{
+    width: 100%;
+    height: 2.0rem;
+    overflow:hidden;
+
+
+}
+.kyzx1{
+    width: 100%;
+    height: 2.0rem;
+    overflow:hidden;
+    background: url("../imgs/sx.png")5px  no-repeat;
+
+}
+.kygh{
+    width: 30%;
+    height: 1rem;
+    background: #F903FD;
+    float: right;
+    margin-right: -3px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    line-height: 1rem;
+    overflow:hidden;
+    margin-top: 6px;
+    font-size: 1px;
+    color: #ffffff;
+
+    /*text-align:left;*/
+}
+
+.kywz{
+    font-size: 49px;
+    margin-left: 5px;
+}
+.kyghz{
+    margin-left: 10px;
+}
+
+.tzd1{
+        margin-left: 50px;
+    float: left;
+    text-align: center;
+}
+.tzd2{
+    margin-left: 20px;
+    float: left;
+    text-align: center;
+}
+.tzd3{
+    margin-left: 10px;
+
+    text-align: center;
+    float: right;
+}
+.ggg{
+    margin-top: 30px;
+}
+.sss{
+    width: auto;
+    height: auto;
+}
+.ss{
+    width: 100%;
+    height: 10px;
+    margin-top: 10px;
+}
+.kyge{
+    margin-left: 10px;
+}
+.gggg{
+width: 100%;
+    text-align: center;
+}
+.hbsa a{
+    text-decoration : none;
+    color: red;
+}
+.hbowb a{
+    text-decoration: none;
+    color: #000000;
+}
+.hbow2 a{
+    text-decoration: none;
+    color: #000000;
+}
+.hbowa1{
+    width: 30%;
+    height: 2rem;
+    background: white;
+    float: left;
+    line-height: 2rem;
+    text-align: center;
+
+}
+.hbowb2 {
+    width: 40%;
+    height: 2rem;
+    background: white;
+    float: left;
+    line-height: 2rem;
+    text-align: center;
+    border-bottom: 1px solid #53DEFD;
+}
+.hbowb2  a{
+    text-decoration: none;
+    color: #53DEFD;
+}
+.hbow a{
+    text-decoration: none;
+    color: #000000;
+}
+.hbowa1 a{
+    text-decoration: none;
+    color: #000000;
+}
+.hbow3{
+    width: 30%;
+    height: 2rem;
+    background: white;
+    float: left;
+    line-height: 2rem;
+    text-align: center;
+    border-bottom: 1px solid #53DEFD;
+}
+.hbow3 a{
+    text-decoration: none;
+    color: #000000;
+}
+.myxxr a{
+    text-decoration: none;
+    color: #000000;
+}
+.jwz a{
+    text-decoration: none;
+    color: #000000;
+}
+.jlgg{
+    width: 60%;
+    height: auto;
+    margin: auto;
+    margin-left: 20px;
+}
+
+.kygh1{
+    width: 30%;
+    height: 1rem;
+    background:#B2B2B2;
+    float: right;
+    margin-right: -3px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    line-height: 1rem;
+    overflow:hidden;
+    margin-top: 1px;
+    font-size: 1px;
+    color: #ffffff;
+
+    /*text-align:left;*/
+}
+.kyrer12{
+    width: 100%;
+    height: 2rem;
+    font-size: 16px;
+    font-weight:bold;
+    color: #B2B2B2;
+
+}
+.kyrel2{
+    width: 50%;
+    height: 3rem;
+    float: left;
+    color: #B2B2B2;
+}
+.tzss2{
+    color: #B2B2B2;width: 50%;height: 2rem;
+
+}
+.zt{
+    font-size: 0.1rem;
+}
+.hybdz {
+    width: 100%;
+    /* -webkit-border-radius: 6px; */
+    height: 5rem;
+    /* border: 1px solid #F00; */
+    margin: auto;
+    margin-top: 0rem;
+    text-align:center;
+}
+.hbjz{
+    width: 100%;
+    height: 28%;
+    float: left;
+}
+.hbjzl{
+    width: 100%;
+    height: auto;
+    float: left;
+}
+.hbjzr{
+    width: 50%;
+    height: auto;
+    float: right;
+}
+
+.hbtpy{
+    width: 10%;
+    height: auto;
+    float: left;
+}
+
+.hbztt{
+    width:23% ;
+    height:30px;
+    float: left;
+     line-height: 26px;
+    text-align:left;
+}
+
+.hbtpyt{
+    width: 25%;
+    height: auto;
+    float: right;
+    /*background: red;*/
+}
+.hbsy{
+    width: 100%;
+    height: 3rem;
+    float: left;
+    background: #ffffff;
+    line-height: 2rem;
+    font-size: 14px;
+}
+/*红包*/
+
+.hgh{
+    width: 100%;
+    float: left;
+    height: 1rem;
+}
+
+.m-botAlert {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom:20%;
+    -webkit-animation: alert 0.5s;
+    animation: alert 1s;
+    text-align: center;
+    font-size: 14px;
+    z-index: 9999;
+    display: inline-block;
+}
+.m-botAlert .m-botAlert-con {
+    display: inline-block;
+
+    padding: 20px;
+    border-radius: 4px;
+    margin: 0 auto;
+    background: #333;
+    color: #fff;
+    line-height:.4rem;
+    z-index: 9999;
+}
+
+.m-botAlert .m-botAlert-con {
+    display: inline-block;
+    padding: 20px;
+    border-radius: 4px;
+    margin: 0 auto;
+    background: #333;
+    color: #fff;
+    line-height:.4rem;
+    z-index: 9999;
+}

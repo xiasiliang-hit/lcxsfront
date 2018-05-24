@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>立即邀请</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../css/base_cwn.css">
+    
+
+</head>
+<body ontouchstart style="background:#fff0d3;">
+   
+   <img src="../images/1_01.jpg" width="100%">
+   
+   
+   <a onclick="jump()" href="register.html" class=" btn_yq">立 即 邀 请</a>
+
+<script>
+    function jump() {
+        var vid = getcookie('vid')
+        if (!vid) {
+            window.href.location="./register.html";
+        }
+        else
+        {
+            window.href.location="./share.html"
+        }
+
+    }
+    </script>
+  
+   
+   
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>投资记录</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../css/jquery-weui.css">
+     <link rel="stylesheet" href="../css/base_cwn.css">
+    
+
+</head>
+<body ontouchstart>
+<div id="user_cont">
+<header class="header weui-t_c weui-white weui-p_r">
+投资记录
+
+<a href="./record.html" class="weui-dnb return"><img src="../images/r_03.png" width="10"></a>
+</header>
+<div class="weui-tab">
+      <div class="weui-navbar weui-bgf">
+        <a class="weui-navbar__item weui-bar__item--on" href="#tab1" onclick="y()">
+          <span>待审核</span>
+        </a>
+        <a class="weui-navbar__item" href="#tab1" onclick="e()">
+          <span>已通过</span>
+        </a>
+      </div>
+      <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+          <div class="weui-p20">
+               <section class="weui-bgf weui-bod"  v-for="orderItem in orderlist">
+                    <p class=" p10 clearfix weui-bb">
+                       <span class="weui-fl">
+                       <img :src="orderItem.logo" width="90">
+                       <span  class="bq bq2">{{orderItem.qx}}</span>
+                       <span v-if="orderItem.qx!='未审核'" class="bq bq1">{{orderItem.tag}}</span>
+                       </span>
+                       <span class=" weui-fr weui-c_9 weui-f12 weui-pt5">{{orderItem.typestz}}</span>
+                    </p>
+                    <div class="weui-flex weui-t_c weui-pt20 weui-pb20">
+                       <div class="weui-flex__item weui-b_r">
+                          <p class="weui-f20 weui-orange">{{orderItem.money}}</p>
+                         返现金额（元）
+                      </div>
+                      <div class="weui-flex__item">
+                          <p class="weui-f20 weui-orange">{{orderItem.tmoney}}</p>
+                         投资金额（元）
+                      </div>
+                    </div>
+                    <div v-if="orderItem.qx=='驳回'">
+                        <div class="p10 weui-b_t">驳回理由：{{orderItem.xnh}}</div>
+                        <div v-else><div></div></div>
+                    </div>
+               </section>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+<script src="../js/jquery-2.1.4.js"></script>
+<script src="../js/jquery-weui.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/vue.js"></script>
+<script>
+
+    var vid = localStorage.getItem('vid');
+    if(!vid){
+        window.location.href="../Login/login.html";
+    }
+
+
+
+    $(document).ready(function(){
+        ajaxGetData();
+        var range = 0;             //距下边界长度/单位px
+        var elemt = 0;           //插入元素高度/单位px
+        var maxnum = 2000;            //设置加载最多次数
+        var totalheight = 0;
+        var canRun=true;  
+        var main = $("#contain");                     //主体元素
+        $(window).scroll(function(){
+        	if(!canRun){return;}  
+        	 canRun=false;  
+        	 setTimeout(function(){
+            var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+            /* console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+             console.log("页面的文档高度 ："+$(document).height());
+             console.log('浏览器的高度：'+$(window).height());*/
+            totalheight = Math.ceil($(window).height()) + Math.ceil(srollPos);
+            if(($(document).height()-range) <= totalheight ) {
+                ajaxGetData();
+            }
+            canRun=true;
+             	},600);
+        });
+    });
+
+    var vm = new Vue({
+        el: "#user_cont",//读取数据的块
+        data: {
+            shoplist:[],
+            mobilefull:null,
+            dayMoney:null,
+            sumMoney:0,
+            hasdata:null,
+            waitingNum:null,
+            nickname:null,
+            ucode:null,
+            mobile:null,
+            count:null,
+            style:null,
+            orderlist:[],//回单记录
+            gg2:[],//回单记录
+            reddata:{
+                title:null,
+                money:null,
+                content:null,
+                dtime:null,
+                type:null,
+                red_id:null,
+                logo:null
+            },
+        },
+    });
+
+
+
+
+
+    var limit=10,pageIndex=0,style=0;
+
+    function y(){
+        style=0;
+        pageIndex=0;
+        vm.orderlist=[];
+        ajaxGetData();
+    }
+    function e(){	
+        style=1;
+        vm.orderlist=[];
+        pageIndex=0;
+        ajaxGetData();
+    }
+
+    function ajaxGetData() {
+        var front={
+	    	id:vid,
+            limit:limit,
+            page:pageIndex,
+            risk:style,
+	    }
+        $.ajax({
+          type: "Post",
+          contentType: "application/json; charset=utf-8",
+          url: "../../receipt/queryReceiptByVidForApp",
+          data: JSON.stringify(front),
+          success: function(data){
+          				if( data[0].de!=2){
+                                pageIndex+=1;
+                                for(var i = 0; i < data.length; i++){
+                                	data[i].typestz=data[i].typestz.substr(0,10);
+                                    vm.orderlist.push(data[i]);
+                                }
+                            }else {
+                            }
+                        }
+                }
+            );
+        }
+
+
+
+</script>
+</body>
+
+</html>

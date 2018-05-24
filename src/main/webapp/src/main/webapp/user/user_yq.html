@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账户总览-理财先生（互金导购平台）</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/user.css">
+    <link rel="stylesheet" href="../cs/cs.css">
+    <link rel="shortcut icon" href="../favicon.ico" />
+    <link rel="bookmark" href="../favicon.ico" type="image/x-icon"  />
+    <link rel="icon" href="../favicon.ico" type="image/x-icon"  />
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../laydate/laydate.js"></script>
+    <script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', '818d5e01fba70802']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'assets.growingio.com/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+</head>
+<body>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?68b8985e6ab63a0e416c673449143aa6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?74281828e39a57f158c5d0564f7117ee";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!--头部-->
+<div class="head_nav">
+    <div class="nav_box">
+        <div class="nav_up">
+            <div class="nav_up_content">
+                <!-- <span style="margin-right:40px ">客服热线：400-060-8807</span> -->
+                <div id="loginbox" style="display: inline-block" >
+                    <a href="../login/login.html">你好，请登录</a>
+                    <a href="../login/signin.html" style="margin-right: 26px;display: inline-block">免费注册</a></div>
+           <!--      <div class="phone" id="phone" style="display: inline-block">
+                    手机金融
+                    <img src="../img/icon_phone_next.png" height="9" width="16"/>
+                    <div class="phone_BQ_box" id="phone_BQ">
+                        <div class="phone_BQ" >
+                            <img src="../img/pic_phone_QR.png" height="65" width="65"/>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="nav_down">
+            <div class="nav_down_left"></div>
+            <div class="nav_down_right">
+                <a href="../index.html">首页</a>
+                <a href="../prefecture/first_tou3.html?s_type=1">稳健专区</a>
+                <a href="../prefecture/first_tou3.html?s_type=2">高返专区</a>
+                <a href="../guide/guide2.html">新手指引</a>
+                <a href="../about/about_company_profile2.html" >关于我们</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--主体-->
+<div class="pandect_main" id="user_cont">
+    <!--主体头部-->
+    <div class="option_box">
+        <div class="option_top">
+            <a href="user_pandect.html" >账户总览</a>
+            <a href="user_set.html">账户设置</a>
+            <a href="user_yq.html" class="option_active">邀请好友一起投资</a>
+            <a href="user_hb.html">账户红包</a>
+            <div class="float_right">
+                <!--<span style="margin-right: 20px" v-if="mobilefull == null">欢迎您，...</span>-->
+                <!--<span style="margin-right: 20px" v-else v-cloak>欢迎您,{{mobilefull}}</span>-->
+                <!--<span v-if="ucode == null">我您的邀请ID：&#45;&#45;</span>-->
+                <!--<span v-else v-cloak>我的邀请ID：{{ucode}}</span>-->
+            </div>
+        </div>
+    </div>
+    <!--账户金额信息、优惠券-->
+    <div class="tz">
+        <div class="tzimg"></div>
+        <div class="tzz">分享方式:&nbsp;&nbsp;</div>
+        <!--<div class="tzlefttp"></div>-->
+        <div class="tzwz">
+  
+        <span v-if="yqm == null">我的邀请ID：获取中</span> 
+                    <span v-else v-cloak>我的邀请ID：{{yqm}}</span>
+                  
+                <p v-if="yqlj == null">我的分享链接：获取中</p>
+                <p v-else v-cloak> 我的分享链接:{{yqlj}}</p>  
+
+            </div>
+           <!--  <div class="tzleft">
+                <div class="tzlefttp">
+                    <a class="jiathis_button_cqq">
+                    <img src="../images/p-1.jpg" style="margin-left: 200px" alt=""></a>
+                </div>
+
+            </div> -->
+            <div class="tzright">
+                
+        </div>
+    </div>
+    <!-- JiaThis Button BEGIN -->
+
+    <script type="text/javascript" >
+        var jiathis_config={
+            summary:"",
+            shortUrl:false,
+            hideMore:false
+        }
+    </script>
+    <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+    <!-- JiaThis Button END -->
+    <!--账户已投平台列表-->
+    <div class="info_details">
+
+        <!--平台搜索框-->
+        <!--<div class="info_details_search">-->
+        <!--<select id="shop_id" name="shop_id">-->
+        <!--<option value="0">选择网贷平台</option>-->
+        <!--</select>-->
+        <!--<input type="button" value="立即查询" class="info_details_btn" onclick="getprolsit(0)">-->
+        <!--<span>预计约24小时到账</span>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;列表头部&ndash;&gt;-->
+        <div class="yh">
+            <div class="yhj">
+                <ul class="user_money">
+                    <li>
+                        <span>理财先生邀请人累计收益</span>
+                        <span>
+                                <span style="display: inline-block" class="red_color character_fz4" v-if="!money">0</span>
+                                <span style="display: inline-block" class="red_color character_fz4" v-else v-cloak>总奖励:{{money}}</span>
+                                元
+
+                            </span>
+
+                    </li>
+					<li>
+						<span>
+						<span style="display: inline-block" class="red_color character_fz4" v-cloak>已打款:{{dkmoney}}</span>
+                                元
+
+                            </span>
+					</li>
+                </ul>
+            </div>
+            <div class="trz">
+                <div class="trzwz">
+                    邀请人数
+                    <br>
+
+                    <span class="trzys">{{count}}</span >人
+
+                </div>
+
+
+            </div>
+
+            <div class="trzwzy">
+                已投资人数
+                <br>
+
+                <span class="trzys">{{countt}}</span >人
+
+            </div>
+        <!--      <div class="trzwzy">
+                邀请额外奖励
+                <br>
+
+                <span class="trzys">{{yqmoney}}</span >元
+
+            </div> -->
+        </div>
+
+        <div class="info_details_titlet">
+            <span class="bm">被推荐人</span>
+            <span class="bmt">注册时间</span>
+            <span class="bmtt">是否成功投资</span>
+            <span class="bm">投资平台</span>
+            <span class="bm">投资时间</span>
+        </div>
+        <!--列表内容-->
+        <div v-cloak class="info_details_itemt" v-for="(orderItem,index) in orderlist">
+            <div class="info_details_item_div">
+                <span v-cloak>{{orderItem.phone}}</span>
+            </div>
+            <div style="width: 120px;text-align: center;margin-right: 18px">
+                <!--<span v-cloak>{{orderItem.productname}}</span>-->
+                <span v-cloak>{{orderItem.ctime}}</span>
+            </div>
+            <div style="width: 70px;"class="info_details_item_div4">
+                <!--<span v-cloak>{{orderItem.productname}}</span>-->
+                <span v-cloak>{{orderItem.status}}</span>
+            </div>
+            <div style="width: 150px;"class="info_details_item_div4">
+                <!--<span v-cloak>{{orderItem.productname}}</span>-->
+                <span v-cloak>{{orderItem.pname}}</span>
+            </div>
+            <div style="margin-right: 120px;text-align: center; margin-right: 18px;">
+                <span v-cloak>{{orderItem.ttime}}</span>
+            </div>
+        </div>
+        <div class="c2-page">
+            <a id="prevId" class="disable-button" href="javascript:void(0)">上一页</a>
+            <ul class="page-list">
+                <!-- 页码 -->
+            </ul>
+            <a id="nextId" class="nextpage page-button" href="javascript:void(0)" >下一页</a>
+        </div>
+    </div>
+    <!-- 弹框 -->
+    <div id="sureBoxBg" class="appionit_sureBoxBg" style="display: none;"></div>
+    <div class="receipt_box" id="receipt_box" style="display: none;">
+        <div class="receipt_box_item">
+            <span>实际投资金额</span>
+            <input type="text" class="receipt_box_item_input1"  name="money" placeholder="请准确填写金额" v-model="shopmoney">
+            <img src="../img/icon_revise_cancel.png" height="17" width="16" class="float_right" style="margin-top: 10px" id="receipt_cancel"/>
+        </div>
+        <div class="receipt_box_item">
+            <span>注册手机号码（活动平台的注册手机号）</span>
+            <input type="text" class="receipt_box_item_input1" name="pmobile" placeholder="请仔细核对您的号码" v-model="pmobile">
+        </div>
+        <div class="receipt_box_item">
+            <span>注册平台用户名（活动平台用户名，非超级理财用户名）</span>
+            <input type="text" class="receipt_box_item_input2" name="pname" placeholder="如没有请忽略" v-model="pname">
+        </div>
+        <div class="receipt_box_item">
+            <span>所选方案</span>
+            <select v-model="case_id"  class="receipt_box_item_select">
+                <option v-for="caseNoItem in caseNolist" :data-value ="caseNoItem.id" :data-amoney="caseNoItem.amoney" :value="caseNoItem.id" v-cloak>{{caseNoItem.serialnumber}}</option>
+            </select>
+            <span style="margin-left: 75px">投资日期</span>
+            <input type="text" class="demo-input" placeholder="请选择日期" id="regtime" name="regtime">
+        </div>
+        <div class="receipt_box_item">
+            <span>选择银行卡</span>
+            <select name="bank" id="bank" class="receipt_box_item_select2">
+
+            </select>
+        </div>
+        <div class="receipt_box_item">
+            <span>银行卡账号（返利金额收款账号）</span>
+            <input type="text" id="bank_account" name="bank_account" v-model="bank_account" class="receipt_box_item_input1">
+        </div>
+        <div class="receipt_box_item">
+            <span>银行卡姓名</span>
+            <input type="text" id="bank_name" name="bank_name" v-model="bank_name" class="receipt_box_item_input2">
+        </div>
+        <div class="receipt_box_item">
+            <span>选择开户行省份</span>
+            <select name="bank_addr_province" id="bank_addr_province" onclick="getcity();" class="receipt_box_item_select2">
+            </select>
+        </div>
+        <div class="receipt_box_item">
+            <span>选择开户行城市</span>
+            <select name="bank_addr_city" id="bank_addr_city" class="receipt_box_item_select2">
+            </select>
+        </div>
+        <div class="receipt_box_item">
+            <span>开户行详细地址</span>
+            <input type="text" id="bank_addr" name="bank_addr"  :value="bank_addr" class="receipt_box_item_input2">
+        </div>
+        <div class="receipt_box_item_btn_div">
+            <input type="button" value="立即修改" @click="sure_edit()" class="receipt_box_item_btn"/>
+        </div>
+    </div>
+</div>
+<!--底部-->
+<div class="foot3">
+    <div class="details_box">
+        <div class="details_box_left">
+            <div class="details_box_left_up">
+                <span>了解超级理财</span>
+                <a href="../about/about_company_profile2.html">关于我们</a>
+                <a href="../about/about_company_profile2.html#tab=2">网站公告</a>
+                <a href="../about/about_company_profile2.html#tab=3">常见问题</a>
+                <a href="../login/tcp.html">用户协议</a>
+            </div>
+            <div>
+                <span>联系我们</span>
+                <span>渠道合作：</span>
+                <span>15968795625 包先生</span>
+
+            </div>
+            <!-- <div>
+                <span >超级理财官方1群：615973220</span>
+                <span >超级理财官方2群：591389147</span>
+            </div>
+            <div><span style="color: #556a84">（加群时请备注超级理财）</span></div> -->
+        </div>
+    <div class="details_box_center">
+                <div class="img_iphone">
+                    <div>移动端理财</div>
+                    <div class="BQ_box"></div>
+                </div>
+                <div class="img_app"> 
+                     <div>安卓app下载</div>
+                    <div class="BQ_app"></div>
+                </div> 
+            </div>
+            <div class="details_box_right">
+                <span style="font-size: 24px;">&nbsp;</span>
+                <span>服务时间：周一到周五 9:00~20:30 法定节假日 9:00~18:00</span>
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=136720107&site=qq&menu=yes"><div ></div></a>
+            </div>
+        </div>
+        <div class="authentication_box">
+            <span>Copyright Reserved 2015-2017</span>
+            <span>安徽蜀玉金融外包服务有限公司 </span>
+            <div style="display: inline-block">
+                 <div class="pic_badge_img"></div>
+                <span>皖ICP备18004423号-1 </span>
+            </div>
+        </div>
+    </div>
+    <script>
+    $("#ycj").click(function(){
+        PP.show()
+    });
+
+    window.ppSettings = {
+        app_uuid: 'f7a4cad0-f5b1-11e7-b287-00163e00061e',
+        view: {
+            launcher_bottom_margin: '50px',
+            launcher_right_margin: '30px',
+            launcher_is_show: false,
+            launch_style: {
+                mode: 'custom',
+                position: 'right',
+                bottom: 50,
+
+
+            }
+        }
+    };
+    (function(){
+        var w=window,d=document;
+
+        function l() {
+            var a=d.createElement('script');
+            a.type='text/javascript';
+            a.async=!0;
+            a.charset='utf-8';
+            a.src='https://ppmessage.cn/ppcom/assets/pp-library.min.js';
+            var b=d.getElementsByTagName('script')[0];
+            b.parentNode.insertBefore(a,b)
+        }
+        l();
+    })();
+</script>
+            <script>
+                laydate.render({
+                    elem: '#regtime' //指定元素
+                });
+                /*修改弹框*/
+                $(document).ready(function(){
+                    $("#receipt_cancel").click(function(){
+                        $("#sureBoxBg").css("display","none");
+                        $("#receipt_box").css("display","none");
+                    });
+                });
+                var pageret;
+                //查看绑定数据
+                var vid = getcookie().vid;
+
+                if(!vid){
+                    window.location.href="../login/login.html";
+                    //  return false
+                }
+                var listid;
+                var vm = new Vue({
+                    el:"#user_cont",//读取数据的块
+                    data:{
+                        reddata:{
+                            title:null,
+                            money:null,
+                            dkmoney:null,
+                            content:null,
+                            dtime:null,
+                            type:null,
+                            red_id:null
+                        },
+
+                        hasdata: false,
+                        sumMoney:0,//收益总额
+                        dayMoney:0,//今日收益
+                        waitingNum:0,//等待处理回单
+                        nickname:null,//昵称
+                        ucode:null,//邀请码
+                        address:null,//邀请码地址
+                        mobile:null,//手机号码
+                        mobilefull:null,
+                        count:0,//已邀请人数
+                        countt:0,//已邀请人数
+                        yqmoney:0,//已邀请额外奖励
+                        money:0,
+                        dkmoney:0,
+                        orderlist:[],//回单记录
+                        caseNolist:[],//方案列表
+                       yqm:null,
+                       yqlj:null,
+
+                        pname:null,
+                        pmobile:null,
+                        regtime:null,
+                        bank_name:null,
+                        serialnumber:null,
+                        shopmoney:null,
+                        bank_account:null,
+                        case_id:null,
+                        bank_addr:null,
+                        bank:null,
+                        bank_addr_city:null,
+                        bank_addr_province:null,
+                        stausts:null,
+
+
+                    }
+                })
+                $(document).ready(function(){
+                	var user={
+                		vid:vid
+                	}
+                    $.ajax({
+			          type: "Post",
+			          contentType: "application/json; charset=utf-8",
+			          url: "queryOwninvitatime",
+			          data: JSON.stringify(user),
+			          success: function(data){
+                           vm.yqm = data[0].owninvitation;
+                           vm.yqlj = data[0].ctime;
+                           getprolsit(0); //数据初始化
+                           getNum();
+                                    }
+                    });
+                })
+                //获取该用户的回单记录
+                var curpage = 1, limit = 4, is_new = true, totalpage ;
+                function getprolsit(pageIndex){
+                    vm.orderlist = [];//清空数据
+                    var uf={
+                    	limit:limit,
+                    	ctime:vm.yqm,
+                    	page:pageIndex,
+                    }
+                    $.ajax({
+			          type: "Post",
+			          contentType: "application/json; charset=utf-8",
+			          url: "../user/queryUserFriendReceipt",
+			          data:JSON.stringify(uf),
+			          success: function(data){
+                                  for(var i = 0; i < data.length; i++){
+                                  	  data[i].phone=data[i].phone.substr(data[i].phone.length-4);
+                                      vm.orderlist.push(data[i]);
+                                  }
+                                  //页数
+                                  if(is_new){
+                                      totalpage = parseInt(data[0].count / limit);
+                                      if(data[0].count % limit != 0 || totalpage < 1){
+                                          totalpage += 1;
+                                      }
+                                      getpage(totalpage);
+                                  }
+                              }
+                          }
+                    );
+                }
+
+                //加载分页
+                function getpage(total){
+
+                    $(".page-list").html('');
+                    for(var i = 1; i <= total; i++){
+                        var pageii= limit*(i-1);
+                        $(".page-list").append('<li><a class="gray-border2" href="javascript:;" data-pagenum="'+i+'" data-page="'+pageii+'">'+i+'</a></li>')
+                    }
+                    $(".page-list li").eq(0).find("a").attr("class","blue-border2");
+                    if(total==1){
+                        $("#nextId").attr("class","disable-button")
+                    }
+                    is_new = false;
+                }
+                //上一页
+                $(".c2-page").on("click", ".prevpage", function(){
+                    if(curpage >0){
+                        curpage -= 2;
+                        var obj = $(".page-list li").eq(curpage).find("a");
+                        pageret = obj.attr("data-page");
+                        var i = obj.attr("data-pagenum");
+                        setpagestyle(i);
+                        getprolsit(pageret);
+                    }
+                })
+                //下一页
+                $(".c2-page").on("click", ".nextpage", function(){
+                    if(curpage >0 && curpage < totalpage){
+                        var obj = $(".page-list li").eq(curpage).find("a");
+                        pageret = obj.attr("data-page");
+                        var i = obj.attr("data-pagenum");
+                        setpagestyle(i);
+                        getprolsit(pageret);
+                    }
+                })
+                //跳页
+                $(".page-list").on("click", ".gray-border2", function(){
+                    pageret = $(this).attr("data-page");
+                    var i = $(this).attr("data-pagenum");
+                    setpagestyle(i);
+                    getprolsit(pageret);
+                })
+                //分页样式处理
+                function setpagestyle(i){
+                    curpage = Number(i);
+                    $(".page-list li").siblings().find("a").attr("class","gray-border2");
+                    $(".page-list li").eq(i-1).find("a").attr("class","blue-border2");
+                    window.scrollTo(0,690);
+                    if ( curpage >= totalpage) {
+                        $("#nextId").attr("class","disable-button");
+                        $("#prevId").attr("class","prevpage page-button");
+                    }else if( curpage == 1){
+                        $("#nextId").attr("class","nextpage page-button");
+                        $("#prevId").attr("class","disable-button");
+                    }else{
+                        $("#nextId").attr("class","nextpage page-button");
+                        $("#prevId").attr("class","prevpage page-button");
+                    }
+                }
+				 function getNum(){
+				 	var user={
+				 		owninvitation:vm.yqm,
+				 	}
+				 	$.ajax({
+			          type: "Post",
+			          contentType: "application/json; charset=utf-8",
+			          url: "../user/queryInvitationByUcode",
+			          data:JSON.stringify(user),
+			          success: function(data){
+			          console.log(data);
+			          		vm.count=data[0].yqnum;
+			          		vm.countt=data[0].tznum;
+			          		vm.money=data[0].ljmoney;
+			          		vm.dkmoney=data[0].ydmoney;
+			          }
+			       })
+				 }
+                
+                $(".main_Table").on("mouseover",".showMoreQA", function(){
+                    $(this).find(".showMoreQA_cont").css("display","block")
+                })
+                $(".main_Table").on("mouseout",".showMoreQA", function(){
+                    $(this).find(".showMoreQA_cont").css("display","none")
+                })
+
+            </script>
+
+            <script>
+                function displayMoreQA(it) {
+                    $(it.target).find(".showMoreQA_cont5").css("display","block");
+                }
+                function hideMoreQA(it) {
+                    $(it.target).find(".showMoreQA_cont5").css("display","none")
+                };
+                /*显示隐藏二维码*/
+                $(function (){
+                    $(".phone").hover(function (){
+                        $(".phone_BQ_box").show();
+                    },function (){
+                        $(".phone_BQ_box").hide();
+                    });
+                });
+
+
+            </script>
+            <script>
+                lay('#version').html('-v'+ laydate.v);
+
+                //执行一个laydate实例
+                laydate.render({
+                    elem: '#test1' //指定元素
+                });
+            </script>
+</body>
+</html>

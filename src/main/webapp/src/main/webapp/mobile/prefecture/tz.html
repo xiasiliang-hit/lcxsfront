@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>邀请记录</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+     <link rel="stylesheet" href="../css/base_cwn.css">
+
+
+</head>
+<body ontouchstart style="background:#f3422a;">
+
+<header class="header weui-t_c weui-white weui-p_r">
+邀请记录
+<a href="./record.html" class="weui-dnb return"><img src="../images/r_03.png" width="10"></a>
+</header>
+<div id="user_cont">
+<div class="weui-p20">
+<div class="weui-flex weui-white weui-pb20">
+     <div class="weui-flex__item"><img src="../images/j_03.png" width="100%"></div>
+     <div class="weui-flex__item weui-pl10">
+         <h3 class="weui-f24">{{count}}</h3>
+         <p>邀请好友人数</p>
+         <h3 class="weui-f24 weui-pt20">{{ljmoney}}</h3>
+         <p>我的推荐奖励（元）</p>
+     </div>
+</div>
+      <div class="weui-bgf">
+            <table width="100%" class="table">
+                 <tr class="weui-bb">
+                     <th>手机尾号</th>
+                     <th>投资时间</th>
+                     <!--<th>投资次数投资平台</th>-->
+                     <th>投资平台</th>
+
+                 </tr>
+                 <tr class="weui-bb"  v-if="orderlist!=null" v-for="orderItem in orderlist">
+                     <td>{{orderItem.phone}}</td>
+                     <td>{{orderItem.ctime}}</td>
+                     <td   v-if="orderItem.pname==null"> 无</td>
+                     <td  v-else>{{orderItem.pname}}</td>
+                 </tr>
+            </table>
+      </div>  
+      <div class="clearfix jlcolor weui-pt10">
+          <span class="weui-fl">已打款：{{ydmoney}}</span>
+          <span class="weui-fr">未到账：{{wdmoney}}</span>
+      </div>
+      <h3 class="weui-white weui-pt20 weui-f18">活动规则：</h3>
+      <p class="jlcolor">
+      邀请好友加入理财先生，受邀请人每完成一次投资，邀请人与被邀请人都可获得红包奖励：
+<br>被邀请人：188元投资红包奖励
+<br>邀请人：1.被邀请人首次投资：10元/单
+ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;           2.被邀请人后续投资：5元/单
+      </p>
+
+</div>        
+
+<!--<div class="weui-p20">-->
+<!--<a href="javascript:;" class="weui-btn weui-btn_wh">立即邀请</a>-->
+<!--</div>-->
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/vue.js"></script>
+
+<script>
+    var vid = localStorage.getItem('vid');
+    if(!vid){
+        window.location.href="../Login/login.html";
+    }
+    $(document).ready(function(){
+        ajaxGetData();
+        userje();
+        var range = 0;             //距下边界长度/单位px
+        var elemt = 0;           //插入元素高度/单位px
+        var maxnum = 2000;            //设置加载最多次数
+        var totalheight = 0;
+        var canRun=true;  
+        var main = $("#contain");                     //主体元素
+        $(window).scroll(function(){
+        	if(!canRun){return;}  
+        	 canRun=false;  
+        	 setTimeout(function(){
+            var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+            /* console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+             console.log("页面的文档高度 ："+$(document).height());
+             console.log('浏览器的高度：'+$(window).height());*/
+            totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+            if(($(document).height()-range) <= totalheight ) {
+                ajaxGetData();
+            }
+             canRun=true;
+             	},600);
+        });
+    });
+
+    var vm = new Vue({
+        el: "#user_cont",//读取数据的块
+        data: {
+            shoplist:[],
+            mobilefull:null,
+            dayMoney:null,
+            sumMoney:0,
+            hasdata:null,
+            waitingNum:null,
+            nickname:null,
+            ucode:null,
+            mobile:null,
+            count:0,
+            ydmoney:0,
+            wdmoney:0,
+            ljmoney:0,
+            orderlist:[],//回单记录
+            reddata:{
+                title:null,
+                money:null,
+                content:null,
+                dtime:null,
+                type:null,
+                red_id:null
+            },},
+    });
+
+
+    var limit=5,pageIndex=0;
+    function ajaxGetData() {
+     var uf={
+     	limit:limit,
+     	ctime:vid,
+     	page:pageIndex,
+     }
+         $.ajax({
+		  type: "Post",
+		  contentType: "application/json; charset=utf-8",
+		  url: "../../receipt/queryFriendReceiptByVidForApp",
+		  data:JSON.stringify(uf),
+		  success: function(data){
+                if( data[0].count!=2){
+                     pageIndex+=1;
+                     for(var i = 0; i < data.length; i++){
+                         data[i].phone=data[i].phone.substr(data[i].phone.length-4);
+                         vm.orderlist.push(data[i]);
+                     }
+                 }else {
+                 }
+        }
+       })
+    }
+    function userje() {
+        var user={
+	 		vid:vid,
+	 	}
+	 	$.ajax({
+          type: "Post",
+          contentType: "application/json; charset=utf-8",
+          url: "../../receipt/queryInvitationByUcodeForApp",
+          data:JSON.stringify(user),
+          success: function(data){
+          	console.log(data);
+          		vm.count=data[0].yqnum;
+          		vm.ljmoney=data[0].ljmoney;
+          		vm.ydmoney=data[0].ydmoney;
+          		vm.wdmoney=data[0].wdmoney;
+          }
+       })
+
+    }
+
+
+
+</script>
+
+</body>
+
+</html>

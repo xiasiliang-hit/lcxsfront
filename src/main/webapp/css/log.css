@@ -1,0 +1,124 @@
+/*登陆*/
+.login_main{
+    background: #f6f7fb;
+}
+.login_div{
+    /*width: 1200px;*/
+    height: 700px;
+    margin: 0 auto;
+    background: url("../img/loginBg.png")no-repeat left bottom;
+}
+.login_input_box{
+    width: 320px;
+    background: #ffffff;
+    padding: 45px 45px 45px 45px;
+    float: right;
+}
+.login_input_box1{
+    margin-top: 125px;
+    margin-right: 10%;
+}
+.login_input_box2{
+    margin-top: 95px;
+    margin-right: 10%;
+}
+.login_input_box3{
+    margin-top: 65px;
+}
+.login_input_box .span_title{
+    display: block;
+    margin-bottom: 30px;
+}
+.login_input_box .input_txt{
+    display: block;
+    padding: 0 0 0 35px;
+    width: 285px;
+    height: 50px;
+    border: solid 1px #eeeeee;
+    margin-bottom: 25px;
+}
+.label_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.choose{
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    height: 20px;
+}
+.choose input[type=checkbox] {
+    opacity: 0;
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+.choose input[type=checkbox] + i {
+    display: inline-block;
+    width: 28px;
+    height: 20px;
+    background: url("../img/unChecked.png") no-repeat 5px 3px;
+}
+.choose input[type=checkbox]:checked + i {
+    background: url("../img/Checked.png") no-repeat 5px 3px;
+}
+.input_btn{
+    display: block;
+    width: 320px;
+    height: 50px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 25px;
+    background: url("../img/pic_login_btn.png")no-repeat center;
+}
+/*注册*/
+.verifyBox{
+    height: 50px;
+    line-height: 50px;
+    background: white;
+    margin-bottom: 25px;
+    border: solid 1px #eeeeee;
+    position: relative;
+}
+.input_code{
+    padding: 0 0 0 35px;
+    width: 170px;
+    height: 30px;
+    font-size: 14px;
+    display: inline-block;
+    border-right: solid 1px #eeeeee;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+}
+.input_code_btn{
+    position: absolute;
+    top: 10px;
+    width: 112px;
+    height: 30px;
+    border: none;
+    float: right;
+}
+.verify_box{
+    width: 160px;
+    margin:0 40px 0 0;
+}
+.check_box{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.verify_btn{
+    border: none;
+    background: white;
+    color: #ee9619;
+}
+.recommend_box{
+    margin-bottom: 10px;
+    padding-right: 13px;
+    background: url("../img/sigin_next.png")no-repeat right center;
+}
+/*找回密码*/

@@ -1,0 +1,212 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>我的红包</title>
+<link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link href="../css/base_cwn5.css" rel="stylesheet" />
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+</head>
+
+<body class="f14">
+
+<div clas="top01 weui-bgcolor weui-pt5 weui-pb5">
+    <div class="container weui-f12 weui-c_9">
+        <div class="row">
+            <div class="col-md-6">
+                <!--<img src="images/home_03.png"> <span class="weui-v_m">服务热线：400-060-8807</span>-->
+                <!--<span class="weui-pl30">关注微博： <img src="images/home_06.png"></span>-->
+            </div>
+            <div class="col-md-6 weui-t_r">
+
+                <a  id="loginbox" href="../login/login.html" class="weui-pl10 weui-pr10 weui-blue">注册/登录</a>
+                <!--<a href="#" class="weui-pl10 weui-pr10 weui-c_9"><img src="images/home_09.png"> <span class="weui-v_m">APP移动客户端</span></a>-->
+                <a href="../about/about_company_profile2.html" class="weui-pl10 weui-pr10 weui-c_9">关于我们</a>
+                <a href="../about/about_company_profile2.html#tab=3" class="weui-pl10 weui-pr10 weui-c_9">帮助中心</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header weui-bb">
+    <div class="container">
+        <div class=" moblie_p weui-p_r">
+            <nav class="navbar navbar-default navbar-default1" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class=" weui-fl logo weui-pt20"><a href="../index.html"><img src="../images/logo2.png"/></a></div>
+                <div class=" weui-fr languige weui-pt25 weui-c_p">
+                    <a href="./user_pandect.html"><img src="../images/home_17.png" class="weui-v_m"> 我的账户</a>
+                </div>
+
+
+                <div class="collapse navbar-collapse  weui-fr" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav nav01 weui-f16">
+                        <li ><a href="../index.html">首页</a></li>
+                        <li><a href="../prefecture/first_tou3.html?s_type=1">稳健专区</a></li>
+                        <li><a href="../prefecture/first_tou3.html?s_type=2">高返专区</a></li>
+                        <li><a href="../guide/guide2.html">新手指引</a></li>
+                        <li><a href="../about/about_company_profile2.html">关于我们 </a></li>
+                    </ul>
+
+                </div>
+
+            </nav>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="weui-bgf">
+     <div class="container tablink">
+         <a href="user_pandect.html" >账户总览</a>
+         <a href="user_set.html">账户设置</a>
+         <a href="user_yq.html">邀请好友一起投资</a>
+         <a href="user_hb.html" class="on">账号红包</a>
+     </div>
+</div>
+
+<div class="container weui-pt20" id="zt">
+     <div class="weui-bgf hb_height">
+           <ul class="nav nav-tabs nav-tabs3">
+              <li class="active"><a  data-toggle="tab" onclick="tab()">可使用红包</a></li>
+              <li><a  data-toggle="tab" onclick="tab2()">已使用红包</a></li>
+              <li><a  data-toggle="tab" onclick="tab3()">已过期红包</a></li>
+           </ul>
+
+         <div id="myTabContent" class="tab-content">
+             <div class="tab-pane fade in active" id="tab1">
+                  <div class="row weui-t_c">
+                      <div class="col-md-3 col-lg-3 col-sm-3 weui-pt30"   v-for="orderItem in orderlist">
+                      	   <div v-if="orderItem.type==0">
+                           <a  class="weui-white bark weui-db">
+                               <p class="weui-f20 weui-pt20 weui-pb10">{{orderItem.redname}}</p>
+                               <h1 class="weui-f24"><span class="f60">{{orderItem.redmoney}}</span>元</h1>
+                               <p class="weui-f16 ">到期时间：{{orderItem.ctime}}
+                               </p>
+                               <div class="weui-f12 weui-c_6">{{orderItem.context}}</div>
+                           </a>
+                           </div>
+                       <div v-else-if="orderItem.type==1">
+                           <a  class="weui-white bark bark_on weui-db">
+                           		<img src="../images/sy.png" class="hb_p">
+                               <p class="weui-f20 weui-pt20 weui-pb10">{{orderItem.redname}}</p>
+                               <h1 class="weui-f24"><span class="f60">{{orderItem.redmoney}}</span>元</h1>
+                               <p class="weui-f16 ">到期时间：{{orderItem.ctime}}
+                               </p>
+                               <div class="weui-f12 weui-c_6">{{orderItem.context}}</div>
+                           </a>
+                        </div>
+                        <div v-else>
+                           <a  class="weui-white bark bark_on weui-db">
+                           		<img src="../images/gq_03.png" class="hb_p">
+                               <p class="weui-f20 weui-pt20 weui-pb10">{{orderItem.redname}}</p>
+                               <h1 class="weui-f24"><span class="f60">{{orderItem.redmoney}}</span>元</h1>
+                               <p class="weui-f16 ">到期时间：{{orderItem.ctime}}
+                               </p>
+                               <div class="weui-f12 weui-c_6">{{orderItem.context}}</div>
+                           </a>
+                         </div>
+                      </div>
+
+
+                  </div>
+              </div>
+
+   </div>
+</div>
+     </div>
+</div>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/vue.js"></script>
+<script src="../js/public.js"></script>
+<script>
+    var vid = getcookie().vid;
+    var a=0;
+    var limit=50,pageIndex=0;
+    if(!vid){
+        window.location.href="../login/login.html?a=2";
+    }
+    ajaxGetData();
+    var vm = new Vue({
+        el: "#zt",//读取数据的块
+        data: {
+            shoplist:[],
+            mobilefull:null,
+            dayMoney:null,
+            sumMoney:0,
+            hasdata:null,
+            waitingNum:null,
+            nickname:null,
+            ucode:null,
+            mobile:null,
+            count:0,
+            orderlist:[],//回单记录
+            reddata:{
+                title:null,
+                money:null,
+                content:null,
+                dtime:null,
+                type:null,
+                red_id:null
+            },},
+    });
+
+
+    function tab(){
+    	a=0;
+    	vm.orderlist=[];
+        limit=50,pageIndex=0;
+        ajaxGetData();
+    }
+
+
+    function tab2(){
+    	a=1;
+    	vm.orderlist=[];
+        limit=50,pageIndex=0;
+        ajaxGetData();
+    }
+    function tab3() {
+    	a=2;
+    	vm.orderlist=[];
+        limit=50,pageIndex=0;
+        ajaxGetData();
+    }
+    function ajaxGetData() {
+        var front={
+	    	id:vid,
+            limit:limit,
+            page:pageIndex,
+            risk:a,
+	    }
+        $.ajax({
+          type: "Post",
+          contentType: "application/json; charset=utf-8",
+          url: "../user/queryUserRedByVidForApp",
+          data: JSON.stringify(front),
+          success: function(data){
+                    if( data[0].de!=2){
+                        pageIndex+=1;
+                        for(var i = 0; i < data.length; i++){
+                            vm.orderlist.push(data[i]);
+                        }
+                    }
+          }
+        });
+    }
+    
+
+
+
+</script>
+</body>
+</html>
+

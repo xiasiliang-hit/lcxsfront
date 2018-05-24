@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>我的账号</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+     <link rel="stylesheet" href="../css/base_cwn.css">
+    
+
+</head>
+<body ontouchstart>
+<header class="header weui-t_c weui-white weui-p_r">
+我的账号
+<a href="../prefecture/record.html" class="weui-dnb return"><img src="../images/r_03.png" width="10"></a>
+</header>
+<div class="weui-cells"  id="actset">
+            <a class="weui-cell weui-cell_access" href="set_phone.html">
+                <div class="weui-cell__bd">
+                    <p>绑定手机号</p>
+                </div>
+                <div class="weui-cell__ft">{{mobile}}
+                </div>
+            </a>
+            <a class="weui-cell weui-cell_access" href="set_card.html">
+                <div class="weui-cell__bd">
+                    <p>绑定银行卡</p>
+                </div>
+                <div class="weui-cell__ft">{{bank_account}}
+                </div>
+            </a>
+
+            <a class="weui-cell weui-cell_access" href="set_alipay.html">
+                <div class="weui-cell__bd">
+                    <p>绑定支付宝</p>
+                </div>
+                <div class="weui-cell__ft">{{alipay}}
+                </div>
+            </a>
+        </div>
+<div class="weui-p20">
+<a href="javascript:;" class="weui-btn weui-btn_warn exit">安全退出</a>
+</div>
+
+<div class="weui-mask weui-d_n">
+     <div class="weui-dialog">
+                <div class="weui-dialog__hd weui-pb20"><strong class="weui-dialog__title">确认退出</strong></div>
+                <div class="weui-dialog__ft">
+                    <a href="javascript:;"  class="weui-dialog__btn weui-orange">取消</a>
+                    <a href="javascript:;"  onclick="q()" class="weui-dialog__btn weui-orange">确定</a>
+                </div>
+            </div>
+</div>
+
+<script src="../js/jquery-2.1.4.js"></script>
+<script>
+$('.exit').click(function(e) {
+    $('.weui-mask').show();
+});
+$('.weui-dialog__btn').click(function(e) {
+    $('.weui-mask').hide();
+});
+</script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/public.js"></script>
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<script>
+
+    var vid = localStorage.getItem('vid');
+    if(vid==null ||vid==''){
+        window.location.href="../Login/login.html";
+    }
+    var vm = new Vue({
+        el:"#actset",
+        data:{
+            mobile:'未设置',
+            bank_account:'未设置',
+            alipay:'未设置'
+        }
+    });
+    function q() {
+        localStorage.clear();
+        window.location.href="../Login/login.html";
+    }
+    $(function(){
+        var user={
+    			vid:vid
+    		}
+           $.ajax({
+		          type: "Post",
+		          contentType: "application/json; charset=utf-8",
+		          url: "../../user/queryPersonMessageByVid",
+		          data:JSON.stringify(user),
+		          success: function(data){
+                        var str = data[0].phone;
+                        var str2 = data[0].cardid;
+                        var str3 = data[0].name;
+                        vm.mobile = data[0].phone;
+                        vm.bank_account = data[0].cardid;
+                        if(str){
+                            vm.mobile = str.substr(0,3)+"****"+str.substr(str.length-4);
+                        }else{
+                            vm.mobile= "未绑定";
+                        }
+                        if(str2 && str3 ){
+                            vm.bank_account = str2.substr(0,3)+"****"+str2.substr(str2.length-4)+"("+str3.substr(0,1)+"**)";
+                        }else{
+                            vm.bank_account = "未绑定";
+                        }
+                        var str4=data[0].realname;
+                        var str5=data[0].alipay;
+                        if( str4&& str5){
+                            vm.alipay =str5.substr(0,3)+"****"+str5.substr(str5.length-4)+"("+str4.substr(0,1)+"**)"
+                        } else {
+                            vm.alipay = "未绑定";
+                        }
+                    }
+                }
+        );
+    });
+</script>
+</body>
+
+</html>

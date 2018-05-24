@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>红包用户登录</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="../css/Login.css">
+    <link rel="stylesheet" type="text/css" href="../css/public.css">
+    <link rel="stylesheet" href="../css/checkbix.min.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+</head>
+<body>
+<!-- <div class="top_title flex_row2">
+    <a href="Login.html">
+        <div class="top_title_side2"></div>
+    </a>
+    <div class="top_title_center">
+        <span>超级理财</span>
+    </div>
+    <div class="top_title_side"></div>
+</div> -->
+<ul class="log_box">
+    <li class="log_item"><a href="login.html" class="active">红包用户登录</a></li>
+    <li class="log_item"><a href="signin.html" >注册</a></li>
+</ul>
+<!--主体-->
+<div class="main signin">
+    <div class="headLine flex_row">
+        <div class="border_line"></div>
+        <span>会员注册</span>
+        <div class="border_line"></div>
+    </div>
+    <div class="flex_row inputBox">
+        <div class="user_box user_img"></div>
+        <input type="number" placeholder="请输入手机号" id="mobile" name="mobile" maxlength="11">
+    </div>
+    <div class="flex_row verifyBox">
+        <div class="user_box E-mail_img"></div>
+        <input class="verify_box" type="text" name="vcode" placeholder="短信验证码">
+        <input onclick="sendCode(this)"  type="button" value="发送验证码" style="background: none;color: #ef9d28">
+    </div>
+
+
+
+    <div class="sigin_btn_box">
+        <input class="sigin_btn" type="button" value="登录"/>
+    </div>
+</div>
+
+<script src="../js/checkbix.min.js"></script>
+<script src="../js/font.js"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/public.js"></script>
+
+<script>
+    //验证码
+    Checkbix.init();
+    var clock = '';
+    var nums = 60;
+    var btn
+
+    var vid = localStorage.getItem('vid');
+
+    var url = window.location.search;
+
+    var address =  url.substring(url.lastIndexOf('=')+1, url.length);
+
+    function sendCode(thisBtn)
+    {
+        var mobile = $("input[name='mobile']").val();
+
+        if(!(/^1(3|4|5|7|8)\d{9}$/.test(mobile))){
+            alertBottom('您的手机号码格式有误！')
+            return false;
+        }else{
+            $.post(ajaxUrl + "Account/model2", {
+                        mobile:mobile,
+                    },
+                    function (data) {
+                        if(data['result'] == 1002){
+                            alertBottom("此手机号码不存在，不可登录！");
+                        }else{
+                            //发送验证码
+                            $.post(ajaxUrl + "Account/getcode", {
+                                        mobile:mobile,
+                                    },
+                                    function (data) {
+                                        ret =JSON.parse(data);
+                                        if(ret['result'] == 1001){
+                                            btn = thisBtn;
+                                            btn.disabled = true; //将按钮置为不可点击
+                                            btn.value = nums+'秒重获取';
+                                            clock = setInterval(doLoop, 1000); //一秒执行一次
+                                            alertBottom("短信已成功发送至您的手机！")
+                                        }else{
+                                            alertBottom(ret['code'])
+                                        }
+                                    }
+                            )
+                        }
+                    }
+            )
+        }
+
+    }
+    function doLoop()
+    {
+        nums--;
+        if(nums > 0){
+            btn.value = nums+'秒重获取';
+        }else{
+            clearInterval(clock); //清除js定时器
+            btn.disabled = false;
+            btn.value = '发送验证码';
+            nums = 60; //重置时间
+        }
+    }
+    $(".sigin_btn").on("click",function(){
+        var mobile = $("input[name='mobile']").val();
+        var pwd = $("input[name='password']").val();
+        var vcode = $("input[name='vcode']").val();
+        var inviteCode = $("input[name='inviteCode']").val();
+//        alert(inviteCode);
+//        exit;
+
+        if(!(/^1(3|4|5|7|8)\d{9}$/.test(mobile))){
+            alertBottom('您的手机号码格式有误！')
+            return false;
+        }
+        if(vcode == null || vcode == ''){
+            alertBottom("验证码不得为空");
+            return false;
+        }
+
+        $.post(
+                ajaxUrl + "Account/pwd_login2", {
+                    mobile:mobile,
+                    vcode:vcode,
+                    inviteCode:inviteCode
+                },
+                function (data) {
+                    ret = data;
+                    if(ret['result'] == 1001){
+                        alertBottom("登录成功，将为你跳转至个人中心~");
+                        localStorage.setItem('vid',data['data'].vid);
+                        localStorage.setItem('nickname',data['data'].nickname);
+                        localStorage.setItem('mobile',data['data'].mobile);
+                        setTimeout(function() {
+                            if(address==1){
+                                window.location.href="../prefecture/msyq.html";
+                            }else if(address==2){
+                                window.location.href="../prefecture/kyredbao.html";
+                            }else if(address==3){
+                                window.location.href="../prefecture/tz.html";
+                            }
+                            else{
+                                if(ret['code']=='success1'){
+                                    window.location.href="../user/set_password1.html";
+//                                    alert(1234);
+                                }else{
+//                                    alert(321);
+                                    window.location.href="../prefecture/record.html";
+                                }
+
+                            }
+                        },1000)
+                    }else{
+                        alertBottom(data['code']);
+                    }
+                }
+        )
+    })
+
+</script>
+</body>
+</html>

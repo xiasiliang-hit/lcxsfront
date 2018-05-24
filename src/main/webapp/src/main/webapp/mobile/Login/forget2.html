@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>修改密码</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+     <link rel="stylesheet" href="../css/base_cwn.css">
+    
+
+</head>
+<body ontouchstart class="weui-bgf">
+<header class="header weui-t_c weui-white weui-p_r">
+忘记密码
+<a href="./login.html" class="weui-dnb return"><img src="../images/r_03.png" width="10"></a>
+</header>
+
+<div class="weui-p20">
+
+
+<div class="weui-flex weui-bb weui-pt10 weui-pb10">
+            <div><img src="../images/l_06.png" width="15"></div>
+            <div class="weui-flex__item weui-pl10"><input id="pwd" class="weui-input" type="password" placeholder="请输入您的密码"></div>
+        </div>
+<div class="weui-flex weui-bb weui-pt10 weui-pb10">
+            <div><img src="../images/l_06.png" width="15"></div>
+            <div class="weui-flex__item weui-pl10"><input id="pwd2" class="weui-input" type="password" placeholder="请再次输入您的密码"></div>
+        </div>
+
+<a href="javascript:;" class="weui-btn weui-btn_warn weui-mt30 sigin_btn">重设密码</a>
+
+</div>
+<script src="../js/checkbix.min.js"></script>
+<script src="../js/font.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/public.js"></script>
+<script>
+    $(".sigin_btn").on("click", function(){
+        var url = window.location.search;
+        var address = url.substring(url.lastIndexOf('=')+1, url.length);
+        var pwd = $("#pwd").val();
+        var pwd2 = $("#pwd2").val();
+        if(pwd != pwd2){
+            alertBottom("两次密码不一致！");
+            return false;
+        }
+        if(pwd == null || pwd == ''){
+            alertBottom('您的密码格式不正确！');
+            return false;
+        }
+        if(pwd.length < 6 || pwd.length >16 || pwd == null || pwd==''){
+                alertBottom("密码长度应在6-16字符之间");
+                return false;
+        }
+        var user={
+				phone:address,
+                password:pwd,
+			}
+           $.ajax({
+		          type: "Post",
+		          contentType: "application/json; charset=utf-8",
+		          url: "../../user/updatePassword",
+		          data:JSON.stringify(user),
+                  success: function(data){
+                  		var dataObj=eval("("+data+")");
+		    		  	if(dataObj.code==1){
+	                        alertBottom("密码重设成功，将为你跳转至登录界面~");
+	                        setTimeout(function() {
+	                            window.location.href="login.html";
+	                        },1000)
+                        }
+                  },
+                  error:function(e){
+		            alertBottom("修改失败，稍后重试!");
+		       	  }
+                }
+            )
+    })
+</script>
+
+</body>
+
+</html>

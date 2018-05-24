@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>活动</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+     <link rel="stylesheet" href="../css/base_cwn.css">
+    
+
+</head>
+<body ontouchstart style="background:#ffeaa3;">
+<header class="header weui-t_c weui-white weui-p_r">
+邀请奖励
+</header>
+<div class="weui-main">
+<img src="../images/ac_02.png" width="100%">
+<div class="weui-p20">
+    <div class="yaoqing">
+        <span style="margin-left:-16vw;">全员邀请奖励</span>
+        <p>邀请好友加入理财先生，受邀请人每完成一笔投资（单笔投资额大于等于5000元），邀请人就可以获得红包奖
+励。每月结算一次。</p>
+        <div class="weui-flex weui-pt10">
+            <div class="weui-flex__item">
+                 <div class="yqbg">
+                      <h3>被邀请人能获得</h3>
+                      <div class="weui-pt10"><img src="../images/ac_05.png" width="56%"></div>
+                 </div>
+            </div>
+            <div class="weui-flex__item weui-pl10">
+                <div class="yqbg">
+                      <h3>被邀请人投资时邀请人能获得</h3>
+                      <div class="weui-flex weui-pt10 weui-pl10 weui-pr10">
+                          <div class="weui-flex__item"><img src="../images/ac_09.png" width="100%"></div>
+                          <div class="weui-flex__item weui-pl10"><img src="../images/hd.png" width="100%"></div>
+                      </div>
+                 </div>
+            </div>
+        </div>
+
+    </div>
+
+     <div class="yaoqing">
+        <span>合伙人计划</span>
+        
+        <div class="weui-flex weui-pt10">
+            <div class="weui-flex__item">
+                 <p>你可以做到每周邀请2人以上成功注册吗？</p>
+              <!--    <p class="weui-pt10">你想要获得永续的提成奖励吗？</p>
+                 <p class="weui-red01">没有看错，永续提成。</p> -->
+                 <p class="weui-pt10">如果以上两条你都有信心做到，那么现在就扫描下方的二维码，申请成为第一批理财先生合伙人！</p>
+            </div>
+            
+        </div>
+        <div class=" weui-pt10 weui-t_c">
+                 <img src="../images/h1_03.png" style="width:30vw;">
+                 <p class="weui-pt5 weui-blue">理财先生合伙人计划</p>
+            </div>
+    </div>
+
+
+
+    <!--<div class="weui-flex weui-pt30">-->
+            <!--<div class="weui-flex__item"><a href="javascript:;" class="yq_a"><img src="../images/h1_07.png" width="100%"></a></div>-->
+            <!--<div class="weui-flex__item weui-pl30"><a href="./tz.html"><img src="../images/h1_09.png" width="100%"></a></div>-->
+        <!--</div>-->
+</div>
+</div>
+<div class="weui-tabbar">
+    <a href="../index.html" class="weui-tabbar__item">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="../images/h.png" alt="" class="weui-tabbar__icon">
+                    </span>
+        <p class="weui-tabbar__label">首页</p>
+    </a>
+    <a href="./steady.html" class="weui-tabbar__item ">
+        <img src="../images/lc.png" alt="" class="weui-tabbar__icon">
+        <p class="weui-tabbar__label">理财</p>
+    </a>
+    <a href="./msyq.html" class="weui-tabbar__item weui-bar__item_on">
+        <img src="../images/lc_25.png" alt="" class="weui-tabbar__icon">
+        <p class="weui-tabbar__label">活动</p>
+    </a>
+    <a href="javascript:;" class="weui-tabbar__item" id="ycj1">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="../images/lc_16.png" alt="" class="weui-tabbar__icon">
+                    </span>
+        <p class="weui-tabbar__label">客服</p>
+    </a>
+    <a href="./record.html" class="weui-tabbar__item">
+        <img src="../images/w.png" alt="" class="weui-tabbar__icon">
+        <p class="weui-tabbar__label">我的</p>
+    </a>
+</div>
+            
+            
+<div class="weui-mask weui-d_n">            
+       <div class="share weui-bgf weui-t_c"> 
+            <img src="../images/sh_03.png" class="close">
+            <div class="weui-p20">
+                 <h3 class="weui-f18">选择分享到</h3>
+                 <p class="weui-pt10">好友受邀将得到<span class="weui-orange">180元</span>理财红包！<br>提醒好友使用，更容易拿到邀请奖励哦。</p>
+                 <div class="weui-flex weui-pt15">
+                    <div class="weui-flex__item"><a href="#"><img src="../images/sh_07.png" width="50"><p class="weui-pt5">微信好友</p></a></div>
+                    <div class="weui-flex__item"><a href="#"><img src="../images/sh_09.png" width="50"><p class="weui-pt5">朋友圈</p></a></div>
+                    <div class="weui-flex__item"><a href="#"><img src="../images/sh_11.png" width="50"><p class="weui-pt5">QQ好友</p></a></div>
+                </div>
+            </div>
+       </div>
+</div>  
+
+<script src="../js/jquery-2.1.4.js"></script>
+<script>
+    $("#ycj1").click(function(){
+        PP.show()
+    });
+
+    window.ppSettings = {
+        app_uuid: 'f7a4cad0-f5b1-11e7-b287-00163e00061e',
+        view: {
+            launcher_bottom_margin: '50px',
+            launcher_right_margin: '30px',
+            launcher_is_show: false,
+            launch_style: {
+                mode: 'custom',
+                position: 'right',
+                bottom: 50,
+
+
+            }
+        }
+    };
+
+    (function(){
+        var w=window,d=document;
+
+        function l() {
+            var a=d.createElement('script');
+            a.type='text/javascript';
+            a.async=!0;
+            a.charset='utf-8';
+            a.src='https://ppmessage.cn/ppcom/assets/pp-library.min.js';
+            var b=d.getElementsByTagName('script')[0];
+            b.parentNode.insertBefore(a,b)
+        }
+        l();
+    })();
+
+</script>
+<script>
+$('.yq_a').click(function(e) {
+    $('.weui-mask').show();
+});
+$('.close').click(function(e) {
+    $('.weui-mask').hide();
+});
+</script>         
+</body>
+
+</html>

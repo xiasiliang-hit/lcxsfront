@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>忘记密码</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+     <link rel="stylesheet" href="../css/base_cwn.css">
+
+    <style>
+        .weui-vcode-btn2 {
+            display: inline-block;
+            padding: 0 .6em 0 .7em;
+            border-left: 1px solid #e5e5e5;
+            line-height: 44px;
+            font-size: 17px;
+            color: #FFFFFF;
+            background: red;
+        }
+
+    </style>
+</head>
+<body ontouchstart class="weui-bgf">
+<header class="header weui-t_c weui-white weui-p_r">
+忘记密码
+<a href="./login.html" class="weui-dnb return"><img src="../images/r_03.png" width="10"></a>
+</header>
+
+<div class="weui-p20">
+
+
+<div class="weui-flex weui-bb weui-pt10 weui-pb10">
+            <div><img src="../images/l_03.png" width="15"></div>
+            <div class="weui-flex__item weui-pl10"><input class="weui-input" type="text" placeholder="请输入您的手机号" id="mobile" name="mobile"></div>
+        </div>
+<div class="weui-flex weui-bb">
+            <div class="weui-flex__item">
+                <div class="weui-cell weui-cell_vcode" style="padding:0;">
+                <div class="weui-cell__hd weui-pr10"><img src="../images/p_06.png" width="15"></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="tel" placeholder="请输入短信验证码" id="vcode">
+
+                </div>
+                <div class="weui-cell__ft">
+
+                    <input onclick="sendcode(this)"  type="button" value="发送验证码"  class="weui-vcode-btn2" >
+                    <!--<button class="weui-vcode-btn">获取验证码</button>-->
+                </div>
+            </div>
+            </div>
+        </div>
+
+<a href="javascript:;" id="yz" class="weui-btn weui-btn_warn weui-mt30">下一步</a>
+
+</div>
+
+<script src="../js/checkbix.min.js"></script>
+<script src="../js/font.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/public.js"></script>
+<script>
+		var pp="";
+	    var vcodd="";
+        var countdown=60;
+        function sendcode(obj) {
+            var mobile = $("input[name='mobile']").val();
+            if(!(/^1(3|4|5|7|8)\d{9}$/.test(mobile))){
+                alertBottom('您的手机号码格式有误！')
+                return false;
+            }else{
+               var user={
+            		phone:mobile,
+            	}
+               $.ajax({
+		          type: "Post",
+		          contentType: "application/json; charset=utf-8",
+		          url: "../../user/queryPhone",
+		          data:JSON.stringify(user),
+                  success: function(data){
+                        if(data[0].phone == 1001){
+                            //发送验证码
+                           $.ajax({
+					          type: "Post",
+					          contentType: "application/json; charset=utf-8",
+					          url: "../../user/sendCode",
+					          data:JSON.stringify(user),
+			                  success: function(data){
+			                  		  var de=new Date();
+			                  		  localStorage.setItem('mob',mobile);
+					                  localStorage.setItem('vco',data[0].ctime);
+					                  localStorage.setItem('tt',de.getTime());
+                                      settime(obj);
+                                      alertBottom("短信已成功发送至您的手机！")
+                                }
+                            })
+                        }else{
+                        	 alertBottom("此账号不存在，请确认账号是否正确！");
+                        }
+                    }
+                })
+            }
+        }
+        function settime(obj){
+            if (countdown == 0) {
+                obj.removeAttribute("disabled");
+                obj.value="发送验证码";
+                countdown = 60;
+                return;
+            } else {
+                obj.setAttribute("disabled", true);
+                obj.value="重新发送(" + countdown + ")";
+                countdown--;
+            }
+            setTimeout(function() {
+                    settime(obj) }
+                ,1000)
+        }
+
+    $("#yz").on("click", function(){
+    	var d=new Date();
+    	var tt = localStorage.getItem('tt');
+    	var vcodd=localStorage.getItem('vco');
+    	var pp=localStorage.getItem('mob');
+    	if((d.getTime()-tt)>60000){
+            alertBottom("验证码过期,请重新获取");
+            return false;
+    	}
+        var mobile = $("#mobile").val();
+        var vcode =$("#vcode").val()
+        if(!(/^1(3|4|5|7|8)\d{9}$/.test(mobile))){
+            alertBottom('您的手机号码格式有误！')
+            return false;
+        };
+        if(mobile!=pp){
+        	alertBottom('验证码过期/错误！')
+            return false;
+        }
+        if(vcode!=vcodd){
+        	alertBottom('验证码错误！')
+            return false;
+        }
+          var id=mobile;
+          setTimeout(function() {
+              window.location.href="forget2.html?a="+id+"";
+          },1000)
+    })
+</script>
+</body>
+
+</html>

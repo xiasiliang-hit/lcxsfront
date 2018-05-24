@@ -1,0 +1,315 @@
+.user_info_right{
+    width: 630px;
+    height: 245px;
+    background: url("../img/pic_effective.png")no-repeat center;
+    display: inline-block;
+    position: relative;
+}
+.user_info_right strong{
+    margin:70px 0 0 225px ;
+    display: block;
+}
+.user_info_right span{
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+}
+.tz{
+    width: 1200px;
+    height: 500px;
+    background:white;
+    margin: auto;
+}
+.tzimg{
+    background: url("../images/z6.png")no-repeat center;
+    width: 1200px;
+    /*height: 328px;*/
+        height: 540px;
+
+}
+.tzz{
+    font-size:35px;
+    /*margin-left:50px;*/
+    width: 479px;
+    height: 100px;
+    float:left;
+    margin:auto;
+    text-align: right;
+    /*background: red;*/
+}
+.tzlefttp{
+    /*background: url("../images/p-1.jpg")no-repeat center;*/
+    width: 500px;
+    height: 70px;
+    margin-top:-44px;
+    /*float: left;*/
+}
+.tzwz{
+    width: 500px;
+    height: 100px;
+    margin-top: 10px;
+    float:left;
+}
+.tzleft{
+    width: 600px;
+    height: 200px;
+    /*background: red;*/
+    float:left;
+}
+.tzright{
+    width: 500px;
+    height: 200px;
+    /*background: red;*/
+    /*float:right;*/
+    /*margin-top:100px;*/
+    margin-left: 600px;
+}
+.xq{
+    width: 100px;
+    height: 20px;
+    /*background: red;*/
+    float: left;
+    margin-left: 50px;
+    margin-top: 50px;
+    cursor:pointer;
+}
+.appionit_sureBoxBgg{
+    position: fixed;
+    background: rgba(0,0,0,.7);
+    /*background: red;*/
+    width: 1200px;
+    height: 700px;
+    z-index:999999;
+    /*margin: 0px auto;*/
+    /*float: left;*/
+    /*top: 0;*/
+    left:18.5%;
+    /*display: none;*/
+    /*overflow: hidden;*/
+
+}
+.red_detailss{
+    background: rgba(0,0,0,0);
+    /*background:red;*/
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    top: 25%;
+    left:600px;
+    z-index: 999999;
+    /*margin: 0px auto;*/
+
+}
+.red_closes{
+    width:40px;
+    height:40px;
+    background: url("../images/close_index_bs.png")no-repeat center;
+    /*background-size: 0.41rem;*/
+    position: absolute;
+    /*top: 25%;*/
+    /*left: 10px;*/
+    cursor:pointer;
+}
+.red_details_tops{
+    width:700px;
+    height:240px;
+    background: url("../img/red_banner.png")no-repeat center;
+    /*background-size: 14px;*/
+
+}
+.red_contents{
+    border-bottom-right-radius: 0.1rem;
+    border-bottom-left-radius:0.1rem;
+    background: #ffffff;
+    width: 620px;
+    margin-left: 22.5px;
+    padding: 10px;
+}
+.red_content_one{
+    text-align: center;
+    line-height: 0.8rem;
+}
+
+.red_title{
+    border: solid 1px #f53b3f;
+    height: 20px;
+    width: 200px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 18px;
+    color: #f24137;
+    font-size:14px;
+    margin: 0px auto;
+}
+.yh{
+    width:1100px;
+    height: 200px;
+    /*background: #ff721f;*/
+    margin-left: 100px;
+    float: left;
+
+
+}
+.yhj{
+
+    width: 300px;
+    height: 150px;
+    /*background: rebeccapurple;*/
+    float: left;
+    margin-left: 200px;
+}
+
+.trz{
+    width: 150px;
+    height: 150px;
+    /*background: red;*/
+    float: left;
+
+}
+.trzys{
+    font-size: 20px;
+    color: #f2ad4b;
+}
+.trzwz{
+    margin: 56px 0;
+    /*border-left-color:#000;*/
+    /*border: 1px solid;*/
+}
+.trzwzy{
+    width: 150px;
+    height: 150px;
+    /*background: red;*/
+    float: left;
+    margin-top: 56px;
+}
+.info_details_titlet{
+    height: 40px;
+
+    line-height: 40px;
+    padding-left: 275px;
+    border-bottom: solid 1px #eeeeee;
+    display: flex;
+    width: 600px;
+    /*background: red;*/
+}
+.info_details_itemt{
+    padding: 5px 45px;
+    padding-left: 320px;
+    border-bottom: solid 1px #eeeeee;
+    text-align: right;
+    display: flex;
+}
+.bm{
+    margin-left:38px;
+}
+.bmt{
+    margin-left:70px;
+}
+.bmtt{
+    margin-left:60px;
+}
+
+
+.QQ_boxx {
+    display: inline-block;
+    width: 92px;
+    height: 24px;
+    background: url(../img/pic_QQ.png)no-repeat center;
+    position: absolute;
+    margin-left:10px;
+    top: 176px;
+}
+
+.QQ_boxxt{
+    display: inline-block;
+    width: 92px;
+    height: 24px;
+    background: url(../img/pic_QQ.png)no-repeat center;
+    position: absolute;
+    margin-left:-114px;
+    top: 203px;
+}
+.vv{
+    margin-left: 150px;
+}
+.vv1{
+    margin-left: 150px;
+}
+.vv2{
+    margin-left: 150px;
+
+
+}
+
+.gh{
+    display: inline-block;
+    width: 92px;
+    height: 24px;
+    background: url(../img/pic_QQ.png)no-repeat center;
+    position: absolute;
+    margin-left: -130px;
+    top: 185px;
+}
+.gf{
+    width: 300px;
+    height: 200px;
+    background: red;
+    margin-left: 150px;
+}
+
+
+
+.m-confirm{width:67px;position:fixed;top:50%;right:0px;font-size:12px;color:#fff;margin-top:-171px;z-index:9999; background:#fca068;}
+.m-confirm>div {
+    height:99px;
+    text-align:center;
+    border-bottom:1px solid #fff;
+    cursor:pointer;
+    position:relative;
+}
+.m-confirm .z-show{display:block !important;}
+.m-confirm .z-over{background-color:#197ad8 !important;}
+.m-confirm .z-over-1{background-color:#c6c6c6 !important;}
+.m-confirm .tel .content{width:138px;height:43px;background:url(../images/tel1.png) no-repeat; display:none;background-size:138px 43px;position:absolute;top:27px;left:-147px;z-index:9999;}
+.m-confirm>div:hover{background-color:#ef894b;}
+.m-confirm .top{height:43px;text-align:center;background-color:#dbdbdb;cursor:pointer;}
+.m-confirm .top p{color:#666;font-weight:bolder;}
+.m-confirm .tel .content.on {
+    display:block;
+}
+.m-confirm .top:hover {
+    background-color:#dbdbdb;
+}
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.weui-pt25 {
+    padding-top:25px;
+}
+.weui-pb10 {
+    padding-bottom:10px;
+}
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.weui-pt25 {
+    padding-top:25px;
+}
+.weui-pb10 {
+    padding-bottom:10px;
+}
+.m-confirm .top:hover {
+    background-color:#dbdbdb;
+}

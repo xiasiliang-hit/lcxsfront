@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title id="title">搜索-理财先生（互金导购平台）</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/prefecture.css">
+    <link rel="shortcut icon" href="../favicon.ico" />
+    <link rel="bookmark" href="../favicon.ico" type="image/x-icon"  />
+    <link rel="icon" href="../favicon.ico" type="image/x-icon"  />
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?68b8985e6ab63a0e416c673449143aa6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?74281828e39a57f158c5d0564f7117ee";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body>
+<!--头部-->
+<div class="head_nav">
+    <div class="nav_box">
+        <div class="nav_up">
+            <div class="nav_up_content">
+                <!-- <span style="margin-right:40px ">客服热线：400-060-8807</span> -->
+                <div id="loginbox" style="display: inline-block" >
+                    <a href="../login/login.html">你好，请登录</a>
+                    <a href="../login/signin.html" style="margin-right: 26px;display: inline-block">免费注册</a></div>
+               <!--  <div class="phone" id="phone" style="display: inline-block">
+                    手机金融
+                    <img src="../img/icon_phone_next.png" height="9" width="16"/>
+                    <div class="phone_BQ_box" id="phone_BQ">
+                        <div class="phone_BQ" >
+                            <img src="../img/pic_phone_QR.png" height="65" width="65"/>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="nav_down">
+            <div class="nav_down_left"></div>
+            <div class="nav_down_right">
+                <a href="../index.html">首页</a>
+                <a href="first_tou.html?s_type=1" class="menu-a1-wj">稳健专区</a>
+                <a href="first_tou.html?s_type=2" class="menu-a1-gf">高返专区</a>
+                <a href="../guide/guide.html">新手指引</a>
+                <a href="../about/about_company_profile.html">关于我们</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--主体-->
+<div class="prefecture_main" id="index_cont">
+    <!--搜索-->
+    <div class="search_box" >
+        <div style="display: inline-block;">
+            <form onsubmit="return searchpro()">
+                <input type="text" id="keywords" placeholder="平台名/关键字/平台/产品名" class="search_box_input">
+                <input type="button" value="搜索" class="search_box_btn" onclick="searchpro()">
+            </form>
+        </div>
+        <div style="color: #a5a5a5;margin-left: 20px;display: inline-block;"></div>
+<!--         <span class="black_color">热门搜索：</span>
+        <a href="hot.html?keywords=乾包">乾包</a>
+        <a href="hot.html?keywords=陆金所">陆金所</a> -->
+    </div>
+    <!--列表-->
+    <div class="list_title index_title_bg">
+        <ul>
+            <li class="li_color1">
+                <a href="javascript:;">
+                    <span id="jx" onclick="jx()">进行中</span>
+                    <span id="js" style="display: none" onclick="js()">已结束</span>
+                    <div class="flex_box" style="display: inline-block">
+                        <div class="triangle-down2"></div>
+                    </div>
+                </a>
+            </li>
+            <li class="li_color1">
+                <a href="javascript:;" data-sort="shelfTime">
+                    <span onclick="sj()">上架时间</span>
+                    <div class="flex_box" style="display: inline-block">
+                        <div class="triangle-up2"></div>
+                        <div class="triangle-down2"></div>
+                    </div>
+                </a>
+            </li>
+            <li class="li_color1">
+                <a href="javascript:;">
+                    <span onclick="zh()">综合收益</span>
+                    <div class="flex_box" style="display: inline-block" >
+                        <div class="triangle-up2"></div>
+                        <div class="triangle-down2"></div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!--详细列表-->
+    <div class="minute_list_box">
+        <div class="minute_list_item" v-for="(proItem, index) in proList" v-cloak>
+            <!--角标 1推荐2活动3爆款-->
+            <img class="badge_box1" src="../img/pic_Badge1.png" height="64" width="66" v-if="proItem.corner==3"/>
+            <img  class="badge_box1" src="../img/pic_Badge2.png" height="64" width="66"  v-if="proItem.corner==2"/>
+            <img  class="badge_box1" src="../img/pic_Badge3.png" height="64" width="66"  v-if="proItem.corner==1"/>
+            <div class="minute_list_item_title" >
+                <img src="../img/icon_prefecture_user.png" height="10" width="10"/>
+                <span v-cloak>已有{{ proItem.num }}人参团</span>
+            </div>
+            <div class="brand_div">
+                <img :src="proItem.logo" height="32" width="74" v-cloak/>
+                <span  class="label1"  v-cloak  v-if="proItem.type=='首投'">{{proItem.type}}</span>
+                <span class="span_lable3" v-cloak  v-else >{{proItem.type}}</span>
+            </div>
+            <div class="tag_div"  >
+                <span v-for="tagItem in tag[index]" v-cloak>{{tagItem}}</span>
+            </div>
+            <div class="brand_details">
+                <div class="brand_details_left">
+                    <span class="red_color character_fz5" v-cloak>{{ proItem.example }}元</span>
+                    <span v-cloak>投{{ proItem.money }}元获得</span>
+                </div>
+                <div class="brand_details_border"></div>
+                <div class="brand_details_right">
+                    <span class="red_color character_fz5" v-cloak>{{ proItem.income }}%</span>
+                    <span>年化收益率</span>
+                </div>
+            </div>
+            <div class="brand_details">
+                <div class="brand_details_left">
+                    <span class="green_color" v-cloak>{{ proItem.risk }} {{ proItem.danger }}</span>
+                    <span>风险评分</span>
+                </div>
+                <div class="brand_details_border"></div>
+                <div class="brand_details_right">
+                    <span v-cloak>{{ proItem.no }}天起</span>
+                    <span>周期</span>
+                </div>
+            </div>
+            <div class="dashed_border"></div>
+            <div class="brand_btn" v-if="proItem.status==='1'">
+                <a   :href="'details.html?type=2&pro_id='+proItem.id" v-cloak>立即加入</a>
+            </div>
+            <div class="brand_btn2" v-else>
+                <a  href="javascript:;" >已结束</a>
+            </div>
+        </div>
+    </div>
+    <!--分页-->
+    <div class="c2-page">
+        <a id="prevId" class="disable-button" href="javascript:void(0)">上一页</a>
+        <ul class="page-list">
+            <!-- 页码 -->
+        </ul>
+        <a id="nextId" class="nextpage page-button" href="javascript:void(0)" >下一页</a>
+    </div>
+</div>
+<!--底部-->
+<div class="foot">
+    <div class="details_box">
+        <div class="details_box_left">
+            <div class="details_box_left_up">
+                <span>了解理财先生</span>
+                <a href="../about/about_company_profile.html">关于我们</a>
+                <a href="../about/about_company_profile.html#tab=2">网站公告</a>
+                <a href="../about/about_company_profile.html#tab=3">常见问题</a>
+                <a href="../login/tcp.html">用户协议</a>
+            </div>
+            <div>
+                <span>联系我们</span>
+                <span> 商务合作电话：</span>
+                <span>15158418101    包先生</span>
+
+                        </div>
+                        <div>
+                            <span >&nbsp;</span>
+                            <span >&nbsp;</span>
+            </div>
+            <div><span style="color: #556a84">&nbsp;</span></div>
+        </div>
+       <div class="details_box_center">
+                <div class="img_iphone">
+                    <div>移动端理财</div>
+                    <div class="BQ_box"></div>
+                </div>
+                <div class="img_app"> 
+                     <div>安卓app下载</div>
+                    <div class="BQ_app"></div>
+                </div> 
+            </div>
+            <div class="details_box_right">
+                <span style="font-size: 24px;">&nbsp;</span>
+                <span>服务时间：周一到周五 9:00~20:30 法定节假日 9:00~18:00</span>
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=136720107&site=qq&menu=yes"><div ></div></a>
+            </div>
+        </div>
+        <div class="authentication_box">
+            <span>Copyright Reserved 2015-2017</span>
+            <span>安徽蜀玉金融外包服务有限公司 </span>
+            <div style="display: inline-block">
+                 <div class="pic_badge_img"></div>
+                <span>皖ICP备18004423号-1 </span>
+            </div>
+        </div>
+    </div>
+<script src="../js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../js/public.js"></script>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+    function jx() {
+        vm.status=2;
+        document.getElementById('jx').style.display='none';
+        document.getElementById('js').style.display='';
+        is_new = true; //重新加载分页
+        curpage = 1; //设置第一页
+        vm.px=0
+        getprolsit(0); //重新加载当前状态的数据
+    }
+    function js() {
+        vm.status=1;
+        document.getElementById('jx').style.display='';
+        document.getElementById('js').style.display='none';
+        is_new = true; //重新加载分页
+        curpage = 1; //设置第一页
+        vm.px=0
+        getprolsit(0); //重新加载当前状态的数据
+    }
+    function sj() {
+        if( vm.shelfTime == null){vm.shelfTime = 1;}
+        else if(vm.shelfTime == 1){ vm.shelfTime = 2;}
+        else{vm.shelfTime = 1;};
+        vm.no = null;
+        vm.zhsy = null;
+        vm.jkRebate = null;
+        is_new = true; //重新加载分页
+        curpage = 1; //设置第一页
+        vm.px=0
+        getprolsit(0); //重新加载当前状态的数据
+    }
+    function zh() {
+        //综合收益
+        if( vm.zhsy == null){vm.zhsy = 1;}
+        else if(vm.zhsy == 1){ vm.zhsy = 2;}
+        else{vm.zhsy = 1;}
+        vm.no = null;
+        vm.jkRebate = null;
+        vm.shelfTime = null;
+        is_new = true; //重新加载分页
+        curpage = 1; //设置第一页
+        vm.px=0;
+        getprolsit(0); //重新加载当前状态的数据
+    }
+    var s_type;
+    s_type = getUrlParam("s_type");
+    if (s_type == '1') {
+        $('#title').html('稳健专区- 理财先生（互金精选导购平台）官网');
+        $('.menu-a1-wj').addClass('red_color');
+    } else if (s_type == '2') {
+        $('#title').html('高返专区- 理财先生（互金精选导购平台）官网');
+        $('.menu-a1-gf').addClass('red_color');
+    }
+    var curpage = 1, limit = 8, is_new = true, totalpage ;
+
+    var keywords = getUrlParam("keywords");
+    $(".search_box_input").attr("value",keywords);
+    var vm = new Vue({
+        el:"#index_cont",//读取数据的块
+        data:{
+            proList:[],
+            tag:[],
+            shelfTime:0, //上架时间
+            no:0, //周期
+            zhsy:0, //综合收益
+            jkRebate:0, //返利金额
+            whereNo:0, //期限 默认全部
+            whereZhsy:0, //综合收益 默认全部
+            s_type:s_type || 0, //项目类型 默认全部
+            type:null,
+            status:1,//状态 => 1为进行中,2为已结束
+            px:1
+        }
+    });
+    var vm1=new Vue({
+        el:"#index_cont1",//读取数据的块
+        data:{
+            shoplist:[],//合作商户
+        }
+    });
+    $(function(){
+        vm1.shoplist = [];//清空存储空间
+        $.post(
+            ajaxUrl + "HomeData/partner_list", {
+                page:0,
+                    /*limit:16,*/
+            },
+            function (data) {
+                ret=data;
+                if(ret){
+                    if(ret['result'] == 1001){
+                        for(var i = 0; i < ret['data'].length; i++){
+                            vm1.shoplist.push(ret['data'][i]);
+                        }
+                    }
+                }
+            }
+        );
+    });
+    function getprolsit(pageIndex){
+        vm.proList = [];//清空存储空间
+        vm.tag = []; //清空存储空间
+        $.post(
+            ajaxUrl + "HomeData/search",
+            {
+                search:keywords,
+                page:pageIndex,
+                limit:limit,
+            },
+            function(data){
+                ret=data;
+                if(ret){
+                    if(ret['result'] == 1001){
+                        for(var i = 0; i < ret['data'].length; i++){
+                            //"type": "1", // 1首投 标识
+                            if(ret['data'][i].type == 1){
+                                ret['data'][i].type = '首投';
+                            }else if(ret['data'][i].type == 2){
+                                ret['data'][i].type = '复投';
+                            }
+                            var tagbox = ret['data'][i].tag.split(',');
+                            vm.tag[i] = new Array();
+                            if(tagbox.length>2){
+                                tagbox.length=2;
+                            }
+                            for (var j = 0; j < tagbox.length; j++) {
+                                vm.tag[i].push(tagbox[j]);
+                            }
+                            vm.proList.push(ret['data'][i]);
+                        }
+                        $(".tou_prolist").css("display","block")
+                        //页数
+                        if(is_new){
+                            totalpage = parseInt(ret['datacount'] / limit);
+                            if(ret['datacount'] % limit != 0 || totalpage < 1){
+                                totalpage += 1;
+                            }
+                            getpage(totalpage);
+                        }
+                    }
+                }
+            }
+        )
+    }
+    function nofind(){
+        var img=event.srcElement;
+        img.src="image/nopic.gif";
+        img.onerror=null; //控制不要一直跳动
+    }
+    //加载分页
+    function getpage(total){
+        $(".page-list").html('');
+        // console.log(is_new)
+        for(var i = 1; i <= total; i++){
+            var pageii= limit*(i-1);
+            //console.log(i);
+            $(".page-list").append('<li><a class="gray-border2" href="javascript:;" data-pagenum="'+i+'" data-page="'+pageii+'">'+i+'</a></li>')
+        }
+        $(".page-list li").eq(0).find("a").attr("class","blue-border2");
+        if(total==1){
+            $("#nextId").attr("class","disable-button")
+        }
+        is_new = false;
+    }
+    //上一页
+    $(".c2-page").on("click", ".prevpage", function(){
+        if(curpage >0){
+            curpage -= 2;
+            console.log(curpage)
+            var obj = $(".page-list li").eq(curpage).find("a");
+            var pageret = obj.attr("data-page");
+            var i = obj.attr("data-pagenum");
+            setpagestyle(i);
+            getprolsit(pageret);
+        }
+    })
+    //下一页
+    $(".c2-page").on("click", ".nextpage", function(){
+        if(curpage >0 && curpage < totalpage){
+            var obj = $(".page-list li").eq(curpage).find("a");
+            var pageret = obj.attr("data-page");
+            var i = obj.attr("data-pagenum");
+            setpagestyle(i);
+            getprolsit(pageret);
+        }
+    })
+    //跳页
+    $(".page-list").on("click", ".gray-border2", function(){
+        var pageret = $(this).attr("data-page");
+        var i = $(this).attr("data-pagenum");
+        console.log(i)
+        setpagestyle(i);
+        getprolsit(pageret);
+    })
+    //分页样式处理
+    function setpagestyle(i){
+        curpage = Number(i);
+        $(".page-list li").siblings().find("a").attr("class","gray-border2");
+        $(".page-list li").eq(i-1).find("a").attr("class","blue-border2");
+        window.scrollTo(0,415);
+        if ( curpage >= totalpage) {
+            $("#nextId").attr("class","disable-button");
+            $("#prevId").attr("class","prevpage page-button");
+        }else if( curpage == 1){
+            $("#nextId").attr("class","nextpage page-button");
+            $("#prevId").attr("class","disable-button");
+        }else{
+            $("#nextId").attr("class","nextpage page-button");
+            $("#prevId").attr("class","prevpage page-button");
+        }
+    }
+
+    //======状态区分 进行中 跟已结束
+    $(".c2-head input[type=radio]").on("click",function(){
+        getsortdata();
+    })
+    //==============筛选
+    $(".c1-menu2 input[type=radio]").on("click",function(){
+        vm.status = 1;
+        getsortdata();
+    })
+    function getsortdata(){
+        is_new = true; //重新加载分页
+        curpage = 1; //设置第一页
+        $("#nextId").attr("class","nextpage page-button");
+        $("#prevId").attr("class","disable-button");
+        getprolsit(0); //重新加载当前状态的数据
+    }
+
+    // ========排序
+    $(".sortlist li").on("click",function(){
+        var sortStatus=$(this).find("a").attr("data-sort");
+        if(sortStatus=='all'){
+            //默认排序
+            vm.no = null;
+            vm.zhsy = null;
+            vm.jkRebate = null;
+            vm.shelfTime = null;
+
+        }else{
+            if(sortStatus == 'no'){
+                //周期
+                if( vm.no == null){vm.no = 1;}
+                else if(vm.no == 1){ vm.no = 2;}
+                else{vm.no = 1;}
+                vm.zhsy = null;
+                vm.jkRebate = null;
+                vm.shelfTime = null;
+            }else if(sortStatus == 'shelfTime'){
+                //上架时间
+                if( vm.shelfTime == null){vm.shelfTime = 1;}
+                else if(vm.shelfTime == 1){ vm.shelfTime = 2;}
+                else{vm.shelfTime = 1;};
+                vm.no = null;
+                vm.zhsy = null;
+                vm.jkRebate = null;
+            }else if(sortStatus == 'zhsy'){
+                //综合收益
+                if( vm.zhsy == null){vm.zhsy = 1;}
+                else if(vm.zhsy == 1){ vm.zhsy = 2;}
+                else{vm.zhsy = 1;}
+                vm.no = null;
+                vm.jkRebate = null;
+                vm.shelfTime = null;
+            }else if(sortStatus == 'jkRebate'){
+                //返利金额
+                if( vm.jkRebate == null){vm.jkRebate = 1;}
+                else if(vm.jkRebate == 1){ vm.jkRebate = 2;}
+                else{vm.jkRebate = 1;}
+                vm.no = null;
+                vm.zhsy = null;
+                vm.shelfTime = null;
+            }
+        }
+        $(this).siblings().removeClass("active")
+        $(this).addClass("active");
+
+        getsortdata();//重新加载数据
+    })
+
+    function searchpro(){
+        var searchkey = $("#keywords").val();
+        if(searchkey){
+            window.location.href="hot.html?keywords="+searchkey;
+        }else{
+            alert("搜索内容不得为空！");
+        }
+        return false;
+    }
+    getprolsit(0); //数据初始化
+    $(".tou_prolist").on("mouseover",".showMoreQA", function(){
+        $(this).find(".showMoreQA_cont").css("display","block")
+    })
+    $(".tou_prolist").on("mouseout",".showMoreQA", function(){
+        $(this).find(".showMoreQA_cont").css("display","none")
+    })
+
+
+
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0e746622a7e1cbaab57f7be6ca55e7d4";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<script>
+    /*显示隐藏二维码*/
+    $(function (){
+        $(".phone").hover(function (){
+            $(".phone_BQ_box").show();
+        },function (){
+            $(".phone_BQ_box").hide();
+        });
+    });
+
+
+
+    $(document).ready(function() {
+        /*$(".project_option_item li").click(function () {
+         $(".project_option_item").find("li input").removeClass("input_active");
+         $(this).children("input").addClass("input_active");
+         });
+         $(".project_option_item2 li").click(function () {
+         $(".project_option_item2").find("li input").removeClass("input_active");
+         $(this).children("input").addClass("input_active");
+         });
+         $(".project_option_item3 li").click(function () {
+         $(".project_option_item3").find("li input").removeClass("input_active");
+         $(this).children("input").addClass("input_active");
+         });*/
+        $(".sort_div li").click(function () {
+            $(".sort_div").find("ul li a").removeClass("span_red");
+            $(this).children("a").addClass("span_red");
+        });
+        $(".list_title li").click(function () {
+            $(".list_title").find("ul li").removeClass("li_red_color");
+            $(this).addClass("li_red_color");
+        })
+    })
+</script>
+</body>
+</html>

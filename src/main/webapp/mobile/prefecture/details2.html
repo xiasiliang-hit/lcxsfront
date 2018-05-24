@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>投资详情</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../css/base_cwn.css">
+<style>
+                .cs{
+    font-size: 10px;
+}
+.gt{
+    color: gray;
+}
+            </style>
+
+</head>
+<body ontouchstart>
+<div id="bag">
+    <header class="header weui-t_c weui-white weui-p_r">
+
+        <span id="schedule"></span>
+        <a href="./steady.html" class="weui-dnb return"><img src="../images/r_03.png" width="10"></a>
+    </header>
+
+    <div class="weui-main">
+        <div class="item_top weui-p20">
+            <section class="weui-bgf weui-pb10">
+                <div class="weui-flex p10 weui-bb">
+                    <div class="weui-flex__item"><img :src="logo" width="70%"></div>
+                    <div class="weui-flex__item weui-pl10">
+                        <span class="bq" v-if="type=='首投'">{{type}}</span>
+                        <span class="bq bq01" v-else>{{type}}</span>
+                         <span class="weui-orange">参考分数：{{risk}}</span>
+                        <p class="weui-f12 weui-c_9">{{homeurl}}<br>上市时间：{{uptime}}</p>
+                    </div>
+                </div>
+
+                <p class="weui-p15 weui-bb">{{recommend }}</p>
+                <p class="weui-pt10 weui-pl10">
+                <div v-html=tag>
+
+                </div>
+                <!--<span class="bq bq1">{{tag}}</span>-->
+                <!--<span class="bq bq1">上市公司</span>-->
+                </p>
+            </section>
+        </div>
+
+        <div>
+            <section class="weui-p20" v-for="caseItem in caseList">
+
+                <div class="weui-bgf">
+                    <h3 class="weui-t_c weui-bb p10">投资方案</h3>
+                    <div class="weui-flex weui-pt20 weui-pb20 weui-c_6">
+                        <div class="weui-flex__item weui-b_r weui-pl10 weui-pr10">
+                            <p>投资期限：{{caseItem.qx}}天</p>
+                            <p>投资金额：{{caseItem.money}}元</p>
+                        </div>
+                        <div class="weui-flex__item weui-pl10 weui-pr10">
+                            <p>超级返利：<span class="weui-orange">{{caseItem.interest}}元</span></p>
+                            <p>总计收益：{{caseItem.tincome}}元</p>
+                        </div>
+                    </div>
+
+                    <div class="weui-b_t p10 sjbg weui-d_n">
+                        <div class="weui-bod">
+                            <table class="table weui-f12" width="100%">
+                                <tr class="weui-bb">
+                                    <td class="weui-b_r">投资标的:</td>
+                                    <td class="weui-c_9 weui-b_r">{{caseItem.casename}}</td>
+                                    <td class="weui-b_r">综合年化:</td>
+                                    <td class="weui-c_9">{{caseItem.zincome}}%</td>
+                                </tr>
+                                <tr class="weui-bb">
+                                    <td class="weui-b_r">返利周期:</td>
+                                    <td class="weui-c_9 weui-b_r">{{caseItem.ftime}}个工作日</td>
+                                    <td class="weui-b_r">原平台利息:</td>
+                                    <td class="weui-c_9">{{caseItem.rebate}}</td>
+                                </tr>
+                                <tr class="weui-bb">
+                                    <td class="weui-b_r">原年化:</td>
+                                    <td class="weui-c_9 weui-b_r">{{caseItem.ybh}}%</td>
+                                    <td class="weui-b_r">红包:</td>
+                                    <td class="weui-c_9">{{caseItem.red}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="weui-b_r">其他:</td>
+                                    <td class="weui-c_9 weui-b_r">{{caseItem.other}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <a onclick="btnOneF(this)" class="more weui-db">点击查看详细信息</a>
+                        <a onclick="btnTwoF(this)" style="display: none" class="more weui-db">点击收起详细信息</a>
+                    </div>
+                    <!--<a class="more weui-db" id="cs">点击查看详情</a>-->
+                    <!--<button class="more weui-db" style="display: none" onclick="btnTwoF(this)">点击收起</button>-->
+
+                </div>
+
+
+            </section>
+
+        </div>
+
+        <section class="weui-bgf weui-p20">
+            <h3 class="weui-f16">注意事项</h3>
+            <ul class="weui-c_6 weui-lh30">
+                <li id="tb">{{proexplain}}</li>
+                <!--<span id="tb" v-cloak>{{homeurl}}{{proexplain}}</span>-->
+            </ul>
+        </section>
+
+        <section class="weui-bgf weui-mt20 weui-p20"  >
+            <div class="title_xq" onclick="cs(this)">
+                平台信息
+            </div>
+            <!--<div class="title_xq on" onclick="gg(this)">-->
+            <!--投资攻略-->
+            <!--</div>-->
+            <div class="xq_box weui-mt20 weui-c_6 weui-d_n">
+                <!-- <p class=" weui-bb weui-pb10">{{recommend }}</p> -->
+                <div class="weui-pt10 weui-pb10 weui-bb">
+                    <table width="100%" class="table ">
+                        <tr>
+                            <td>平台名称：</td>
+                            <td>{{productname}}</td>
+                        </tr>
+                        <tr>
+                            <td>运营公司：</td>
+                            <td>{{shopname}}</td>
+                        </tr>
+                        <tr>
+                            <td>利息水平：</td>
+                            <td>{{level}}</td>
+                        </tr>
+                        <tr>
+                            <td>注册资金：</td>
+                            <td>{{regcap}}万元</td>
+                        </tr>
+                        <tr>
+                            <td>融资背景：</td>
+                            <td>{{financing}}</td>
+                        </tr>
+                        <tr>
+                            <td>上线时间：</td>
+                            <td>{{uptime}}</td>
+                        </tr>
+                        <tr>
+                            <td width="30%">平台背景：</td>
+                            <td>{{background}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <td class="weui-pt10 weui-pb10 weui-bb">
+                    <table width="100%" class="table" id="ptxx">
+                        <ul v-for="(con, index) in context">
+                            <li class="pmlist">{{con}}</li>
+                        </ul>
+                    </table>
+                    <p class="weui-red weui-pt10">风险提示：评分及企业信息仅供参考，请独立评判产品风险，谨慎投资</p>
+            </div>
+
+
+
+        </section>
+
+
+        <section class="weui-bgf weui-mt20 weui-p20">
+            <div class="title_xq" onclick="cs(this)">
+                温馨提示
+            </div>
+            <div class="xq_box weui-mt20 weui-c_6 weui-d_n">
+                <p class=" weui-bb weui-pb10">请大家一定点击理财先生上的"直达连接"按钮,然后直接去注册投资,不要通过其他搜索引擎。</p>
+                <p class=" weui-bb weui-pb10">以上平台利息、红包其他、年化为参考数据，具体以平台实际情况为准。</p>
+                <p class=" weui-bb weui-pb10">所有回单按照提交时间统计，以提交当期的返现金额来进行计算返现，望用户完成投资后，及时提交回单！</p>
+
+                <!--<p class="weui-red weui-pt10">风险提示：评分及企业信息仅供参考，请独立评判产品风险，谨慎投资</p>-->
+            </div>
+        </section>
+        <section class="weui-bgf weui-mt20 weui-p20">
+            <div class="title_xq" onclick="cs(this)">
+                免责说明
+            </div>
+            <div class="xq_box weui-mt20 weui-c_6 weui-d_n">
+                <p class=" weui-bb weui-pb10">理财先生仅为信息平台，本身不吸纳用户资金。活动平台不保证100%安全，如出现意外情况（包括但不局限于平台提现困难/逾期/倒闭等导致无法拿回本金、利息的情况）
+除理财先生在特殊活动上有注明的保障规则，否则理财先生不承担任何责任。</p>
+                <p class="weui-red weui-pt10">风险提示：评分及企业信息仅供参考，请独立评判产品风险，谨慎投资</p>
+            </div>
+        </section>
+
+
+
+
+        <div class="weui-footer_fixed-bottom weui-bgf">
+            <div class="weui-flex">
+                <div><a :href="'receipt.html?pro_id='+pro_id" class="weui-btn weui-btn_r weui-orange" style="font-size:5vw; line-height:13vw;">提交回单</a></div>
+                <div class="weui-flex__item"><a :href="mobile_flurl" class="weui-btn weui-btn_r weui-btn_warn" style="font-size:5vw;line-height:13vw;">马上投资</a></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="../js/jquery-2.1.4.js"></script>
+
+<script src="../js/public.js"></script>
+<script src="../js/vue.js"></script>
+
+<script>
+
+function cs(it){
+        $(it).toggleClass('on');
+        $(it).next('.xq_box').slideToggle();
+    }
+    function btnOneF(it){
+        // alert(it);
+        $(it).parent().prev().fadeIn();
+        $(it).css("display","none");
+        $(it).next().css("display","");
+    }
+    function btnTwoF(it){
+        $(it).parent().prev().fadeOut();
+        $(it).prev().css("display","");
+        $(it).css("display","none");
+    }
+
+    var pro_id=getUrlParam("pro_id");
+    var vm=new Vue({
+        el:"#bag",//读取数据的块
+        data:{
+            max_fl:null,
+            zhsy:null,
+            investment:null,
+            pro_id:null,
+            address:null,
+            phone:null,
+            bonding:null,
+            trusteeship:null,
+            term_investment:null,
+            shopid: null,//产品ID
+            level: null,//平均收益水平
+            example: null, // 举例收益
+            income: null, //年收益率
+            proexplain: null, // 特别说明
+            schedule: null, // 期数
+            type: null,// 1首投 2复投
+            s_type: null, //1稳健 2高返
+            productname: null, // 产品名称
+            shopname: null, // 商户名称
+            uptime: null,// 上线时间
+            regcap: null,// 注册资本(万元)
+            area: null,//所在地区
+            background: null,//平台背景
+            financing: null,//融资背景
+            risk: null, // 评分
+            recommend: null, // 推荐理由
+            logo: null, // logo
+            homeurl: null,//企业域名
+            mobile_flurl:null,
+            jkflurl:null,
+            tag: null,// 标签
+            risk_tag: null, // 排名
+            moreurl:null,
+            num:0,
+            money:0,
+            ynh:null,
+            caseList:[], //方案列表
+            caseListItemList:[],
+            caseNolist:[],
+            status:null,//状态
+            context:[],
+        }
+    })
+
+    function escape2Html(str) {
+        var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
+        var str=str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
+        var reTag = /<(?:.|\s)*?>/g;
+        return str.replace(reTag,"");
+    }
+    $(function(){
+       var shop={
+	    	shopid:pro_id
+	    }
+        $.ajax({
+          type: "Post",
+          contentType: "application/json; charset=utf-8",
+          url: "../../receipt/queryProductByPid",
+          data: JSON.stringify(shop),
+          success: function(data){
+                        vm.pro_id=pro_id;
+                        vm.level = data[0].level;
+                        vm.example = data[0].example;
+                        vm.income = data[0].xnh;
+                        $("#tb").append(data[0].contend);
+                        $("#schedule").html(data[0].pname);
+                        vm.type = data[0].typestz;
+                        if(data[0].typestz == 2){
+                            vm.type = '复投';
+                        }else{
+                            vm.type = '首投';
+                        }
+                        vm.num = data[0].people;
+                        vm.productname = data[0].pname;
+                        vm.shopname = data[0].shopname;
+                        vm.uptime = data[0].ctime;
+                        vm.regcap = data[0].regcap;
+                        vm.area = data[0].area;
+                        vm.background = data[0].background;
+                        vm.financing = data[0].financing;
+                        vm.risk = data[0].risk;
+                        vm.recommend =escape2Html(data[0].recommend) ;
+                        vm.logo = data[0].logo;
+                        vm.homeurl = data[0].shopurl;
+                        vm.mobile_flurl = data[0].appurl;
+                        vm.moreurl = data[0].more;
+                        vm.status = data[0].status;
+                        vm.money = data[0].minmoney;
+                        if(vm.status != 1){
+                            alertBottom(data[0].pname+"暂时下架，跳转回首页......");
+                            setTimeout(function() {
+                                window.location.href="../index.html";
+                            },1500);
+                        }
+                        // var tagbox = data[0].tag.split(',');
+                        // vm.tag=tagbox.join(" ");
+                        var tag = '';
+                        var tagbox = data[0].tag.split(',');
+                        for (var j = 0; j < tagbox.length; j++) {
+                            tag=tag+' <span class="bg bg1 cs">'+tagbox[j]+'</span> ';
+                        }
+                        vm.tag= tag;
+                        $("#ptxx").append(data[0].context);
+                       
+                        getcaselist();//加载对应的方案列表
+                    }
+                })
+            }
+        );
+
+    function getcaselist(){
+        vm.caseList=[];
+        var shop={
+	    	shopid:pro_id
+	    }
+        $.ajax({
+          type: "Post",
+          contentType: "application/json; charset=utf-8",
+          url: "../../receipt/queryCaseByPid",
+          data: JSON.stringify(shop),
+          success: function(data){
+                    for(var i =0 ; i < data.length; i++){
+                        vm.caseList.push(data[i]);
+                    }
+                }
+            }
+        )
+    }
+</script>
+
+</body>
+
+</html>

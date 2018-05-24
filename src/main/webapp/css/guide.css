@@ -1,0 +1,138 @@
+.guide_banner{
+    width: 100%;
+    height: 260px;
+    display: block;
+    background:url(../img/pic_guide_banner.png)no-repeat center top;
+}
+.guide_main{
+    background:#ffffff;
+}
+.guide_content_out{
+    padding: 75px 0 75px;
+    background: #ffffff;
+}
+.guide_content{
+    width: 1200px;
+    margin: 0 auto;
+}
+.guide_main img{
+    display: block;
+}
+.preface_box{
+    height: 90px;
+    line-height: 30px;
+    background: #f6f7fb;
+    padding: 35px 15px;
+}
+.preface_box span{
+    display: block;
+}
+.catalogue_div{
+    height: 140px;
+    padding: 160px 0 0;
+    background: url("../img/pic_guide_PC.png")no-repeat center 0;
+}
+.catalogue_item_box{
+    text-align: center;
+    margin-top: 30px;
+}
+.catalogue_item{
+    width: 310px;
+}
+.catalogue_item_box li{
+    text-align: left;
+    display: inline-block;
+}
+.item_span_margin{
+    margin-right: 10px;
+}
+.procedure_box{
+    width: 1200px;
+    height: 261px;
+    margin: 100px auto 50px;
+}
+.procedure_box_item{
+    width: 550px;
+    height: 261px;
+    display: inline-block;
+}
+.procedure_box_item span{
+    display: block;
+}
+.procedure_span_box{
+    width: 200px;
+    margin-top: 30px;
+    line-height: 25px;
+}
+.procedure_img1{
+    background: url("../img/procedure_img1.png")no-repeat right center;
+}
+.procedure_img2{
+    background: url("../img/procedure_img2.png")no-repeat right center;
+}
+.procedure_img3{
+    background: url("../img/procedure_img3.png")no-repeat right center;
+}
+.procedure_img4{
+    background: url("../img/procedure_img4.png")no-repeat right center;
+}
+.procedure_img5{
+    background: url("../img/procedure_img5.png")no-repeat right center;
+}
+.procedure_img6{
+    background: url("../img/procedure_img6.png")no-repeat right center;
+}
+.guide_tips{
+    width: 785px;
+    height: 240px;
+    background: url("../img/pic_guide_tips.png")no-repeat center;
+    margin: 0 auto 80px;
+}
+.guide_tips_content{
+    padding: 120px 30px 0;
+    line-height: 25px;
+}
+/* 新增轮播图 */
+.swiper-container {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+.swiper-slide {
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 649px;
+    height: 537px;
+}
+.guide_tips {
+    margin: 0 auto 80px;
+    margin-top: 100px;
+}
+.text-content {
+    padding: 0 150px;
+}
+.text-center {
+    text-align: center;
+}
+.row .col-md-6 {
+    float: left;
+    margin-bottom: 20px;
+}
+.col-md-6 {
+    width: 20%;
+}
+.imgBox {
+    height: 51px;
+    width: 145px;
+    margin: auto;
+    background-position: left 70px;
+}
+.imgBox.active {
+    background-position: left 120px;
+}
+.clearfix {
+    clear: both;
+}
+.text-hidden {
+    display: none;
+}

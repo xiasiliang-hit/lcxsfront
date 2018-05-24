@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>登陆</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+     <link rel="stylesheet" href="../css/base_cwn.css">
+    <!--<link rel="stylesheet" type="text/css" href="../css/cs.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="../css/public.css">-->
+    
+
+</head>
+<body ontouchstart class="weui-bgf">
+<header class="header weui-t_c weui-white weui-p_r">
+登陆
+<a href="../index.html" class="weui-dnb return"><img src="../images/r_03.png" width="10"></a>
+</header>
+
+
+<div class="weui-p20">
+
+
+<div class="weui-flex weui-bb weui-pt10 weui-pb10">
+            <div><img src="../images/l_03.png" width="15"></div>
+            <div class="weui-flex__item weui-pl10"><input class="weui-input" type="text" placeholder="请输入您的手机号" id="mobile" name="mobile"></div>
+        </div>
+<div class="weui-flex weui-bb weui-pt15 weui-pb10">
+            <div><img src="../images/l_06.png" width="15"></div>
+            <div class="weui-flex__item weui-pl10"><input class="weui-input" type="password" placeholder="请输入您的密码" id="pwd" name="pwd"></div>
+        </div>
+
+<a onclick="login()" class="weui-btn weui-btn_warn weui-mt30">登陆</a>
+<div class="clearfix weui-pt10">
+    <a href="forget.html" class="weui-fl">忘记密码？</a>
+    <a href="signin.html" class="weui-fr weui-orange">注册新账户</a>
+</div>
+</div>
+
+
+</body>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/public.js"></script>
+<script type="text/javascript">
+    function login(){
+        var vid = localStorage.getItem('vid');
+        if(vid){
+            alertBottom("您已经登陆，请先退出！");
+            return false;
+        }else{
+            var mobile = $("#mobile").val();
+            var pwd = $("#pwd").val();
+
+            if(!(/^1(3|4|5|7|8)\d{9}$/.test(mobile))){
+                alertBottom('您的手机号码格式有误！')
+                return false;
+            };
+            if(pwd == null || pwd == ''){
+                alertBottom('您的密码格式不正确！');
+                return false;
+            }
+            var us={
+            		phone:mobile,
+            	}
+               $.ajax({
+		          type: "Post",
+		          contentType: "application/json; charset=utf-8",
+		          url: "../../user/queryPhone",
+		          data:JSON.stringify(us),
+                  success: function(data){
+                        if(data[0].phone == 1001){
+				            var user={
+				                	phone:mobile,
+				                	password:pwd
+				                }
+				                $.ajax({
+						          type: "Post",
+						          contentType: "application/json; charset=utf-8",
+						          url: "../../user/login",
+						          data:JSON.stringify(user),
+						          success: function(data){
+							          	if(data==null || data==""){
+							          		alertBottom("密码错误！");
+							          	}else{
+					                        localStorage.setItem('vid',data[0].vid);
+					                        localStorage.setItem('nickname',data[0].realname);
+					                        localStorage.setItem('mobile',data[0].phone);
+					                        alertBottom("登录成功，将为你跳转至个人中心~");
+					                        setTimeout(function() {
+					                            window.location.href="../prefecture/record.html";
+					                        },1000)
+					                    }
+				                  },
+						          error:function(e){
+						            alert("错误！！");
+						       	  }
+				                }
+				            )
+		        }else{
+		        	alertBottom("账号错误！");
+		        }
+       		 }
+        })
+    }
+  }
+
+</script>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账户设置-理财先生（互金导购平台）</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/user.css">
+    <link rel="shortcut icon" href="../favicon.ico" />
+    <link rel="bookmark" href="../favicon.ico" type="image/x-icon"  />
+    <link rel="icon" href="../favicon.ico" type="image/x-icon"  />
+	<script type="text/javascript" src="../js/jsAddress.js"></script>
+	<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/public.js"></script>
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?68b8985e6ab63a0e416c673449143aa6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?74281828e39a57f158c5d0564f7117ee";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body>
+    <div class="head_nav">
+        <div class="nav_box">
+            <div class="nav_up">
+                <div class="nav_up_content">
+                    <!-- <span style="margin-right:40px ">客服热线：400-060-8807</span> -->
+                    <div id="loginbox" style="display: inline-block" >
+                        <a href="../login/login.html">你好，请登录</a>
+                        <a href="../login/signin.html" style="margin-right: 26px;display: inline-block">免费注册</a></div>
+                    <!-- <div class="phone" id="phone" style="display: inline-block">
+                        手机金融
+                        <img src="../img/icon_phone_next.png" height="9" width="16"/>
+                        <div class="phone_BQ_box" id="phone_BQ">
+                            <div class="phone_BQ" >
+                                <img src="../img/pic_phone_QR.png" height="65" width="65"/>
+                            </div>
+                        </div>
+                    </div> -->
+                </div> 
+            </div>
+            <div class="nav_down">
+                <div class="nav_down_left"></div>
+                <div class="nav_down_right">
+                    <a href="../index.html">首页</a>
+                    <a href="../prefecture/first_tou3.html?s_type=1">稳健专区</a>
+                    <a href="../prefecture/first_tou3.html?s_type=2">高返专区</a>
+                    <a href="../guide/guide2.html">新手指引</a>
+                    <a href="../about/about_company_profile2.html" class="red_color">关于我们</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="actset">
+    <div class="main" >
+        <div class="option_box">
+            <div class="option_top">
+                <a href="user_pandect.html">账户总览</a>
+                <a href="user_set.html" class="option_active">账户设置</a>
+                <a href="user_yq.html">邀请好友一起投资</a>
+                <a href="user_hb.html">账户红包</a>
+            </div>
+        </div>
+        <div class="option_content_box">
+            <div class="option_content_item">
+                <div class="option_item_img1">绑定手机号码</div>
+                <div class="option_item_div_two">手机号码可用于登陆，确保平时在使用</div>
+                <div class="option_item_div_three" v-cloak>{{mobile}}</div>
+                <!--绑定的俩种显示-->
+                <div class="option_item_div_four item_img_unConfirm" v-if="mobile==null" v-cloak>未绑定</div>
+                <div class="option_item_div_four item_img_Confirm"  v-if="mobile!=null" v-cloak>已绑定</div>
+                <!--修改的俩种显示-->
+                <input type="button" class="option_btn_bg" value="修改" v-if="mobile!=null" id="PhoneBtn" v-cloak>
+                <input type="button" class="option_btn_bg" value="前往绑定" v-if="mobile==null" id="PhoneBtn" v-cloak >
+            </div>
+            <div class="option_content_item">
+                <div class="option_item_img2">绑定银行卡</div>
+                <div class="option_item_div_two">填写银行卡账号，用于接受返现</div>
+                <div class="option_item_div_three" v-cloak>{{bank_account}}</div>
+                <!--绑定的俩种显示-->
+                <div class="option_item_div_four item_img_unConfirm" v-if="bank_account==null" v-cloak>未绑定</div>
+                <div class="option_item_div_four item_img_Confirm" v-if="bank_account!=null" v-cloak>已绑定</div>
+                <!--修改的俩种显示-->
+                <input type="button" class="option_btn_bg" value="修改" v-if="bank_account!=null" id="bankBtn" v-cloak>
+                <input type="button" class="option_btn_bg" value="前往绑定" v-if="bank_account==null" id="bankBtn" v-cloak>
+            </div>
+            <div class="option_content_item">
+                <div class="option_item_img4">绑定支付宝</div>
+                <div class="option_item_div_two">绑定支付宝账号，用于接受返现</div>
+                <div class="option_item_div_three" v-cloak>{{alipay}}</div>
+                <!--绑定的俩种显示-->
+                <div class="option_item_div_four item_img_unConfirm" v-if="alipay==null" v-cloak>未绑定</div>
+                <div class="option_item_div_four item_img_Confirm" v-if="alipay!=null" v-cloak>已绑定</div>
+                <!--修改的俩种显示-->
+                <input type="button" class="option_btn_bg" value="修改" id="alipayBtn"   v-if="alipay!=null" v-cloak>
+                <input type="button" class="option_btn_bg" value="前往绑定" id="alipayBtn"  v-if="alipay==null" v-cloak>
+            </div>
+            <div class="option_content_item" style="border: none">
+                <div class="option_item_img3">登陆密码</div>
+                <div class="option_item_div_two">为确保账户安全，请妥善保管好登陆密码</div>
+                <div class="option_item_div_three">*********</div>
+                <!--绑定的俩种显示-->
+                <div class="option_item_div_four item_img_Confirm">已设置</div>
+                <!--修改的俩种显示-->
+                <input type="button" class="option_btn_bg" value="修改" id="passwordBtn">
+            </div>
+        </div>
+    </div>
+    <div class="foot">
+        <div class="details_box">
+            <div class="details_box_left">
+                <div class="details_box_left_up">
+                    <span>了解理财先生</span>
+                    <a href="../about/about_company_profile2.html">关于我们</a>
+                    <a href="../about/about_company_profile2.html#tab=2">网站公告</a>
+                    <a href="../about/about_company_profile2.html#tab=3">常见问题</a>
+                    <a href="../login/tcp.html">用户协议</a>
+                </div>
+                <div>
+                    <span>联系我们</span>
+                    <span>商务合作电话：</span>
+                    <span>15158418101  包先生</span>
+
+                        </div>
+                      <!--   <div>
+                            <span >理财先生官方1群：615973220</span>
+                            <span >理财先生官方2群：591389147</span>
+                </div>
+                <div><span style="color: #556a84">（加群时请备注理财先生）</span></div> -->
+            </div>
+                <div class="details_box_center">
+                <div class="img_iphone">
+                    <div>移动端理财</div>
+                    <div class="BQ_box"></div>
+                </div>
+                <div class="img_app"> 
+                     <div>APP下载</div>
+                    <div class="BQ_app"></div>
+                </div> 
+            </div>
+            <div class="details_box_right">
+                <span style="font-size: 24px;">&nbsp;</span>
+                <span>服务时间：周一到周五 9:00~20:30 法定节假日 9:00~18:00</span>
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=136720107&site=qq&menu=yes"><div ></div></a>
+            </div>
+        </div>
+        <div class="authentication_box">
+            <span>Copyright Reserved 2015-2017</span>
+            <span>安徽蜀玉金融外包服务有限公司 </span>
+            <div style="display: inline-block">
+                 <div class="pic_badge_img"></div>
+                <span>皖ICP备18004423号-1 </span>
+            </div>
+        </div>
+    </div>
+    <!--弹框-->
+    <div id="sureBoxBg" class="appionit_sureBoxBg" style="display: none;"></div>
+    <!--手机框-->
+    <div class="revise_box1" id="phoneBox" style="display: none;">
+        <div class="revise_div1">
+            <span class="revise_div1_span"></span>
+            <span class="black_color" v-if="mobile==null" v-cloak> 绑定手机号码</span>
+            <span class="black_color" v-if="mobile!=null" v-cloak> 修改手机号码</span>
+            <img src="../img/icon_revise_cancel.png" height="17" width="16" id="phoneClose"/>
+        </div>
+        <input type="text" class="input_txt" id="mobile" name="mobile" placeholder="请输入要修改的手机号码">
+        <input type="button" value="确认提交" class="input_btn" onclick="bind_mobile()">
+    </div>
+    <!--银行框-->
+    <div class="revise_box1" id="bankBox" style="display: none">
+        <div class="revise_div1">
+            <span class="revise_div1_span"></span>
+            <span class="black_color" v-if="bank_account==null" v-cloak>绑定银行卡</span>
+            <span class="black_color" v-if="bank_account!=null" v-cloak>修改银行卡</span>
+            <img src="../img/icon_revise_cancel.png" height="17" width="16" id="bankClose"/>
+        </div>
+        <input type="text" class="input_txt2" id="bank_name" name="bank_name" placeholder="请输入银行卡真实姓名">
+        <input type="text" class="input_txt3" name="bank_account" id="bank_account" placeholder="请输入银行卡账号">
+        	<select class="form-control"id="bankList" name="bankList"></select>
+       	    <select class="form-control" id="cmbProvince" name="cmbProvince" ></select>  
+       	    <select class="form-control" id="cmbCity" name="cmbCity" ></select>  
+			<select class="form-control" id="cmbArea" name="cmbArea" ></select>
+        <input type="text" class="input_txt3" style="background: #eeeeee;margin-bottom: 40px" name="bank_addr" id="bank_addr" placeholder="开户行地址">
+        <input type="button" value="取消" class="input_btn2"  id="cancelBtn">
+        <input type="button" value="确认提交" class="input_btn" onclick="bind_bank()">
+    </div>
+     <!--支付宝框-->
+    <div class="revise_box1" id="alipayBox" style="display: none">
+        <div class="revise_div1">
+            <span class="revise_div1_span"></span>
+            <span class="black_color" style="display: none">绑定支付宝</span>
+            <span class="black_color">修改支付宝</span>
+            <img src="../img/icon_revise_cancel.png" height="17" width="16" id="alipayClose"/>
+        </div>
+        <input type="text" class="input_txt2" id="aliname" name="aliname" placeholder="请输入支付宝真实姓名">
+        <input style="margin-bottom:30px;" type="text" id="alipay" name="alipay" class="input_txt3" placeholder="请输入支付宝账号">
+        <input type="button" value="取消" class="input_btn2"  id="ay_cancelBtn">
+        <input type="button" value="确认提交" class="input_btn" onclick="bind_alipay()">
+    </div>
+    <!--密码框-->
+    <div class="revise_box1" id="passwordBox" style="display: none;">
+        <div class="revise_div1">
+            <span class="revise_div1_span"></span>
+            <span class="black_color">修改密码</span>
+            <img src="../img/icon_revise_cancel.png" height="17" width="16" id="passwordClose"/>
+        </div>
+        <input type="text" class="input_txt" id="bindpwd" name="bindpwd" placeholder="请输入要修改的密码（6-16位）">
+        <input type="button" value="确认提交" class="input_btn" onclick="bindpwd()">
+    </div>
+
+</div>
+ 
+    <script>
+    
+    	var vid = getcookie().vid;
+
+        if(!vid){
+            window.location.href="../login/login.html";
+            //  return false
+        }
+        function bind_mobile() {
+            var mobile = $('#mobile').val();
+            //更改手机号码
+            if(!(/^1(3|4|5|7|8)\d{9}$/.test(mobile))){
+                alertBottom('您的手机号码格式有误！')
+                return false;
+            };
+            var user={
+            		phone:mobile,
+            	}
+               $.ajax({
+		          type: "Post",
+		          contentType: "application/json; charset=utf-8",
+		          url: "../user/queryPhone",
+		          data:JSON.stringify(user),
+                  success: function(data){
+                     if(data[0].phone == 1001){
+                         alertBottom("此手机号码为已绑定号码，请勿重复绑定！");
+                     }else{
+           		var us={
+	            	vid:vi,
+	            	phone:mobile
+	            }
+            $.ajax({
+		          type: "Post",
+		          contentType: "application/json; charset=utf-8",
+		          url: "updateUser",
+		          data:JSON.stringify(us),
+		          success: function(data){
+		          	var dataObj=eval("("+data+")");
+	    		  		if(dataObj.code==1){
+                            alertBottom('修改成功!');
+                            $("#phoneBox").css("display","none")//关闭弹窗
+                            $("#sureBoxBg").css("display","none")
+                            getbindData();//重新加载数据
+                        }else{
+                            alertBottom('修改失败!');
+                        }
+                    },
+                    error:function(e){
+		            	alert("错误！！");
+		       	  	}
+                })
+           	}
+           }
+           })
+        }
+        function bindpwd() {
+            var bindpwd =$('#bindpwd').val();
+            //修改密码
+            if(bindpwd.length < 6 || bindpwd.length >16 || bindpwd == null || bindpwd==''){
+                alertBottom("密码长度应在6-16位之间");
+                return false;
+            }
+            	var user={
+	            	vid:vid,
+	            	password:bindpwd
+	            }
+            $.ajax({
+		          type: "Post",
+		          contentType: "application/json; charset=utf-8",
+		          url: "updateUser",
+		          data:JSON.stringify(user),
+		          success: function(data){
+		          	var dataObj=eval("("+data+")");
+	    		  		if(dataObj.code==1){
+                            $("#passwordBox").css("display","none")//关闭弹窗
+                            $("#sureBoxBg").css("display","none")
+                            alertBottom("将为你跳转至登录页面，重新登录");
+                            setTimeout(function() {
+                                window.location.href="../login/login.html";
+                            },1500)
+                        }else{
+                            alertBottom('修改失败!');
+                        }
+                    },
+                    error:function(e){
+		            	alert("错误！！");
+		       	  	}
+                })
+        }
+        function bind_alipay() {
+            var alipay =$('#alipay').val();
+            var aliname = $('#aliname').val();
+            if(alipay == null || alipay == ''){
+                alertBottom('支付宝账号不能为空')
+                return false;
+            }
+            if(aliname == '' || aliname==null){
+                alertBottom('支付宝名称不能不空！');
+                return false;
+            }
+            var user={
+	            	vid:vid,
+	            	alipay:alipay,
+	            	realname:aliname
+	            }
+            $.ajax({
+		          type: "Post",
+		          contentType: "application/json; charset=utf-8",
+		          url: "updateUser",
+		          data:JSON.stringify(user),
+		          success: function(data){
+		          	var dataObj=eval("("+data+")");
+	    		  		if(dataObj.code==1){
+                            alertBottom('修改成功!');
+                            $("#bankBox").css("display","none")//关闭弹窗
+                            $("#sureBoxBg").css("display","none");
+                            $("#alipayBox").css("display","none");
+                            getbindData();//重新加载数据
+                        }else{
+                            alertBottom('修改失败!');
+                        }
+                    },
+                    error:function(e){
+		            	alert("错误！！");
+		       	  	}
+                })
+            };
+       function bind_bank() {
+           var bank_account =$('#bank_account').val();
+           var bank_name = $('#bank_name').val();
+           var bank=$("#bankList option:selected").text();
+           var bank_addr_province= $("#cmbProvince option:selected").text();
+           var bank_addr_city =$("#cmbCity option:selected").text();
+           var bank_addr_area =$("#cmbArea option:selected").text();
+           var bank_addr= $('#bank_addr').val();
+           //更改银行卡账号
+           if(bank_account == null || bank_account == '' || bank_name == null || bank_name == ''){
+               alertBottom('修改的银行卡账户姓名跟账户都不可为空！')
+               return false;
+           }
+           if(bank == '' || bank==null){
+               alertBottom('请选择银行！');
+               return false;
+           }
+           if(bank_addr == '' || bank_addr==null){
+               alertBottom('请选择开户行详细地址不能为空！');
+               return false;
+           }
+           var addre=bank_addr_province+bank_addr_city+bank_addr_area+bank_addr;
+           var bankk={
+           		ctime:vid,
+           		cardid:bank_account,
+           		obank:bank,
+           		address:addre,
+           		name:bank_name,
+           }
+          $.ajax({
+		          type: "Post",
+		          contentType: "application/json; charset=utf-8",
+		          url: "updateBank",
+		          data:JSON.stringify(bankk),
+		          success: function(data){
+		          	var dataObj=eval("("+data+")");
+		    		  	if(dataObj.code==1){
+                           alertBottom('修改成功!');
+                            $("#bankBox").css("display","none");//关闭弹窗
+                            $("#sureBoxBg").css("display","none");
+                           $("#alipayBox").css("display","none");
+                           getbindData();//重新加载数据
+                       }else{
+                           alertBottom('修改失败!');
+		                    $("#bankBox").css("display","none");//关闭弹窗
+		                    $("#sureBoxBg").css("display","none");
+		                    $("#alipayBox").css("display","none");
+		                    getList();//重新加载数据
+                       }
+                   },
+		          error:function(e){
+		            alert("错误！！");
+		       	  }
+               }
+           );
+       }
+       /*三级联动地址栏和开户行信息*/
+        $(document).ready(function(){ 
+			addressInit('cmbProvince', 'cmbCity', 'cmbArea');    
+			addBankList('bankList');
+		})
+    </script>
+    <script>
+        /*显示隐藏二维码*/
+        $(function (){
+            $(".phone").hover(function (){
+                $(".phone_BQ_box").show();
+            },function (){
+                $(".phone_BQ_box").hide();
+            });
+        });
+    </script>
+    <script>
+        //查看绑定数据
+        var vid = getcookie().vid;
+        var vm = new Vue({
+            el:"#actset",
+            data:{
+                mobile:null,
+                bank_account:null,
+                bank_name:null,
+                mobilefull:null,
+                bank_accountfull:null,
+                status:[],
+                statustext:[],
+                alipay:null
+            }
+        })
+        getbindData();
+    function getbindData() {
+    		var user={
+    			vid:vid
+    		}
+           $.ajax({
+		          type: "Post",
+		          contentType: "application/json; charset=utf-8",
+		          url: "queryPersonMessageByVid",
+		          data:JSON.stringify(user),
+		          success: function(data){
+                            vm.bank_name = data[0].name;
+                            var str = data[0].phone;
+                            var str2 = data[0].cardid;
+                            var str3 = data[0].name;
+                            vm.mobilefull = data[0].phone;
+                            vm.bank_accountfull = data[0].cardid;
+                            if(str){
+                                vm.mobile = str.substr(0,3)+"****"+str.substr(str.length-4);
+                            }
+                            if(str2 && str3 ){
+                                vm.bank_account = str2.substr(0,3)+"****"+str2.substr(str2.length-4)+"("+str3.substr(0,1)+"**)";
+                            }
+                            var str4=data[0].realname;
+                            var str5=data[0].alipay;
+                            if( str4&& str5){
+                                vm.alipay =str5.substr(0,3)+"****"+str5.substr(str5.length-4)+"("+str4.substr(0,1)+"**)"
+                            }
+                        }
+                    })
+                }
+    </script>
+    <script>
+        //详情弹框
+       $(document).ready(function()
+        {
+            /*手机号码*/
+            var oSureBoxBg=document.getElementById('sureBoxBg');
+            var oPhoneBtn=document.getElementById('PhoneBtn');
+            var oPhoneBox=document.getElementById('phoneBox');
+            var oClose1=document.getElementById('phoneClose');
+            /*银行卡*/
+            var oBankBtn=document.getElementById('bankBtn');
+            var oBankBox=document.getElementById('bankBox');
+            var oClose3=document.getElementById('bankClose');
+            var oCancelBtn=document.getElementById('cancelBtn');
+            /*支付宝*/
+            var oAlipayBtn=document.getElementById('alipayBtn');
+            var oAlipayBox=document.getElementById('alipayBox');
+            var oClose4=document.getElementById('alipayClose');
+            var oAyCancelBtn=document.getElementById('ay_cancelBtn');
+            /*密码*/
+            var oPasswordBtn=document.getElementById('passwordBtn');
+            var oPasswordBox=document.getElementById('passwordBox');
+            var oClose2=document.getElementById('passwordClose');
+
+            /*支付宝*/
+            oAlipayBtn.onclick=function () {
+                oAlipayBox.style.display='block';
+                oSureBoxBg.style.display='block';
+            };
+            oClose4.onclick=function () {
+                oAlipayBox.style.display='none';
+                oSureBoxBg.style.display='none';
+            };
+            oAyCancelBtn.onclick=function () {
+                oAlipayBox.style.display='none';
+                oSureBoxBg.style.display='none';
+            };
+            /*手机号码*/
+            oPhoneBtn.onclick=function () {
+                oPhoneBox.style.display='block';
+                oSureBoxBg.style.display='block';
+            };
+            oClose1.onclick=function () {
+                oPhoneBox.style.display='none';
+                oSureBoxBg.style.display='none';
+            };
+            $("#phoneBox").css("display","none")
+            /*银行卡*/
+            oBankBtn.onclick=function () {
+                oBankBox.style.display='block';
+                oSureBoxBg.style.display='block';
+            };
+            oClose3.onclick=function () {
+                oBankBox.style.display='none';
+                oSureBoxBg.style.display='none';
+            };
+            oCancelBtn.onclick=function () {
+                oBankBox.style.display='none';
+                oSureBoxBg.style.display='none';
+            };
+            /*密码*/
+            oPasswordBtn.onclick=function () {
+                oPasswordBox.style.display='block';
+                oSureBoxBg.style.display='block';
+            };
+            oClose2.onclick=function () {
+                oPasswordBox.style.display='none';
+                oSureBoxBg.style.display='none';
+            };
+            function hanshuming(){
+                oPhoneBox.style.display='none';
+                oSureBoxBg.style.display='none';
+            }
+
+        });
+
+    </script>
+</body>
+</html>

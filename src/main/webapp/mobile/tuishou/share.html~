@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>推荐人登录</title>
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/jquery-weui.css">
+     <link rel="stylesheet" href="css/base_cwn.css">
+    
+
+</head>
+<body ontouchstart>
+<div class="weui-tab">
+      <div class="weui-navbar weui-bgf ">
+        <a class="weui-navbar__item weui-navbar__item1 weui-bar__item--on" href="#tab1">
+          <span>邀请投资</span>
+        </a>
+        <a class="weui-navbar__item weui-navbar__item1" href="#tab2">
+          <span>推荐查询</span>
+        </a>
+      </div>
+      <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+             <div class="weui-p15">
+                  <h2 class="weui-pt30 weui-pb20 weui-f18">分享我的理财先生团贷节活动链接</h2>
+                  <h4 class=" weui-pt30 weui-pb30">你的朋友邀请您一起参加理财先生团贷节活动！</h4>
+                  <div class="weui-flex" style="align-items: center;">
+                     <div class="weui-flex__item weui-c_6">投资团贷网，到理财先生提交回单，
+投资一万元可获得80元现金(限首投)</div>
+                     <div class="weui-pl10"><img src="images/4_03.png" width="70" class="weui-box_s"></div>
+                  </div>
+                  <div class="weui-pt30"><a href="javascript:;" class="weui-btn weui-btn_warn">分享活动链接</a></div>
+             </div>
+        </div>
+        <div id="tab2" class="weui-tab__bd-item">
+             <h2 class="weui-f22 weui-t_c weui-pt30 weui-pb30 weui-bgf">您已成功邀请 <span class="weui-red01">3</span> 人</h2>
+             <div class="weui-p15">
+                  <div class="weui-bgf weui-bod">
+                       <table class="table weui-t_c">
+                             <tr class="weui-bb">
+                                 <th>好友账号</th>
+                                 <th>注册时间</th>
+                                 <th>是否投资</th>
+                             </tr>
+                             <tr class="weui-bb weui-c_6">
+                                 <td>****8888</td>
+                                 <td>2018-03-22</td>
+                                 <td>是</td>
+                             </tr>
+                             <tr class="weui-bb weui-c_6">
+                                 <td>****8888</td>
+                                 <td>2018-03-22</td>
+                                 <td><span class="weui-red01">否</span></td>
+                             </tr>
+                             <tr class="weui-bb weui-c_6">
+                                 <td>****8888</td>
+                                 <td>2018-03-22</td>
+                                 <td>是</td>
+                             </tr>
+                             <tr class="weui-c_6">
+                                 <td>****8888</td>
+                                 <td>2018-03-22</td>
+                                 <td>是</td>
+                             </tr>
+                       </table>
+                  </div>
+             </div>
+        </div>
+      </div>
+    </div>
+
+<script src="js/jquery-2.1.4.js"></script>
+<script src="js/jquery-weui.js"></script> 
+</body>
+
+</html>

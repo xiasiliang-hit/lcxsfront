@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>提交回单</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../css/base_cwn.css">
+
+
+    <style>
+        .select1 {
+            border: none;
+
+        }
+        .gh{
+            width: 2rem;
+        }
+        .fg{
+            width: 2rem;
+        height: 0.5rem;
+        }
+
+    </style>
+</head>
+<body ontouchstart>
+<header class="header weui-t_c weui-white weui-p_r">
+    提交回单
+    <a href="./steady.html" class="weui-dnb return"><img src="../images/r_03.png" width="10"></a>
+</header>
+
+<div id="index_count">
+    <div class=" weui-pt20 weui-pl20 weui-pr20">
+        <div class="weui-bgf weui-bod_r weui-pt30 weui-t_c weui-pb20">
+            <img :src="log" style="width:30vw;">
+            <p class="weui-pt10 weui-f12">每次投资完，我们会根据您填写的回单给您结算返利</p>
+        </div>
+    </div>
+    <div class="weui-cells">
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p>投资天数</p>
+            </div>
+            <div class="weui-cell__ft"><select class="select1" name="caseno" id="caseno">
+                <option value="">请选择期限</option>
+                <option v-for="caseNoItem in caseNolist" :value ="caseNoItem.id" :data-amoney="caseNoItem.amoney" v-cloak>{{caseNoItem.dtime}}</option>
+            </select></div>
+        </a>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p>投资日期</p>
+            </div>
+
+            <div class="weui-cell__ft"><input type="date" id="regtime" name="regtime"  class="gh"></div>
+        </a>
+        <a class="weui-cell" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p>投资金额</p>
+            </div>
+            <div class="weui-cell__ft"><input type="number" id="shopMoney" class="fg" name="shopMoney" placeholder="请填写准确金额"></div>
+        </a>
+        <a class="weui-cell" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p>平台注册手机号</p>
+            </div>
+            <div class="weui-cell__ft">
+            <!-- {{mobile}} -->
+            <input  class="fg" type="number"  id="pmobile" name="pmobile" placeholder="请填写注册手机号">
+
+            </div>
+        </a>
+
+    
+   	   <a class="weui-cell " href="javascript:;">
+            <div class="weui-cell__bd">
+                <p>平台注册用户名</p>
+            </div>
+            <div class="weui-cell__ft">
+            <!-- {{mobile}} -->
+            <input  class="fg" type="number"  id="pname" name="pname" placeholder="填写注册用户名">
+
+            </div>
+        </a>
+     </div>
+    <div class="weui-p20">
+        <div  onclick="receipt_btn()" class="weui-btn weui-btn_warn">提交回单</div>
+    </div>
+</div>
+<!--弹框-->
+<div class="succeed_box flex_column2" id="div1" >
+    <div class="succeed_img"></div>
+    <span>正在前往"个人中心"</span>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/font.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/vue.js"></script>
+<script>
+    var pro_id=getUrlParam("pro_id");
+    var vid = localStorage.getItem('vid');
+    if(!vid){
+        window.location.href="../Login/login.html";
+    }
+
+    var vm=new Vue({
+        el:"#index_count",//读取数据的块
+        data:{
+            aliname:null,
+            alipay:null,
+            bank_name:null,
+            bank_account:null,
+            bank:null,
+            caseNolist:[],
+            mobile:null,
+            log:null,
+			shopname:null,
+			productname:null,
+        }
+    })
+
+    $(function(){
+       vm.caseList=[];
+        var shop={
+	    	shopid:pro_id
+	    }
+        $.ajax({
+          type: "Post",
+          contentType: "application/json; charset=utf-8",
+          url: "../../receipt/queryCaseByPid",
+          data: JSON.stringify(shop),
+          success: function(data){
+                    for(var i =0 ; i < data.length; i++){
+                        vm.caseNolist.push(data[i]);
+                    }
+                }
+            }
+        )
+    });
+
+    $(function(){
+        var shop={
+	    	shopid:pro_id
+	    }
+        $.ajax({
+          type: "Post",
+          contentType: "application/json; charset=utf-8",
+          url: "../../receipt/queryProductByPid",
+          data: JSON.stringify(shop),
+          success: function(data){
+                    vm.log = data[0].logo;
+                    vm.shopname=data[0].shopname;
+                    vm.productname=data[0].pname;
+                }
+            })
+    });
+
+    $(function(){
+        var user={
+	    	vid:vid,
+	    }
+        $.ajax({
+          type: "Post",
+          contentType: "application/json; charset=utf-8",
+          url: "../../user/queryUserByVid",
+          data: JSON.stringify(user),
+          success: function(data){
+                        if(data[0].realname!=null && data[0].alipay!=null && data[0].realname!="" && data[0].alipay!=""){
+                        	vm.aliname=data[0].realname;
+                            vm.mobile =data[0].phone;
+                        }else {
+                            alertBottom("将为你跳转至绑定支付宝页面，请先绑定支付宝");
+                            setTimeout(function() {
+                                window.location.href="../user/set_alipay.html";
+                            },150);
+                        }
+
+                    }
+                })
+            }
+        );
+
+
+    function receipt_btn() {
+        var caseno=$("#caseno option:selected").val();
+        var regtime=$('#regtime').val();
+        var shopMoney=$('#shopMoney').val();
+        var pname=$('#pname').val();
+        var pmobile=$('#pmobile').val();
+        if(pmobile==null || pmobile==''){
+            alertBottom('平台注册手机号不能为空');
+            return false;
+        }
+        if(caseno==null || caseno==-1 ||caseno==0){
+            alertBottom('请选择期限');
+            return false;
+        }
+        if(regtime==null || regtime==''){
+            alertBottom('请选择投资日期');
+            return false;
+        }
+        if(shopMoney==null || shopMoney==''){
+            alertBottom('投资金额不能为空');
+            return false;
+        }
+		var receipt={
+              rid:vid,
+              productid:pro_id,
+              phone:pmobile,
+              realname:pname,
+              caseid:caseno,
+              ttime:regtime,
+              tmoney:shopMoney,
+              shopname:vm.shopname,
+              productname:vm.productname,
+          }
+       $.ajax({
+	          type: "Post",
+	          contentType: "application/json; charset=utf-8",
+	          url: "../../receipt/addReceipt",
+	          data: JSON.stringify(receipt),
+	          success: function(data){
+ 				var dataObj=eval("("+data+")");
+   		  		if(dataObj.code==1){
+                        $("#div1").fadeIn("slow");//淡入淡出效果 显示div
+                    setTimeout(function() {
+                        window.location.href="record.html";
+                       },1000)
+                }else{
+                    alertBottom('添加失败!');
+                }
+            }
+      })
+    }
+
+</script>
+<script>
+    //弹框
+    $(function(){
+        $("#div1").hide(); //先让div隐藏
+        /*  $("#span1").click(function(){
+              $("#div1").fadeIn("slow");//淡入淡出效果 显示div
+          });
+          $("#span2").click(function(){
+              $("#div1").fadeOut("slow");//淡入淡出效果 隐藏div
+          })*/
+    });
+</script>
+</body>
+
+</html>

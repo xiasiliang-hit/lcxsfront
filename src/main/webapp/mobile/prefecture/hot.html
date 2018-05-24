@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>搜索</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+     <link rel="stylesheet" href="../css/base_cwn.css">
+    
+
+</head>
+<body ontouchstart>
+<div class="weui-search-bar" id="searchBar">
+      <form class="weui-search-bar__form" onsubmit="return searchpro()">
+        <div class="weui-search-bar__box">
+          <i class="weui-icon-search"></i>
+          <input type="search" class="weui-search-bar__input" id="keywords" placeholder="搜索" required>
+          <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+        </div>
+        <label class="weui-search-bar__label" id="searchText"  style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+          <i class="weui-icon-search"></i>
+          <span>输入要搜索的平台名称</span>
+        </label>
+      </form>
+      <a href="../index.html" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+    </div>
+
+
+<div class="weui-tabbar">
+                <a href="../index.html" class="weui-tabbar__item">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="../images/h.png" alt="" class="weui-tabbar__icon">
+                    </span>
+                    <p class="weui-tabbar__label">首页</p>
+                </a>
+                <a href="./steady.html" class="weui-tabbar__item weui-bar__item_on">
+                    <img src="../images/lc_13.png" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">理财</p>
+                </a>
+                <a href="./msyq.html" class="weui-tabbar__item">
+                    <img src="../images/lc_24.png" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">活动</p>
+                </a>
+                <a href="javascript:;" class="weui-tabbar__item" id="ycj1">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="../images/lc_16.png" alt="" class="weui-tabbar__icon">
+                    </span>
+                    <p class="weui-tabbar__label">客服</p>
+                </a>
+                <a href="./record.html" class="weui-tabbar__item">
+                    <img src="../images/w.png" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">我的</p>
+                </a>
+            </div>
+
+ <script src="../js/jquery-2.1.4.js"></script>
+ <script src="../js/jquery-weui.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/vue.js"></script>
+<script>
+   function searchpro(){
+        var searchkey = $("#keywords").val();
+        if(searchkey){
+            window.location.href="hot2.html?keywords="+searchkey;
+        }else{
+            alertBottom("搜索内容不得为空！");
+        }
+        return false;
+    }
+
+</script>
+<script>
+    $("#ycj1").click(function(){
+        PP.show()
+    });
+
+    window.ppSettings = {
+        app_uuid: 'f7a4cad0-f5b1-11e7-b287-00163e00061e',
+        view: {
+            launcher_bottom_margin: '50px',
+            launcher_right_margin: '30px',
+            launcher_is_show: false,
+            launch_style: {
+                mode: 'custom',
+                position: 'right',
+                bottom: 50,
+
+
+            }
+        }
+    };
+
+    (function(){
+        var w=window,d=document;
+
+        function l() {
+            var a=d.createElement('script');
+            a.type='text/javascript';
+            a.async=!0;
+            a.charset='utf-8';
+            a.src='https://ppmessage.cn/ppcom/assets/pp-library.min.js';
+            var b=d.getElementsByTagName('script')[0];
+            b.parentNode.insertBefore(a,b)
+        }
+        l();
+    })();
+
+</script>
+</body>
+
+</html>

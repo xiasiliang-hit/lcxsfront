@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>推荐人登录</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../css/jquery-weui.css">
+    <link rel="stylesheet" href="../css/base_cwn.css">
+    <script src="../js/jquery-2.1.4.js"></script>
+    <script src="../js/jquery-weui.js"></script>
+    <script src="../js/public.js"></script>
+    <script src="../js/vue.js"></script>
+</head>
+<body ontouchstart>
+<div id="order_items">
+<div class="weui-tab" >
+      <div class="weui-navbar weui-bgf ">
+        <a class="weui-navbar__item weui-navbar__item1 weui-bar__item--on" href="#tab1">
+          <span>邀请投资</span>
+        </a>
+        <a class="weui-navbar__item weui-navbar__item1" href="#tab2">
+          <span>推荐查询</span>
+        </a>
+      </div>
+      <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+             <div class="weui-p15">
+                  <h2 class="weui-pt30 weui-pb20 weui-f18">分享我的理财先生团贷节活动链接</h2>
+                  <h4 class=" weui-pt30 weui-pb30">你的朋友邀请您一起参加理财先生团贷节活动！</h4>
+                  <div class="weui-flex" style="align-items: center;">
+                     <div class="weui-flex__item weui-c_6">投资团贷网，到理财先生提交回单，
+最高可以获得550元(限首投)</div>
+                     <div class="weui-pl10"><img src="../images/4_03.png" width="70" class="weui-box_s"></div>
+                  </div>
+                 <p>我的分享链接:</p>
+                 <p id="_share_link"> </p>
+
+                  <div class="weui-pt30"><a href="#" onclick="jumpto()" class="weui-btn weui-btn_warn">分享活动链接</a></div>
+             </div>
+        </div>
+        <div id="tab2" class="weui-tab__bd-item">
+             <h2 class="weui-f22 weui-t_c weui-pt30 weui-pb30 weui-bgf">您已成功邀请 <span class="weui-red01">{{count}}</span> 人</h2>
+             <div class="weui-p15">
+                  <div class="weui-bgf weui-bod">
+                       <table class="table weui-t_c" id="_title">
+
+                             <tr class="weui-bb" >
+                                 <th>好友手机账号</th>
+                                 <th>注册时间</th>
+                                 <th>是否投资</th>
+                             </tr>
+
+
+                           <!--列表内容-->
+                           <tr v-cloak class="weui-bb weui-c_6" v-for="(orderItem,index) in orderlist">
+                               <td class="">
+                                   <span v-cloak>********{{orderItem.phone}}</span>
+                               </td>
+                               <!--   <div style="width: 120px;text-align: center;margin-right: 18px">
+                                     <span v-cloak>{{orderItem.productname}}</span>
+                                     <span v-cloak>{{orderItem.ctime}}</span>
+                                 </div> -->
+                               <td >
+                                   <!--<span v-cloak>{{orderItem.productname}}</span>-->
+                                   <span v-cloak>{{orderItem.ctime}}</span>
+                               </td>
+                               <!--
+                               <div style="width: 150px;"class="info_details_item_div4">
+                                   <!--<span v-cloak>{{orderItem.productname}}</span>
+                                   <span v-cloak>{{orderItem.pname}}</span>
+                               </div>
+                               -->
+
+                               <td >
+                                   <!-- <span v-cloak>{{orderItem.status}}</span> -->
+                                   <span v-cloak>是</span>
+                               </td>
+                           </tr>
+
+
+<!--
+                             <tr class="weui-bb weui-c_6">
+                                 <td>****8888</td>
+                                 <td>2018-03-22</td>
+                                 <td>是</td>
+                             </tr>
+
+                             <tr class="weui-bb weui-c_6">
+                                 <td>****8888</td>
+                                 <td>2018-03-22</td>
+                                 <td><span class="weui-red01">否</span></td>
+                             </tr>
+                             <tr class="weui-bb weui-c_6">
+                                 <td>****8888</td>
+                                 <td>2018-03-22</td>
+                                 <td>是</td>
+                             </tr>
+                             <tr class="weui-c_6">
+                                 <td>****8888</td>
+                                 <td>2018-03-22</td>
+                                 <td>是</td>
+                             </tr>
+                             -->
+                       </table>
+                  </div>
+             </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+<script type="text/javascript">
+
+    var vid=getcookie().vid;
+
+
+$(document).ready(function(){
+    if(!vid){
+        window.location.href="../Login/login.html";
+    }
+
+    var user={
+    vid:vid
+    }
+
+    /*
+    if (vm.count == "0")
+    {
+        $("#_title").css("display:none");
+    }
+    */
+
+    //! use pc end, not mobile, need change!
+    var icode = "";
+    $.ajax({
+        type: "Post",
+        contentType: "application/json; charset=utf-8",
+        url: "/user/queryOwninvitatime",
+        data: JSON.stringify(user),
+        success: function(data){
+            var yqm = data[0].owninvitation;
+            var yqlj = data[0].ctime;
+            pos= yqlj.indexOf('=');
+            icode = yqm;
+
+            if (yqm.substring(0, 2) != "T-") {
+                $("#_share_link").text(yqlj.substring(0, pos + 1) + "T-" + yqm);
+
+            }
+            //getprolsit(0); //数据初始化
+            //getNum();
+        }
+    });
+
+    // if owninvitation has been added prefix "T-"
+    if (yqm.substring(0, 2) != "T-") {
+
+        /*
+        var user2 = {
+            vid:vid,
+            owninvitation:icode
+        }
+        */
+
+        $.ajax({
+            type: "Post",
+            contentType: "application/json; charset=utf-8",
+            url: "/user/updateTuishouOwn",
+            data: JSON.stringify(user),
+            success: function (data) {
+                //var vid = data[0].vid;
+                alert("SUC");
+                //getprolsit(0); //数据初始化
+                //getNum();
+            }
+        });
+    }
+
+
+
+    //load friend receipt record
+    ajaxGetData();
+    userje();
+
+});
+
+var vm = new Vue({
+    el: "#order_items",//读取数据的块
+    data: {
+        shoplist:[],
+        mobilefull:null,
+        dayMoney:null,
+        sumMoney:0,
+        hasdata:null,
+        waitingNum:null,
+        nickname:null,
+        ucode:null,
+        mobile:null,
+        count:0,
+        ydmoney:0,
+        wdmoney:0,
+        ljmoney:0,
+        orderlist:[],//回单记录
+        reddata:{
+            title:null,
+            money:null,
+            content:null,
+            dtime:null,
+            type:null,
+            red_id:null
+        },},
+});
+
+
+var limit=5,pageIndex=0;
+function ajaxGetData() {
+    var uf={
+        limit:limit,
+        ctime:vid,
+        page:pageIndex,
+    }
+    $.ajax({
+        type: "Post",
+        contentType: "application/json; charset=utf-8",
+        url: "../../receipt/queryFriendReceiptByVidForApp",
+        data:JSON.stringify(uf),
+        success: function(data){
+            if( data[0].count!=2){
+                pageIndex+=1;
+                for(var i = 0; i < data.length; i++){
+                    data[i].phone=data[i].phone.substr(data[i].phone.length-4);
+                    vm.orderlist.push(data[i]);
+                }
+            }else {
+            }
+        }
+    })
+}
+function userje() {
+    var user={
+        vid:vid,
+    }
+    $.ajax({
+        type: "Post",
+        contentType: "application/json; charset=utf-8",
+        url: "../../receipt/queryInvitationByUcodeForApp",
+        data:JSON.stringify(user),
+        success: function(data){
+            console.log(data);
+            vm.count=data[0].yqnum;
+            vm.ljmoney=data[0].ljmoney;
+            vm.ydmoney=data[0].ydmoney;
+            vm.wdmoney=data[0].wdmoney;
+        }
+    })
+
+}
+
+
+function getNum(){
+    var user={
+        owninvitation:vm.yqm,
+    }
+    $.ajax({
+        type: "Post",
+        contentType: "application/json; charset=utf-8",
+        url: "../user/queryInvitationByUcode",
+        data:JSON.stringify(user),
+        success: function(data){
+            console.log(data);
+            vm.count=data[0].yqnum;
+            vm.countt=data[0].tznum;
+            vm.money=data[0].ljmoney;
+            vm.dkmoney=data[0].ydmoney;
+        }
+    })
+}
+
+function jumpto()
+{
+    if (!vid)
+    {
+        window.href.location="../Login/login.html";
+    }
+    else
+    {
+        window.href.location="../prefcture/tz.html";
+    }
+}
+
+
+</script>
+
+
+</body>
+
+</html>

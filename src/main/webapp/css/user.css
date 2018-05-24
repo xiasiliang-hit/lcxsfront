@@ -1,0 +1,405 @@
+.option_box{
+    height: 60px;
+    margin: 3px 0 30px;
+    background: #ffffff;
+}
+.option_top{
+    width: 1160px;
+    margin: 0 auto;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 20px;
+    background: white;
+}
+.option_top a{
+    padding: 16px 0;
+    margin-right: 40px;
+}
+.option_active{
+    border-bottom:solid 3px #f52c38;
+    color: #f52c38;
+}
+.option_content_box{
+	width: 1170px;
+    padding: 5px 15px;
+    margin: 0 auto 600px;
+    background: #ffffff;
+}
+.option_content_item{
+    position: relative;
+    border-bottom: solid 1px #f2f2f2;
+    height: 20px;
+    width: 100%;
+    padding: 43px 0;
+}
+.option_content_item div{
+    display: inline-block;
+    margin-right: 30px;
+}
+.option_item_div_two{
+    width: 300px;
+}
+.option_item_div_three{
+    width: 170px;
+}
+.option_item_div_four{
+    padding: 0 0 0 35px;
+    height: 25px;
+    line-height: 25px;
+    width: 100px;
+}
+.option_item_img1{
+    padding:0 0 0 50px;
+    width: 105px;
+    height: 25px;
+    line-height: 25px;
+    text-align: left;
+    background: url("../img/icon_set_phone.png")no-repeat 10px;
+}
+.option_item_img2{
+    padding:0 0 0 50px;
+    width: 105px;
+    height: 25px;
+    line-height: 25px;
+    text-align: left;
+    background: url("../img/icon_set_bank.png")no-repeat 10px;
+}
+.option_item_img3{
+    padding:0 0 0 50px;
+    width: 105px;
+    height: 25px;
+    line-height: 25px;
+    text-align: left;
+    background: url("../img/icon_set_password.png")no-repeat 10px;
+}
+.option_item_img4{
+    padding:0 0 0 50px;
+    width: 105px;
+    height: 25px;
+    line-height: 25px;
+    text-align: left;
+    background: url("../img/icon_set_alipay.png")no-repeat 10px;
+}
+.item_img_unConfirm{
+    background: url("../img/pic_set_unconfirm.png")no-repeat 10px;
+}
+.item_img_Confirm{
+     background: url("../img/pic_set_confirm.png")no-repeat 10px;  
+}
+.option_btn_bg{
+    width: 86px;
+    height: 32px;
+    border: none;
+    color: white;
+    position: absolute;
+    right: 40px;
+    top: 37px;
+    background: url("../img/pic_set_btn.png")no-repeat center;
+}
+/*弹框*/
+.appionit_sureBoxBg {
+    position: fixed;
+    background: rgba(3,3,3,.2);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    overflow: hidden;
+}
+.revise_box1{
+    width: 440px;
+    background: white;
+    position: fixed;
+    top: 20%;
+    left: 35%;
+    padding: 30px 60px;
+    text-align: center;
+}
+.revise_div1{
+    text-align: left;
+}
+.revise_div1 img{
+    float: right;
+}
+.revise_div1_span{
+    margin-right: 10px;
+    padding: 0 10px;
+    background: #f52c38;
+}
+.revise_box1 .input_txt{
+    margin: 40px;
+    height: 8px;
+    width: 300px;
+    padding: 20px 15px;
+    border: solid 1px #eeeeee;
+}
+.input_txt2{
+    margin-top: 40px;
+    height: 8px;
+    width: 300px;
+    padding: 20px 15px;
+    border: solid 1px #eeeeee;
+}
+.input_txt3{
+    margin-top: 20px;
+    height: 8px;
+    width: 300px;
+    padding: 20px 15px;
+    border: solid 1px #eeeeee;
+}
+.revise_box1 select{
+    width: 330px;
+    padding: 15px 15px;
+    border: solid 1px #eeeeee;
+    margin: 20px auto 0;
+    display: block;
+    color: #8d8d8d;
+}
+.revise_box1 .input_btn{
+    width: 126px;
+    height: 38px;
+    background: url("../img/pic_revise_btn.png")no-repeat center;
+    border: none;
+    color: white;
+}
+.revise_box1 .input_btn2{
+    width: 126px;
+    height: 38px;
+    margin-right: 70px;
+    background: url("../img/pic_revise_btn2.png")no-repeat center;
+    border: none;
+    color: white;
+}
+/*账户总览*/
+.pandect_main{
+    height: 1300px;
+}
+.user_info{
+    width: 1200px;
+    height: 245px;
+    margin: 50px auto;
+}
+.user_info_left{
+    width: 535px;
+    height: 245px;
+    background: #ffffff;
+    display: inline-block;
+    position: relative;
+}
+.user_info_left img{
+    position: absolute;
+    top:-10px;
+    left: 10px;
+}
+.user_money{
+    height: 60px;
+    margin: 52px 0;
+}
+.user_money li{
+    width: 175px;
+    display: inline-block;
+    text-align: center;
+}
+.user_money li span{
+    display: block;
+}
+.user_info_right{
+    width: 630px;
+    height: 245px;
+    background: url("../img/pic_effective.png")no-repeat center;
+    display: inline-block;
+    position: relative;
+}
+.user_info_right strong{
+    margin:70px 0 0 225px ;
+    display: block;
+}
+.user_info_right span{
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+}
+.user_info_right2{
+    width: 630px;
+    height: 245px;
+    background: url("../img/pic_unEffective.png")no-repeat center;
+    display: inline-block;
+    position: relative;
+}
+.user_info_right2 strong{
+    margin:65px 0 0 225px ;
+    display: block;
+    color: #cbc4c5;
+}
+.user_info_right2 span{
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+}
+.info_right_btn{
+    border: solid 1px #ff0000;
+    color: #ff0000;
+    border-radius: 10px;
+    padding: 3px 20px;
+    background: #ffffff;
+    margin: 40px 0 0 120px;
+}
+.info_details{
+    width: 1200px;
+    background: #ffffff;
+    padding-bottom: 5px;
+    margin: 0 auto;
+}
+.info_details_search{
+    height: 115px;
+    border-bottom: solid 1px #eeeeee;
+    background: url("../img/icon_search.png")no-repeat 35px center;
+}
+.info_details_search select{
+    width: 455px;
+    height: 40px;
+    margin: 37px 0 0 90px;
+    padding: 2.5px 0 2.5px 15px;
+    border: solid 1px #dcdcdc;
+}
+.info_details_btn{
+    width: 131px;
+    height: 37px;
+    background: url("../img/pic_pandect_btn1.png")no-repeat center;
+    border: none;
+    color: #ffffff;
+    margin:0 30px;
+}
+.info_details_btn2{
+    width: 87px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background: url("../img/pic_pandect_btn2.png")no-repeat center;
+    border: none;
+    color: #ffffff;
+    margin:0 0px 0 0;
+}
+.info_details_title{
+    height: 40px;
+    line-height: 40px;
+    padding-left: 45px;
+    border-bottom: solid 1px #eeeeee;
+    display: flex;
+}
+.info_details_title span{
+    margin:0 50px 0 10px;
+}
+.info_details_item{
+    padding: 25px 45px;
+    border-bottom: solid 1px #eeeeee;
+    text-align: right;
+    display: flex;
+}
+.info_details_item div{
+    display: inline-block;
+}
+.info_details_item_div{
+    width: 100px;
+    text-align: left;
+}
+.info_details_item_div2{
+    width: 80px;
+    text-align: center;
+}
+.info_details_item_div3{
+    width: 330px;
+    height: 80px;
+    line-height: 25px;
+    text-align: left;
+}
+.info_details_item_div4{
+    width: 55px;
+    text-align: center;
+}
+.info_details a:hover{
+    color: #ffffff;
+}
+.receipt_box{
+    padding: 20px 60px;
+    background: #ffffff;
+    position: fixed;
+    z-index: 2;
+    top: 5%;
+    left: 35%;
+    width: 510px;
+}
+.receipt_box_item{
+    height: 70px;
+    line-height: 70px;
+    border-bottom: dashed 1px #d9d9d9;
+}
+.receipt_box_item_input1{
+    width: 170px;
+    margin-left: 15px;
+    padding: 10px 0 10px 10px;
+    border-radius: 5px;
+    border: solid 1px #cdcdcd;
+}
+.receipt_box_item_input2{
+    width: 110px;
+    margin-left: 15px;
+    padding: 10px 0 10px 10px;
+    border-radius: 5px;
+    border: solid 1px #cdcdcd;
+}
+.receipt_box_item_select{
+    width: 110px;
+    margin-left: 15px;
+    padding: 10px 0 10px 10px;
+    border-radius: 5px;
+    border: solid 1px #cdcdcd;
+}
+.receipt_box_item_select2{
+    width: 150px;
+    margin-left: 15px;
+    padding: 10px 0 10px 10px;
+    border-radius: 5px;
+    border: solid 1px #cdcdcd;
+}
+.receipt_box_item_btn_div{
+    margin: 15px auto 0;
+    width: 150px;
+}
+.receipt_box_item_btn{
+    width: 150px;
+    height: 45px;
+    background: url("../img/pic_pandect_btn1.png")no-repeat center;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+.info_details_btn2_1{
+    width: 87px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background: #999;
+    border: none;
+    color: #ffffff;
+    margin:0 0px 0 0;
+}
+
+.us{
+    margin-top: 40px;
+}
+.uc{
+    width: 175px;
+    margin-top: 10px;
+    height: 50px;
+
+}
+.lk{
+    display: inline-block;
+}
+
+.hg{
+    margin-top: 10px;
+}
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>搜索</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+     <link rel="stylesheet" href="../css/base_cwn.css">
+    
+
+</head>
+<body ontouchstart>
+<div class="weui-search-bar" id="searchBar">
+      <form class="weui-search-bar__form" onsubmit="return searchpro()">
+        <div class="weui-search-bar__box">
+          <i class="weui-icon-search"></i>
+          <input type="search" class="weui-search-bar__input" id="keywords" placeholder="搜索" required>
+          <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+        </div>
+        <label class="weui-search-bar__label" id="searchText"  style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+          <i class="weui-icon-search"></i>
+          <span>输入要搜索的平台名称</span>
+        </label>
+      </form>
+      <a href="../index.html" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+    </div>
+
+
+
+
+ <script src="../js/jquery-2.1.4.js"></script>
+ <script src="../js/jquery-weui.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/vue.js"></script>
+<script>
+    function searchpro(){
+        var searchkey = $("#keywords").val();
+        if(searchkey){
+            window.location.href="hot2.html?keywords="+searchkey;
+        }else{
+            alertBottom("搜索内容不得为空！");
+        }
+        return false;
+    }
+
+</script>
+</body>
+
+</html>

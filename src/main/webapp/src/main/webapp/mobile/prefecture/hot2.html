@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>搜索结果</title>
+    <link rel="stylesheet" href="../css/weui.min.css">
+     <link rel="stylesheet" href="../css/base_cwn.css">
+    
+
+</head>
+<body ontouchstart>
+<div class="weui-search-bar" id="searchBar">
+      <form class="weui-search-bar__form" action="#">
+        <div class="weui-search-bar__box">
+          <i class="weui-icon-search"></i>
+          <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required>
+          <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+        </div>
+        <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+          <i class="weui-icon-search"></i>
+          <span>输入要搜索的平台名称</span>
+        </label>
+      </form>
+      <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+    </div>
+
+<!--所有项目-->
+<div class="main" id="contain">
+
+</div>
+
+
+
+
+ <script src="../js/jquery-2.1.4.js"></script>
+ <script src="../js/jquery-weui.js"></script>
+<script src="../js/zepto.js"></script>
+<script src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/vue.js"></script>
+<script src="../js/public.js"></script>
+<script>
+    //选项addclass
+    function selectFlat(it) {
+        $(".select_platform").find("li input").removeClass("btn_active");
+        $(".select_platform").find("li ").removeClass("btn_active1");
+        $(it).addClass("btn_active1");
+    }
+    $(document).ready(function(){
+        $(".select_platform li input").click(function(){
+            $(".select_platform").find("li input").removeClass("btn_active");
+            $(".select_platform").find("li ").removeClass("btn_active1");
+            $(this).addClass("btn_active");
+        });
+        $(".select_platform2 li").click(function(){
+            $(".select_platform2").find("li input").removeClass("btn_active");
+            $(this).children("input").addClass("btn_active");
+        });
+    });
+
+    function more() {
+        document.getElementById('more').style.display='none';
+        document.getElementById('stop').style.display='inline-block';
+        to=0,limit1=50;
+        vm.shoplist=[];
+        shoplist();
+    }
+    function stop() {
+        to=0,limit1=10;
+        vm.shoplist=[];
+        document.getElementById('more').style.display='inline-block';
+        document.getElementById('stop').style.display='none';
+        shoplist();
+    }
+    var to=0,limit1=10;
+    var vm = new Vue({
+        el:".index_cont",//读取数据的块
+        data:{
+            shoplist:[],
+        }
+    });
+    var keywords = getUrlParam("keywords");
+    $(".search_box_input").attr("value",keywords);
+
+    function shoplist() {
+        $.post(
+            ajaxUrl + "HomeData/partner_list", {
+                page:to,
+                limit:limit1,
+            },
+            function (data) {
+                ret=data;
+                if(ret){
+                    if(ret['result'] == 1001){
+                        for(var i = 0; i < ret['data'].length; i++){
+                            vm.shoplist.push(ret['data'][i]);
+                        }
+                    }
+                }
+            }
+        );
+    }
+</script>
+<script>
+    var pageIndex=0,limit=10,s_type=1;
+    $(document).ready(function(){
+        $(".partition li").click(function(){
+            /*$(".tablist li").eq($(this).index()).addClass("active").siblings().removeClass('active');*/
+            $(".partition_info_box").hide().eq($(this).index()).show();
+            //$("#service_cont").eq($(".tablist li a").index(this)).addClass("on").siblings().removeClass('on');
+            $(".partition").find("li a").removeClass("partition_active");
+            $(this).children("a").addClass("partition_active");
+        });
+        ajaxGetData();
+        var range = 0;             //距下边界长度/单位px
+        var elemt = 0;           //插入元素高度/单位px
+        var maxnum = 2000;            //设置加载最多次数
+		var canRun=true;  
+        var totalheight = 0;
+        var main = $("#contain");                     //主体元素
+        $(window).scroll(function(){
+        	 if(!canRun){return;}  
+        	 canRun=false;  
+        	 setTimeout(function(){
+            var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+             /* console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+             console.log("页面的文档高度 ："+$(document).height());
+             console.log('浏览器的高度：'+$(window).height()); */
+            totalheight = Math.ceil($(window).height()) +Math.ceil(srollPos);
+            if(($(document).height()-range) <= totalheight ) {
+                ajaxGetData();
+            }
+            canRun=true;
+             },600); 
+        });
+    });
+    function ajaxGetData(lx) {
+ var str="";
+            var front={
+		    	page:pageIndex,
+		    	limit:limit,
+		    	tincome:keywords,
+		    	xnh:1,
+		    }
+		    $.ajax({
+		          type: "Post",
+		          contentType: "application/json; charset=utf-8",
+		          url: "../../front/queryAll",
+		          data: JSON.stringify(front),
+		          success: function(data){
+                            if( data[0].de!=2){
+                                pageIndex+=1;
+                                for(var i = 0; i < data.length; i++){
+                                    //"type": "1", // 1首投 标识
+                                    var type='';
+                                    var color = '';
+                                    if(data[i].typestz == 1){
+                                        type = '首投';
+                                    }else if(data[i].typestz == 2){
+                                        color = 'bq01';
+                                        type = '复投';
+                                    }
+                                    var tag = '';
+                                    var tagbox = data[i].tag.split(',');
+                                    for (var j = 0; j < tagbox.length; j++) {
+                                        // tag=tag+' <span class="tag">'+tagbox[j]+'</span> ';
+                                        // tag=tag+ '<span class="weui-dnb weui-bod_r weui-bgcolor01 weui-pl5 weui-pr5 weui-bod">'+tagbox[j]+'</span>&nbsp;';
+                                        tag=tag+ ' <span class="bg bg1 cs">'+tagbox[j]+'</span>';
+                                    }
+                                    // str=str+ '<li class="item"><div class="item-name"><span class="bottom"><span class="btn '+color+'">'+type+'</span><span class="product-name">'+ ret['data'][i].productname+'</span></span>'+ +'</div><div class="item-content"><div class="item-box"><div class="top img"><img src="'+ret['data'][i].logo+'" alt="图片"></div></div><div class="item-box"><div class="top"><span class="box">相当于年化收益</span></div><div class="bottom"><sapn class="box">'+ret['data'][i].income+'%</sapn></div></div><div class="item-box"><div class="top"><sapn class="box">投'+ret['data'][i].money+'元获得</sapn></div><div class="bottom"><span class="box">'+ret['data'][i].example+'元</span></div></div><div class="item-box"><div class="content"><a href="prefecture/details.html?pro_id='+ret["data"][i].id+'&type='+ ret['data'][i].type+'"><div class="join"><span class="join-btn">立即加入</span></div></a></div></div><div class="clearfix"></div></div></li>';
+                                    str=str+' <a href="prefecture/details.html?pro_id='+data[i].id+'" class="btn_cy">  <section class="weui-bgf weui-pt10 weui-pb10 weui-bb">\n' +
+                                        '    <p class="weui-pb10 weui-pl15">\n' +
+                                        '        <span class="bq '+color+'">'+type+'</span>\n' +
+                                        '        &nbsp;&nbsp;&nbsp;&nbsp;<img src="'+data[i].logo+'" width="70">\n' +
+                                          '<span class=" weui-fr weui-f12 weui-pt5">' + '风控评分：' +data[i].risk+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>\n' + 
+                                        '    </p>\n' +
+                                        '    <div class="weui-flex weui-t_c weui-f12">\n' +
+                                        '            <div class="weui-flex__item">\n' +
+                                        '                <p class="weui-f20 weui-orange"><b>'+data[i].xnh+'%</b></p>\n' +
+                                        '                返利后年化收益\n' +
+                                        '            </div>\n' +
+                                        '            <div class="weui-flex__item">\n' +
+                                        '                <p class="weui-f20 weui-orange"><b>'+data[i].tincome+'</b></p>\n' +
+                                        '                投'+data[i].money+'获得（元）\n' +
+                                        '            </div>\n' +
+                                        '            <div class="weui-flex__item">\n' +
+                                        '                <p class="weui-f20 weui-orange"><b>'+data[i].qx+'</b></p>\n' +
+                                        '                最短投资期限（天）\n' +
+  '<p class="weui-c_9 weui-pt10 weui-f12">已参与<span class="weui-orange">'+data[i].people+'</span>人</p>\n' +
+                                        '            </div>\n' +
+                                        '        </div>\n' +
+
+                                        '       <div class="weui-pt10 weui-pl15">' +tag+ '</div> \n' +
+                                        '       <div class="weui-pt10 weui-pl15"></div> \n' +
+                                        '</section></a>';
+                                    var tag = '';
+                                }
+                                $('.main').append(str);
+                            }else {
+                            }
+                        }
+                        })
+                }
+
+</script>
+<script>
+    function searchpro(){
+        var searchkey = $("#keywords").val();
+        if(searchkey){
+            window.location.href="hot2.html?keywords="+searchkey;
+        }else{
+            alertBottom("搜索内容不得为空！");
+        }
+        return false;
+    }
+</script>
+</body>
+
+</html>
