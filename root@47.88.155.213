@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!-- ======================================================================== -->
+<!--  settings.xml for taobao maven users                                     -->
+<!--  Version: 1                                                              -->
+<!--  Auhtor: jingshun shi                                                    -->
+<!--  $Id: settings.xml 182629 2013-06-07 14:31:35Z jingshun.shijs $ -->
+<!-- ======================================================================== -->
+
+<settings>
+    <localRepository>/Users/danny/work/mvn/jar</localRepository>
+    <servers> 
+        <server>
+         <id>releases</id>
+         <username>admin</username>
+         <password>admin123</password>
+        </server>
+        <server>
+         <id>snapshots</id>
+         <username>admin</username>
+         <password>admin123</password>
+        </server>
+   </servers> 
+
+        <!-- ======================================================================== -->
+        <!--  mirror settings                                                         -->
+        <!-- ======================================================================== -->
+    <mirrors> 
+        <mirror>
+     <id>nexus</id>
+     <mirrorOf>*</mirrorOf>
+     <name>Nexus Mirror</name>
+     <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+   </mirror>
+    </mirrors> 
+        <!-- ======================================================================== -->
+        <!--  Profiles                                                                -->
+        <!-- ======================================================================== -->
+	<profiles>
+ 	<profile>
+      <id>nexus</id>
+      <repositories>
+        <repository>
+          <id>nexus</id>
+          <name>Nexus</name>
+          <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>nexus</id>
+          <name>Nexus</name> 
+          <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>       
+        </pluginRepository>       
+      </pluginRepositories>
+    </profile> 
+	</profiles>
+
+        <pluginGroups>
+        		 <pluginGroup>org.apache.maven.plugins</pluginGroup>
+                         <pluginGroup>org.codehaus.mojo</pluginGroup>
+        </pluginGroups>
+
+    <activeProfiles> 
+        <activeProfile>nexus</activeProfile> 
+    </activeProfiles> 
+ 
+</settings> 

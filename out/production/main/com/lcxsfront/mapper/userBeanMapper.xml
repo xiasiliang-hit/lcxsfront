@@ -159,6 +159,13 @@
     where owninvitation=#{owninvitation}
   </select>
 
+  <select id="queryUsersByInvitation" resultType="com.lcxsfront.model.userBean" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from c_user
+    where invitation=#{invitation}
+  </select>
+
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     <!--

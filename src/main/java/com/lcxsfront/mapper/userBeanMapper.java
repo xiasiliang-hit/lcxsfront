@@ -123,12 +123,14 @@ public interface userBeanMapper {
      * 查询用户是否投资
      */
     List<Object> queryNumByVid(Long vid);
-        /*
+    /**
     根据邀请码查询用户
-     */
-
+    */
     userBean queryUserByOwninvitation(String invitationCode);
 
+    /**
+    推手邀请码增加 'T-'
+     */
     int updateOwnByVid(long vid);
 
 }

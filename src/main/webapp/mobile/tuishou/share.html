@@ -145,17 +145,36 @@ $(document).ready(function(){
             pos= yqlj.indexOf('=');
             icode = yqm;
 
+
             if (yqm.substring(0, 2) != "T-") {
                 $("#_share_link").text(yqlj.substring(0, pos + 1) + "T-" + yqm);
 
+                $.ajax({
+                    type: "Post",
+                    contentType: "application/json; charset=utf-8",
+                    url: "/user/updateTuishouOwn",
+                    data: JSON.stringify(user),
+                    success: function (data) {
+                        //var vid = data[0].vid;
+                        alert("SUC");
+                        //getprolsit(0); //数据初始化
+                        //getNum();
+                    }
+                });
+
             }
+            else {
+                $("#_share_link").text(yqlj);
+            }
+
+
             //getprolsit(0); //数据初始化
             //getNum();
         }
     });
 
     // if owninvitation has been added prefix "T-"
-    if (yqm.substring(0, 2) != "T-") {
+    if (icode.substring(0, 2) != "T-") {
 
         /*
         var user2 = {
@@ -164,18 +183,7 @@ $(document).ready(function(){
         }
         */
 
-        $.ajax({
-            type: "Post",
-            contentType: "application/json; charset=utf-8",
-            url: "/user/updateTuishouOwn",
-            data: JSON.stringify(user),
-            success: function (data) {
-                //var vid = data[0].vid;
-                alert("SUC");
-                //getprolsit(0); //数据初始化
-                //getNum();
-            }
-        });
+
     }
 
 
@@ -231,7 +239,11 @@ function ajaxGetData() {
                 pageIndex+=1;
                 for(var i = 0; i < data.length; i++){
                     data[i].phone=data[i].phone.substr(data[i].phone.length-4);
-                    vm.orderlist.push(data[i]);
+                    if (data[i].pname=='团贷网')  //tuidaiwang
+                    {
+                        vm.orderlist.push(data[i]);
+                    }
+                    else {}
                 }
             }else {
             }
@@ -286,7 +298,7 @@ function jumpto()
     }
     else
     {
-        window.href.location="../prefcture/tz.html";
+        window.href.location="../prefecture/tz.html";
     }
 }
 

@@ -12,13 +12,21 @@
 <body ontouchstart style="background:#fff0d3;">
    
    <img src="../images/1_01.jpg" width="100%">
-   
-   
    <a href="register.html" class=" btn_yq">立 即 邀 请</a>
 
-  
-   
-   
+   <script>
+       var vid = getcookie('vid');
+
+       $(document).ready(function() {
+           if (!vid) {
+               window.location.href = "register.html";
+           }
+           else {
+               window.location.href = "share.html";
+           }
+       });
+
+   </script>
 </body>
 
 </html>
